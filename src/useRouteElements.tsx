@@ -20,7 +20,11 @@ export default function useRouteElements() {
     },
     {
       path: '/register',
-      element: <Register />
+      element: (
+        <RegisterLayout>
+          <Register />
+        </RegisterLayout>
+      )
     }
   ])
   return routeElements

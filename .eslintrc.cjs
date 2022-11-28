@@ -8,7 +8,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:import/recommended',
-    'plugin:import/typescript',
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
     // Disable các rule mà eslint xung đột với prettier.
@@ -25,7 +24,7 @@ module.exports = {
     // Nói ESLint cách xử lý các import
     'import/resolver': {
       node: {
-        paths: [path.resolve(__dirname, '')],
+        paths: [path.resolve(__dirname)],
         extensions: ['.js', '.jsx', '.ts', '.tsx']
       }
     }
