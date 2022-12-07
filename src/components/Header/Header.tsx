@@ -49,7 +49,7 @@ export default function Header() {
               <div>
                 <Link
                   className='block w-full bg-white py-2 px-3 text-left hover:bg-slate-100 hover:text-cyan-500'
-                  to='/'
+                  to='/profile'
                 >
                   Tài khoản của tôi
                 </Link>
