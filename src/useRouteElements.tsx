@@ -4,7 +4,7 @@ import RegisterLayout from 'src/layouts/RegisterLayout'
 import Login from 'src/pages/Login'
 import ProductList from 'src/pages/ProductList'
 import Register from 'src/pages/Register'
-import Profile from './pages/Profile'
+import Profile from 'src/pages/Profile'
 
 function ProtectedRoute() {
   const isAuthenticated = true
@@ -19,7 +19,6 @@ export default function useRouteElements() {
   const routeElements = useRoutes([
     {
       path: '/',
-      index: true,
       element: (
         <MainLayout>
           <ProductList />
@@ -61,8 +60,7 @@ export default function useRouteElements() {
           )
         }
       ]
-    },
-
+    }
   ])
   return routeElements
 }
