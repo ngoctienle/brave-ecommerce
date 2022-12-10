@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
+import { AppContext } from './contexts/app.context'
 
 import paths from './constants/paths'
 
@@ -10,12 +12,12 @@ import Register from 'src/pages/Register'
 import Profile from 'src/pages/Profile'
 
 function ProtectedRoute() {
-  const isAuthenticated = true
-  return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
+  const { isAuthenticated } = useContext(AppContext)
+  return isAuthenticated ? <Outlet /> : <Navigate to={paths.login} />
 }
 function RejectedRoute() {
-  const isAuthenticated = false
-  return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
+  const { isAuthenticated } = useContext(AppContext)
+  return !isAuthenticated ? <Outlet /> : <Navigate to={paths.home} />
 }
 
 export default function useRouteElements() {
