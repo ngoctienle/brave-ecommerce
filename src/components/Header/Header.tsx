@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Popover from 'src/components/Popover'
+import paths from 'src/constants/paths'
 
 export default function Header() {
   return (
@@ -11,8 +12,8 @@ export default function Header() {
             renderPopover={
               <div className='relative rounded-sm bg-white shadow-md'>
                 <div className='flex flex-col py-2 px-3'>
-                  <button className='py-2 px-3 hover:text-orange'>Tiếng Việt</button>
-                  <button className='mt-2 py-2 px-3 hover:text-orange'>Tiếng Anh</button>
+                  <button className='py-2 px-3 hover:text-primary-F94545'>Tiếng Việt</button>
+                  <button className='mt-2 py-2 px-3 hover:text-primary-F94545'>Tiếng Anh</button>
                 </div>
               </div>
             }
@@ -49,7 +50,7 @@ export default function Header() {
               <div>
                 <Link
                   className='block w-full bg-white py-2 px-3 text-left hover:bg-slate-100 hover:text-cyan-500'
-                  to='/profile'
+                  to={paths.profile}
                 >
                   Tài khoản của tôi
                 </Link>
@@ -86,7 +87,7 @@ export default function Header() {
               placeholder='Free ship đơn từ 0 đồng..'
               className='flex-grow border-none bg-transparent px-3 py-2 text-black outline-none'
             />
-            <button className='flex-shrink-0 rounded-sm bg-orange py-2 px-6 hover:opacity-90'>
+            <button className='flex-shrink-0 rounded-sm bg-primary-F94545 py-2 px-6 hover:opacity-90'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -118,7 +119,7 @@ export default function Header() {
                           <div className='truncate'>Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi</div>
                         </div>
                         <div className='ml-2 flex-shrink-0'>
-                          <span className='text-orange'>455.000</span>
+                          <span className='text-primary-F94545'>455.000</span>
                         </div>
                       </div>
                       <div className='mt-4 flex'>
@@ -129,7 +130,7 @@ export default function Header() {
                           <div className='truncate'>Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi</div>
                         </div>
                         <div className='ml-2 flex-shrink-0'>
-                          <span className='text-orange'>455.000</span>
+                          <span className='text-primary-F94545'>455.000</span>
                         </div>
                       </div>
                       <div className='mt-4 flex'>
@@ -140,13 +141,13 @@ export default function Header() {
                           <div className='truncate'>Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi</div>
                         </div>
                         <div className='ml-2 flex-shrink-0'>
-                          <span className='text-orange'>455.000</span>
+                          <span className='text-primary-F94545'>455.000</span>
                         </div>
                       </div>
                     </div>
                     <div className='mt-6 flex items-center justify-between'>
                       <div className='text-xs capitalize'>1 thêm vào giỏ hàng</div>
-                      <button className='rounded-sm bg-orange px-4 py-2 capitalize text-white hover:bg-opacity-80'>
+                      <button className='rounded-sm bg-primary-F94545 px-4 py-2 capitalize text-white hover:bg-opacity-80'>
                         xem giỏ hàng
                       </button>
                     </div>

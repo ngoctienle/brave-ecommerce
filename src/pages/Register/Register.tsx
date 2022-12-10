@@ -51,7 +51,7 @@ export default function Register() {
   })
 
   return (
-    <div className='bg-orange'>
+    <div className='bg-primary-F94545'>
       <div className='container'>
         <div className='lg:grids-cols-5 grid grid-cols-1 py-12 lg:py-32 lg:pr-10'>
           <div className='lg:col-span-2 lg:col-start-4'>

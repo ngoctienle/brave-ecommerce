@@ -3,7 +3,7 @@ import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 import paths from './constants/paths'
 
 import MainLayout from 'src/layouts/MainLayout'
-import RegisterLayout from 'src/layouts/RegisterLayout'
+import AuthLayout from 'src/layouts/AuthLayout'
 import Login from 'src/pages/Login'
 import ProductList from 'src/pages/ProductList'
 import Register from 'src/pages/Register'
@@ -27,17 +27,17 @@ export default function useRouteElements() {
         {
           path: paths.login,
           element: (
-            <RegisterLayout>
+            <AuthLayout>
               <Login />
-            </RegisterLayout>
+            </AuthLayout>
           )
         },
         {
           path: paths.register,
           element: (
-            <RegisterLayout>
+            <AuthLayout>
               <Register />
-            </RegisterLayout>
+            </AuthLayout>
           )
         }
       ]
