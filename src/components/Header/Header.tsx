@@ -116,7 +116,7 @@ export default function Header() {
                 type='text'
                 name='search'
                 placeholder='Free ship đơn từ 0 đồng..'
-                className='flex-grow border-none bg-transparent text-secondary-1A162E outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14'
+                className='flex-grow border-none bg-transparent text-secondary-1A162E outline-none placeholder:fs-14 placeholder:text-secondary-1A162E/70'
               />
               <button className='flex-shrink-0 rounded-8'>
                 <img
@@ -174,7 +174,7 @@ export default function Header() {
                 </div>
               }
             >
-              <Link to='/' className='relative block rounded-8 bg-white h-10 w-10'>
+              <Link to='/' className='relative block h-10 w-10 rounded-8 bg-white'>
                 <img
                   className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                   src='src/assets/icon-cart-light.svg'
