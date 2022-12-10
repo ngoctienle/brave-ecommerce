@@ -9,6 +9,7 @@ import { ResponeApi } from 'src/types/utils.type'
 import { LoginAccount } from 'src/apis/auth.api'
 
 import Input from 'src/components/Input'
+import Button from 'src/components/Button'
 
 type FormData = Omit<Schema, 'confirm_password'>
 
@@ -74,12 +75,14 @@ export default function Login() {
                 errorMessage={errors.password?.message}
               />
               <div className='mt-3'>
-                <button
+                <Button
                   type='submit'
-                  className='w-full bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'
+                  className='flex w-full items-center justify-center bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'
+                  isLoading={loginAccountMutation.isLoading}
+                  disabled={loginAccountMutation.isLoading}
                 >
                   Đăng Nhập
-                </button>
+                </Button>
               </div>
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-300'>Bạn chưa có tài khoản?</span>

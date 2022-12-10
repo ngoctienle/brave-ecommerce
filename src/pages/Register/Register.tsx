@@ -10,6 +10,7 @@ import { ResponeApi } from 'src/types/utils.type'
 import { RegisterAccount } from 'src/apis/auth.api'
 
 import Input from 'src/components/Input'
+import Button from 'src/components/Button'
 
 type FormData = Schema
 
@@ -83,9 +84,13 @@ export default function Register() {
                 errorMessage={errors.confirm_password?.message}
               />
               <div className='mt-2'>
-                <button className='w-full bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'>
+                <Button
+                  className='flex w-full items-center justify-center bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'
+                  isLoading={registerAccountMutation.isLoading}
+                  disabled={registerAccountMutation.isLoading}
+                >
                   Đăng Ký
-                </button>
+                </Button>
               </div>
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-300'>Bạn đã có tài khoản?</span>
