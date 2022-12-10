@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 
 import { AppContext } from 'src/contexts/app.context'
-import { LogoutAccout } from 'src/apis/auth.api'
+import { LogoutAccount } from 'src/apis/auth.api'
 
 import Popover from 'src/components/Popover'
 import paths from 'src/constants/paths'
@@ -12,7 +12,7 @@ export default function Header() {
   const { setIsAuthenticated, isAuthenticated } = useContext(AppContext)
 
   const logoutMutation = useMutation({
-    mutationFn: LogoutAccout,
+    mutationFn: LogoutAccount,
     onSuccess: () => {
       setIsAuthenticated(false)
     }
@@ -70,13 +70,13 @@ export default function Header() {
                 <div>
                   <Link
                     className='block w-full bg-white py-2 px-3 text-left hover:bg-slate-100 hover:text-cyan-500'
-                    to='/profile'
+                    to={paths.profile}
                   >
                     Tài khoản của tôi
                   </Link>
                   <Link
                     className='block w-full bg-white py-2 px-3 text-left hover:bg-slate-100 hover:text-cyan-500'
-                    to='/'
+                    to={paths.home}
                   >
                     Đơn mua
                   </Link>
@@ -94,6 +94,17 @@ export default function Header() {
               </div>
               <div>ABC</div>
             </Popover>
+          )}
+          {!isAuthenticated && (
+            <div className='flex items-center'>
+              <Link to={paths.register} className='mx-3 capitalize hover:text-white/70'>
+                Đăng kí
+              </Link>
+              <div className='h-4 border-r-[1px] border-r-white/40'></div>
+              <Link to={paths.login} className='mx-3 capitalize hover:text-white/70'>
+                Đăng nhập
+              </Link>
+            </div>
           )}
         </div>
         <div className='mt-4 grid grid-cols-12 items-end gap-4'>

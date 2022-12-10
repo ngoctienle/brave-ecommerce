@@ -13,6 +13,7 @@ import { RegisterAccount } from 'src/apis/auth.api'
 
 import Input from 'src/components/Input'
 import Button from 'src/components/Button'
+import paths from 'src/constants/paths'
 
 type FormData = Schema
 
@@ -100,7 +101,7 @@ export default function Register() {
               </div>
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-300'>Bạn đã có tài khoản?</span>
-                <Link className='ml-1 text-red-400' to='/login'>
+                <Link className='ml-1 text-red-400' to={paths.login}>
                   Đăng nhập
                 </Link>
               </div>

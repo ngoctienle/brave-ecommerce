@@ -13,6 +13,7 @@ import { AppContext } from 'src/contexts/app.context'
 
 import Input from 'src/components/Input'
 import Button from 'src/components/Button'
+import paths from 'src/constants/paths'
 
 type FormData = Omit<Schema, 'confirm_password'>
 
@@ -93,7 +94,7 @@ export default function Login() {
               </div>
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-300'>Bạn chưa có tài khoản?</span>
-                <Link className='ml-1 text-red-400' to='/register'>
+                <Link className='ml-1 text-red-400' to={paths.register}>
                   Đăng ký
                 </Link>
               </div>
