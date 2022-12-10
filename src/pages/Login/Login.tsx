@@ -20,7 +20,7 @@ type FormData = Omit<Schema, 'confirm_password'>
 const LoginSchema = schema.omit(['confirm_password'])
 
 export default function Login() {
-  const { setIsAuthenticated } = useContext(AppContext)
+  const { setIsAuthenticated, setUserProfile } = useContext(AppContext)
   const navigate = useNavigate()
 
   const {
@@ -38,8 +38,9 @@ export default function Login() {
 
   const onSubmit = handleSubmit((data) => {
     loginAccountMutation.mutate(data, {
-      onSuccess: () => {
+      onSuccess: (data) => {
         setIsAuthenticated(true)
+        setUserProfile(data.data.data.user)
         navigate('/')
       },
       onError: (error) => {

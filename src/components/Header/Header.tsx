@@ -9,12 +9,13 @@ import Popover from 'src/components/Popover'
 import paths from 'src/constants/paths'
 
 export default function Header() {
-  const { setIsAuthenticated, isAuthenticated } = useContext(AppContext)
+  const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } = useContext(AppContext)
 
   const logoutMutation = useMutation({
     mutationFn: LogoutAccount,
     onSuccess: () => {
       setIsAuthenticated(false)
+      setUserProfile(null)
     }
   })
 
@@ -92,7 +93,7 @@ export default function Header() {
               <div className='mr-2 h-6 w-6 flex-shrink-0'>
                 <img src='' alt='' title='' className='h-full w-full rounded-full object-cover' />
               </div>
-              <div>ABC</div>
+              <div>{userProfile?.email}</div>
             </Popover>
           )}
           {!isAuthenticated && (
