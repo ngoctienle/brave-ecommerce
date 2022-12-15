@@ -27,32 +27,7 @@ export default function Header() {
   return (
     <header className='bg-EEEEEE pb-5 pt-2'>
       <div className='container'>
-        <div className='flex justify-end'>
-          <Popover
-            className='flex cursor-pointer items-center'
-            renderPopover={
-              <div className='flex flex-col rounded-16 bg-white p-3 shadow-lg'>
-                <button className='fs-16 rounded-8 py-3 px-6 text-secondary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6'>
-                  Tiếng Việt
-                </button>
-                <button className='fs-16 mt-1 rounded-8 py-3 px-6 text-secondary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6'>
-                  Tiếng Anh
-                </button>
-              </div>
-            }
-          >
-            <img
-              src='src/assets/icon-global-light.svg'
-              alt='Support Language'
-              title='Support Language'
-              width={24}
-              height={24}
-            />
-            <span className='fs-16 mx-1 text-secondary-1A162E transition-colors hover:text-secondary-1A162E/70'>
-              Tiếng Việt
-            </span>
-            <img src='src/assets/icon-arrow-down-light.svg' alt='See More' title='See More' width={20} height={20} />
-          </Popover>
+        <div className='flex items-center justify-end gap-3'>
           {isAuthenticated && (
             <Popover
               className='ml-6 flex cursor-pointer items-center'
@@ -79,31 +54,58 @@ export default function Header() {
                 </div>
               }
             >
-              <div className='mr-2 h-6 w-6 flex-shrink-0'>
-                <img src='' alt='' title='' className='h-full w-full rounded-full object-cover' />
+              <div className='mr-1 h-5 w-5 flex-shrink-0'>
+                <img
+                  src='src/assets/icon-profile-light.svg'
+                  alt='My Profile'
+                  title='My Profile'
+                  className='h-full w-full rounded-full object-cover'
+                />
               </div>
-              <span className='fs-16 text-secondary-1A162E transition-colors hover:text-secondary-1A162E/70'>
+              <span className='fs-14 text-secondary-1A162E transition-colors hover:text-secondary-1A162E/70'>
                 {userProfile?.email}
               </span>
             </Popover>
           )}
           {!isAuthenticated && (
-            <div className='flex items-center'>
+            <div className='flex items-center gap-1'>
               <Link
                 to={paths.register}
-                className='fs-16 mx-3 capitalize text-secondary-1A162E transition-colors hover:text-secondary-1A162E/70'
+                className='fs-14 whitespace-nowrap rounded-8 border border-transparent py-[6px] px-2 text-center capitalize text-secondary-1A162E transition-colors hover:text-secondary-1A162E/70'
               >
                 Đăng kí
               </Link>
-              <div className='h-4 border-r-[1px] border-r-secondary-1A162E'></div>
+              {/* <div className='h-4 border-r-[1px] border-r-secondary-1A162E'></div> */}
               <Link
                 to={paths.login}
-                className='fs-16 mx-3 capitalize text-secondary-1A162E transition-colors hover:text-secondary-1A162E/70'
+                className='fs-14 whitespace-nowrap rounded-8 border border-secondary-1A162E py-[6px] px-2 text-center capitalize text-secondary-1A162E transition-colors hover:border-secondary-1A162E/70 hover:text-secondary-1A162E/70'
               >
                 Đăng nhập
               </Link>
             </div>
           )}
+          <div className='h-4 border-r-[1px] border-r-secondary-1A162E'></div>
+          <Popover
+            className='flex cursor-pointer items-center'
+            renderPopover={
+              <div className='flex flex-col rounded-16 bg-white p-3 shadow-lg'>
+                <button className='fs-16 rounded-8 py-3 px-6 text-secondary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6'>
+                  Tiếng Việt
+                </button>
+                <button className='fs-16 mt-1 rounded-8 py-3 px-6 text-secondary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6'>
+                  Tiếng Anh
+                </button>
+              </div>
+            }
+          >
+            <img
+              src='src/assets/icon-global-light.svg'
+              alt='Support Language'
+              title='Support Language'
+              width={24}
+              height={24}
+            />
+          </Popover>
         </div>
         <div className='mt-2 grid grid-cols-12'>
           <Link to='/' className='col-span-3 flex max-w-max items-center'>
