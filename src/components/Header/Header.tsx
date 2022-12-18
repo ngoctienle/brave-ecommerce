@@ -25,7 +25,7 @@ export default function Header() {
   }
 
   return (
-    <header className='bg-EEEEEE pb-5 pt-2'>
+    <header className='bg-F8F8FB pb-5 pt-2'>
       <div className='container'>
         <div className='flex items-center justify-end gap-3'>
           {isAuthenticated && (
@@ -113,7 +113,7 @@ export default function Header() {
           </Link>
 
           <div className='col-span-9 flex items-center justify-end gap-5'>
-            <form className='flex h-10 w-[400px] items-center overflow-hidden rounded-8 bg-white px-4'>
+            <form className='border-sencondary-1A162E flex h-10 w-[400px] items-center overflow-hidden rounded-8 border bg-white px-4'>
               <input
                 type='text'
                 name='search'
@@ -176,7 +176,7 @@ export default function Header() {
                 </div>
               }
             >
-              <Link to='/' className='relative block h-10 w-10 rounded-8 bg-white'>
+              <Link to='/' className='border-sencondary-1A162E relative block h-10 w-10 rounded-8 border bg-white'>
                 <img
                   className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                   src='src/assets/icon-cart-light.svg'
