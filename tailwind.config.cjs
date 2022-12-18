@@ -81,6 +81,7 @@ module.exports = {
           lineHeight: '14px'
         }
       })
-    })
+    }),
+    require('@tailwindcss/line-clamp')
   ]
 }
