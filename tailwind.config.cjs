@@ -26,9 +26,11 @@ module.exports = {
       backgroundColor: {
         FAFAFD: '#FAFAFD',
         F8F8FB: '#F8F8FB',
-        EEEEEE: '#EEEEEE'
+        EEEEEE: '#EEEEEE',
+        F6F6F6: '#F6F6F6'
       },
       borderRadius: {
+        20: '20px',
         16: '16px',
         10: '10px',
         8: '8px'
@@ -47,6 +49,9 @@ module.exports = {
           marginRight: 'auto',
           paddingLeft: theme('spacing.4'),
           paddingRight: theme('spacing.4')
+        },
+        '.b-sd': {
+          boxShadow: '0px 20px 60px 10px rgba(237, 237, 246, 0.2)'
         },
         '.fs-26': {
           fontSize: '26px',

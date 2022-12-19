@@ -26,7 +26,7 @@ export default function Header() {
   }
 
   return (
-    <header className='bg-F8F8FB pb-5 pt-2'>
+    <header className='bg-F6F6F6 pb-5 pt-2'>
       <div className='container'>
         <div className='flex items-center justify-end gap-3'>
           {isAuthenticated && (
