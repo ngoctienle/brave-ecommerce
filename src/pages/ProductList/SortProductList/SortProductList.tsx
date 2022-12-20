@@ -1,39 +1,147 @@
-export default function SortProductList() {
+import { createSearchParams, Link, useNavigate } from 'react-router-dom'
+import cls from 'classnames'
+import { omit } from 'lodash'
+
+import paths from 'src/constants/paths'
+
+import { sortBy, order as orderConstant } from 'src/constants/product'
+import { ProductListConfig } from 'src/types/product.type'
+import { QueryConfig } from '../ProductList'
+
+interface Props {
+  queryConfig: QueryConfig
+  pageSize: number
+}
+
+export default function SortProductList({ queryConfig, pageSize }: Props) {
+  const navigate = useNavigate()
+  const { sort_by = sortBy.createdAt, order } = queryConfig
+  const page = Number(queryConfig.page)
+
+  const handleSort = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
+    navigate({
+      pathname: paths.home,
+      search: createSearchParams(
+        omit(
+          {
+            ...queryConfig,
+            sort_by: sortByValue
+          },
+          ['order']
+        )
+      ).toString()
+    })
+  }
+
+  const handleSelectSort = (orderValue: Exclude<ProductListConfig['order'], undefined>) => {
+    navigate({
+      pathname: paths.home,
+      search: createSearchParams({
+        ...queryConfig,
+        sort_by: sortBy.price,
+        order: orderValue
+      }).toString()
+    })
+  }
+
+  const isActiveSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
+    return sort_by === sortByValue
+  }
+
   return (
     <div className='rounded-10 bg-FAFAFD p-4'>
       <div className='flex flex-wrap items-center justify-between gap-2'>
         <div className='flex flex-wrap items-center gap-5'>
           <p className='fs-18 font-semibold uppercase text-secondary-1A162E'>Sắp xếp theo: </p>
-          <button className='border-sencondary-1A162E h-10 rounded-8 border bg-primary-FFB700 px-5 text-center text-secondary-1A162E hover:bg-primary-FFB700/80'>
+          <button
+            className={cls('border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E', {
+              'bg-primary-FFB700': isActiveSortBy(sortBy.view),
+              'bg-transparent': !isActiveSortBy(sortBy.view)
+            })}
+            onClick={() => handleSort(sortBy.view)}
+          >
             Phổ biến
           </button>
-          <button className='border-sencondary-1A162E h-10 rounded-8 border bg-transparent px-5 text-center text-secondary-1A162E'>
+          <button
+            className={cls('border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E', {
+              'bg-primary-FFB700': isActiveSortBy(sortBy.createdAt),
+              'bg-transparent': !isActiveSortBy(sortBy.createdAt)
+            })}
+            onClick={() => handleSort(sortBy.createdAt)}
+          >
             Mới nhất
           </button>
-          <button className='border-sencondary-1A162E h-10 rounded-8 border bg-transparent px-5 text-center text-secondary-1A162E'>
+          <button
+            className={cls('border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E', {
+              'bg-primary-FFB700': isActiveSortBy(sortBy.sold),
+              'bg-transparent': !isActiveSortBy(sortBy.sold)
+            })}
+            onClick={() => handleSort(sortBy.sold)}
+          >
             Bán chạy
           </button>
           <select
-            className='border-sencondary-1A162E h-10 rounded-8 border bg-transparent px-5 text-left text-secondary-1A162E outline-none'
-            value=''
+            className={cls(
+              'border-sencondary-1A162E h-10 rounded-8 border px-5 text-left text-secondary-1A162E outline-none',
+              {
+                'bg-primary-FFB700': isActiveSortBy(sortBy.price),
+                'bg-transparent': !isActiveSortBy(sortBy.price)
+              }
+            )}
+            value={order || ''}
+            onChange={(e) => handleSelectSort(e.target.value as Exclude<ProductListConfig['order'], undefined>)}
           >
             <option value='' disabled>
               Giá
             </option>
-            <option value='price:asc'>Giá: Thấp đến cao</option>
-            <option value='price:desc'>Giá: Cao đến thấp</option>
+            <option value={orderConstant.asc} className='bg-white text-secondary-1A162E'>
+              Giá: Thấp đến cao
+            </option>
+            <option value={orderConstant.desc} className='bg-white text-secondary-1A162E'>
+              Giá: Cao đến thấp
+            </option>
           </select>
         </div>
         <div className='flex items-center'>
-          <span>1</span>
-          <span>/2</span>
+          <span>{page}</span>
+          <span>/{pageSize}</span>
           <div className='ml-2 flex items-center gap-0.5'>
-            <button className='border-sencondary-1A162E h-10 cursor-not-allowed rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
-              <img src='src/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
-            </button>
-            <button className='border-sencondary-1A162E h-10 rounded-tr-8 rounded-br-8 border bg-white px-3'>
-              <img src='src/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
-            </button>
+            {page === 1 ? (
+              <span className='border-sencondary-1A162E h-10 cursor-not-allowed rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
+                <img src='src/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
+              </span>
+            ) : (
+              <Link
+                to={{
+                  pathname: paths.home,
+                  search: createSearchParams({
+                    ...queryConfig,
+                    page: (page - 1).toString()
+                  }).toString()
+                }}
+                className='border-sencondary-1A162E h-10 rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'
+              >
+                <img src='src/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
+              </Link>
+            )}
+            {page === pageSize ? (
+              <span className='border-sencondary-1A162E h-10 cursor-not-allowed rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
+                <img src='src/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
+              </span>
+            ) : (
+              <Link
+                to={{
+                  pathname: paths.home,
+                  search: createSearchParams({
+                    ...queryConfig,
+                    page: (page + 1).toString()
+                  }).toString()
+                }}
+                className='border-sencondary-1A162E h-10 rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'
+              >
+                <img src='src/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
+              </Link>
+            )}
           </div>
         </div>
       </div>
