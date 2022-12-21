@@ -1,20 +1,42 @@
 import { Link, createSearchParams } from 'react-router-dom'
+import { useForm, Controller } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 import cls from 'classnames'
+
+import paths from 'src/constants/paths'
 
 import { QueryConfig } from '../ProductList'
 import { Category } from 'src/types/category.type'
+import { schema } from 'src/utils/rules'
 
 import Button from 'src/components/Button'
-import Input from 'src/components/Input'
-import paths from 'src/constants/paths'
+import InputNumber from 'src/components/InputNumber'
 
 interface Props {
   queryConfig: QueryConfig
   categories: Category[]
 }
 
+type FormData = {
+  price_min: string
+  price_max: string
+}
+
+const priceSchema = schema.pick(['price_min', 'price_max'])
+
 export default function AsideFilter({ queryConfig, categories }: Props) {
   const { category } = queryConfig
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormData>({
+    defaultValues: {
+      price_min: '',
+      price_max: ''
+    },
+    resolver: yupResolver(priceSchema)
+  })
 
   return (
     <div className='rounded-10 bg-FAFAFD p-4'>
@@ -55,20 +77,38 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
         <p className='fs-14 font-semibold capitalize text-secondary-1A162E'>Khoản giá</p>
         <form className='mt-2'>
           <div className='flex items-start'>
-            <Input
-              type='text'
-              className='grow'
-              name='from'
-              placeholder='from'
-              classNameInput='bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E'
+            <Controller
+              control={control}
+              name='price_min'
+              render={({ field }) => {
+                return (
+                  <InputNumber
+                    type='text'
+                    className='grow'
+                    placeholder='from'
+                    classNameInput='bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E'
+                    onChange={field.onChange}
+                    value={field.value}
+                  />
+                )
+              }}
             />
             <div className='mx-2 mt-2 shrink-0'>-</div>
-            <Input
-              type='text'
-              className='grow'
-              name='to'
-              placeholder='to'
-              classNameInput='bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E'
+            <Controller
+              control={control}
+              name='price_max'
+              render={({ field }) => {
+                return (
+                  <InputNumber
+                    type='text'
+                    className='grow'
+                    placeholder='to'
+                    classNameInput='bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E'
+                    onChange={field.onChange}
+                    value={field.value}
+                  />
+                )
+              }}
             />
           </div>
           <Button className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-67B044 p-2 uppercase text-white'>
