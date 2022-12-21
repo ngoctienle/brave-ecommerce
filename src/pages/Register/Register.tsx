@@ -16,7 +16,8 @@ import Input from 'src/components/Input'
 import Button from 'src/components/Button'
 import paths from 'src/constants/paths'
 
-type FormData = Schema
+type FormData = Pick<Schema, 'email' | 'password' | 'confirm_password'>
+const RegisterSchema = schema.pick(['email', 'password', 'confirm_password'])
 
 export default function Register() {
   const { setIsAuthenticated, setUserProfile } = useContext(AppContext)
@@ -28,7 +29,7 @@ export default function Register() {
     setError,
     formState: { errors }
   } = useForm<FormData>({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(RegisterSchema)
   })
 
   const registerAccountMutation = useMutation({

@@ -21,7 +21,7 @@ export default function Product({ product }: Props) {
         />
       </div>
       <div className='overflow-hidden p-4'>
-        <p className='fs-16 min-h-[32px] font-semibold text-secondary-1A162E line-clamp-2'>
+        <p className='fs-16 min-h-[48px] font-semibold text-secondary-1A162E line-clamp-2'>
           {product.name}
         </p>
         <div className='mt-3 flex items-center'>

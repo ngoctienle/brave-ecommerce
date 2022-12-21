@@ -16,9 +16,9 @@ import Input from 'src/components/Input'
 import Button from 'src/components/Button'
 import paths from 'src/constants/paths'
 
-type FormData = Omit<Schema, 'confirm_password'>
+type FormData = Pick<Schema, 'email' | 'password'>
 
-const LoginSchema = schema.omit(['confirm_password'])
+const LoginSchema = schema.pick(['email', 'password'])
 
 export default function Login() {
   const { setIsAuthenticated, setUserProfile } = useContext(AppContext)

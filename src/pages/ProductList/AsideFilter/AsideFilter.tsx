@@ -1,4 +1,4 @@
-import { Link, createSearchParams } from 'react-router-dom'
+import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import cls from 'classnames'
@@ -7,7 +7,8 @@ import paths from 'src/constants/paths'
 
 import { QueryConfig } from '../ProductList'
 import { Category } from 'src/types/category.type'
-import { schema } from 'src/utils/rules'
+import { NoUndefinedField } from 'src/types/utils.type'
+import { Schema, schema } from 'src/utils/rules'
 
 import Button from 'src/components/Button'
 import InputNumber from 'src/components/InputNumber'
@@ -17,25 +18,36 @@ interface Props {
   categories: Category[]
 }
 
-type FormData = {
-  price_min: string
-  price_max: string
-}
+type FormData = NoUndefinedField<Pick<Schema, 'price_max' | 'price_min'>>
 
 const priceSchema = schema.pick(['price_min', 'price_max'])
 
 export default function AsideFilter({ queryConfig, categories }: Props) {
   const { category } = queryConfig
+  const navigate = useNavigate()
   const {
     control,
     handleSubmit,
+    trigger,
     formState: { errors }
   } = useForm<FormData>({
     defaultValues: {
       price_min: '',
       price_max: ''
     },
-    resolver: yupResolver(priceSchema)
+    resolver: yupResolver(priceSchema),
+    shouldFocusError: false
+  })
+
+  const onSubmit = handleSubmit((data) => {
+    navigate({
+      pathname: paths.home,
+      search: createSearchParams({
+        ...queryConfig,
+        price_max: data.price_max,
+        price_min: data.price_min
+      }).toString()
+    })
   })
 
   return (
@@ -75,7 +87,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
       </Link>
       <div className='border-t-[1px] border-t-secondary-D2D1D6 py-2'>
         <p className='fs-14 font-semibold capitalize text-secondary-1A162E'>Khoản giá</p>
-        <form className='mt-2'>
+        <form className='mt-2' onSubmit={onSubmit}>
           <div className='flex items-start'>
             <Controller
               control={control}
@@ -87,8 +99,12 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     className='grow'
                     placeholder='from'
                     classNameInput='bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E'
-                    onChange={field.onChange}
-                    value={field.value}
+                    classNameError='hidden'
+                    {...field}
+                    onChange={(event) => {
+                      field.onChange(event)
+                      trigger('price_max')
+                    }}
                   />
                 )
               }}
@@ -104,12 +120,19 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     className='grow'
                     placeholder='to'
                     classNameInput='bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E'
-                    onChange={field.onChange}
-                    value={field.value}
+                    classNameError='hidden'
+                    {...field}
+                    onChange={(event) => {
+                      field.onChange(event)
+                      trigger('price_min')
+                    }}
                   />
                 )
               }}
             />
+          </div>
+          <div className='mt-1 min-h-[1.25rem] text-center text-sm text-red-600'>
+            {errors.price_min?.message}
           </div>
           <Button className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-67B044 p-2 uppercase text-white'>
             Áp dụng
