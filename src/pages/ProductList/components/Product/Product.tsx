@@ -4,6 +4,7 @@ import { Product as ProductType } from 'src/types/product.type'
 import { formatCurrency, formatNumberToSocialStyle } from 'src/utils/utils'
 
 import ProductRating from 'src/components/ProductRating'
+import paths from 'src/constants/paths'
 
 interface Props {
   product: ProductType
@@ -11,7 +12,7 @@ interface Props {
 
 export default function Product({ product }: Props) {
   return (
-    <Link to=''>
+    <Link to={`${paths.home}${product._id}`}>
       <div className='relative w-full overflow-hidden pt-[100%]'>
         <img
           src={product.image}
