@@ -6,9 +6,9 @@ import productApi from 'src/apis/product.api'
 
 import useQueryParams from 'src/hooks/useQueryParams'
 
-import AsideFilter from './AsideFilter'
-import Product from './Product/Product'
-import SortProductList from './SortProductList'
+import AsideFilter from './components/AsideFilter'
+import Product from './components/Product/Product'
+import SortProductList from './components/SortProductList'
 import Pagination from 'src/components/Pagination'
 import categoryApi from 'src/apis/category.api'
 
