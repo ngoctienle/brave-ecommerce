@@ -44,7 +44,9 @@ export default function Register() {
         navigate('/')
       },
       onError: (error) => {
-        if (isAxiosUnprocessableEntityError<ErrorRespone<Omit<FormData, 'confirm_password'>>>(error)) {
+        if (
+          isAxiosUnprocessableEntityError<ErrorRespone<Omit<FormData, 'confirm_password'>>>(error)
+        ) {
           const formError = error.response?.data.data
           if (formError) {
             Object.keys(formError).forEach((key) => {
@@ -64,7 +66,10 @@ export default function Register() {
       <div className='container'>
         <div className='lg:grids-cols-5 grid grid-cols-1 py-12 lg:py-32 lg:pr-10'>
           <div className='lg:col-span-2 lg:col-start-4'>
-            <form onSubmit={onSubmit} noValidate className='rounded bg-white p-10 shadow-sm lg:min-w-[500px]'>
+            <form
+              onSubmit={onSubmit}
+              noValidate
+              className='rounded bg-white p-10 shadow-sm lg:min-w-[500px]'>
               <div className='text-2xl'>Đăng Ký</div>
               <Input
                 className='mt-8'
@@ -96,8 +101,7 @@ export default function Register() {
                 <Button
                   className='flex w-full items-center justify-center bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'
                   isLoading={registerAccountMutation.isLoading}
-                  disabled={registerAccountMutation.isLoading}
-                >
+                  disabled={registerAccountMutation.isLoading}>
                   Đăng Ký
                 </Button>
               </div>

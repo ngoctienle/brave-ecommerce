@@ -21,7 +21,9 @@ export default function Product({ product }: Props) {
         />
       </div>
       <div className='overflow-hidden p-4'>
-        <p className='fs-16 min-h-[32px] font-semibold text-secondary-1A162E line-clamp-2'>{product.name}</p>
+        <p className='fs-16 min-h-[32px] font-semibold text-secondary-1A162E line-clamp-2'>
+          {product.name}
+        </p>
         <div className='mt-3 flex items-center'>
           <p className='fs-14 max-w-[50%] truncate text-primary-F94545/70 line-through'>
             <span>₫</span>

@@ -11,7 +11,8 @@ import Popover from 'src/components/Popover'
 import paths from 'src/constants/paths'
 
 export default function Header() {
-  const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } = useContext(AppContext)
+  const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } =
+    useContext(AppContext)
 
   const logoutMutation = useMutation({
     mutationFn: authApi.LogoutAccount,
@@ -36,25 +37,21 @@ export default function Header() {
                 <div className='flex flex-col rounded-16 bg-white p-3 shadow-lg'>
                   <Link
                     className='fs-16 rounded-8 py-3 px-6 text-left text-secondary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6'
-                    to={paths.profile}
-                  >
+                    to={paths.profile}>
                     Tài khoản của tôi
                   </Link>
                   <Link
                     className='fs-16 rounded-8 py-3 px-6 text-left text-secondary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6'
-                    to={paths.home}
-                  >
+                    to={paths.home}>
                     Đơn mua
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className='fs-16 rounded-8 py-3 px-6 text-left text-secondary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6'
-                  >
+                    className='fs-16 rounded-8 py-3 px-6 text-left text-secondary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6'>
                     Đăng xuất
                   </button>
                 </div>
-              }
-            >
+              }>
               <div className='mr-1 h-5 w-5 flex-shrink-0'>
                 <img
                   src='src/assets/icon-profile-light.svg'
@@ -72,15 +69,13 @@ export default function Header() {
             <div className='flex items-center gap-1'>
               <Link
                 to={paths.register}
-                className='fs-14 whitespace-nowrap rounded-8 border border-transparent py-[6px] px-2 text-center capitalize text-secondary-1A162E transition-colors hover:text-secondary-1A162E/70'
-              >
+                className='fs-14 whitespace-nowrap rounded-8 border border-transparent py-[6px] px-2 text-center capitalize text-secondary-1A162E transition-colors hover:text-secondary-1A162E/70'>
                 Đăng kí
               </Link>
               {/* <div className='h-4 border-r-[1px] border-r-secondary-1A162E'></div> */}
               <Link
                 to={paths.login}
-                className='fs-14 whitespace-nowrap rounded-8 border border-secondary-1A162E py-[6px] px-2 text-center capitalize text-secondary-1A162E transition-colors hover:border-secondary-1A162E/70 hover:text-secondary-1A162E/70'
-              >
+                className='fs-14 whitespace-nowrap rounded-8 border border-secondary-1A162E py-[6px] px-2 text-center capitalize text-secondary-1A162E transition-colors hover:border-secondary-1A162E/70 hover:text-secondary-1A162E/70'>
                 Đăng nhập
               </Link>
             </div>
@@ -97,8 +92,7 @@ export default function Header() {
                   Tiếng Anh
                 </button>
               </div>
-            }
-          >
+            }>
             <img
               src='src/assets/icon-global-light.svg'
               alt='Support Language'
@@ -135,7 +129,9 @@ export default function Header() {
               renderPopover={
                 <div className='flex max-w-[400px] flex-col rounded-16 bg-white p-3 shadow-lg'>
                   <div className='flex items-center justify-between'>
-                    <span className='fs-16 font-semibold capitalize text-secondary-1A162E'>Sản phẩm mới thêm</span>
+                    <span className='fs-16 font-semibold capitalize text-secondary-1A162E'>
+                      Sản phẩm mới thêm
+                    </span>
                     <span className='fs-12 cursor-pointer capitalize text-primary-0071DC hover:underline'>
                       xem giỏ hàng
                     </span>
@@ -175,9 +171,10 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
-              }
-            >
-              <Link to='/' className='border-sencondary-1A162E relative block h-10 w-10 rounded-8 border bg-white'>
+              }>
+              <Link
+                to='/'
+                className='border-sencondary-1A162E relative block h-10 w-10 rounded-8 border bg-white'>
                 <img
                   className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                   src='src/assets/icon-cart-light.svg'

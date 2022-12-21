@@ -45,11 +45,12 @@ module.exports = {
         semi: false,
         trailingComma: 'none',
         tabWidth: 2,
+        useTabs: false,
+        printWidth: 100,
         singleQuote: true,
-        printWidth: 120,
         jsxSingleQuote: true,
-        bracketSpacing: true
-        /* endOfLine: 'lf' */
+        bracketSpacing: true,
+        bracketSameLine: true
       }
     ]
   }

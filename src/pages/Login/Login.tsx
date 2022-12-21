@@ -65,7 +65,10 @@ export default function Login() {
       <div className='container'>
         <div className='lg:grids-cols-5 grid grid-cols-1 py-12 lg:py-32 lg:pr-10'>
           <div className='lg:col-span-2 lg:col-start-4'>
-            <form onSubmit={onSubmit} className='rounded bg-white p-10 shadow-sm lg:min-w-[500px]' noValidate>
+            <form
+              onSubmit={onSubmit}
+              className='rounded bg-white p-10 shadow-sm lg:min-w-[500px]'
+              noValidate>
               <div className='text-2xl'>Đăng Nhập</div>
               <Input
                 className='mt-8'
@@ -89,8 +92,7 @@ export default function Login() {
                   type='submit'
                   className='flex w-full items-center justify-center bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'
                   isLoading={loginAccountMutation.isLoading}
-                  disabled={loginAccountMutation.isLoading}
-                >
+                  disabled={loginAccountMutation.isLoading}>
                   Đăng Nhập
                 </Button>
               </div>

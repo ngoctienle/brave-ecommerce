@@ -1,5 +1,12 @@
 import { useRef, useState, useId, type ElementType } from 'react'
-import { useFloating, FloatingPortal, arrow, shift, offset, type Placement } from '@floating-ui/react-dom-interactions'
+import {
+  useFloating,
+  FloatingPortal,
+  arrow,
+  shift,
+  offset,
+  type Placement
+} from '@floating-ui/react-dom-interactions'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface Props {
@@ -35,7 +42,11 @@ export default function Popover({
     setOpen(false)
   }
   return (
-    <Element className={className} ref={reference} onMouseEnter={showPopover} onMouseLeave={hidePopover}>
+    <Element
+      className={className}
+      ref={reference}
+      onMouseEnter={showPopover}
+      onMouseLeave={hidePopover}>
       {children}
       <FloatingPortal id={id}>
         <AnimatePresence>
@@ -52,8 +63,7 @@ export default function Popover({
               initial={{ opacity: 0, transform: 'scale(0)' }}
               animate={{ opacity: 1, transform: 'scale(1)' }}
               exit={{ opacity: 0, transform: 'scale(0)' }}
-              transition={{ duration: 0.3 }}
-            >
+              transition={{ duration: 0.3 }}>
               <span
                 ref={arrowRef}
                 className='absolute z-10 -translate-y-full border-[11px] border-x-transparent border-t-transparent border-b-white'

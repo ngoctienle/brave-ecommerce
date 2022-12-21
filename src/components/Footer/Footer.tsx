@@ -7,7 +7,9 @@ export default function Footer() {
         <div className='mb-4 flex items-center justify-center'>
           <Brand />
         </div>
-        <p className='text-center text-secondary-1A162E'>©2023 - Bản quyền thuộc về BraveThinking Ecosystem</p>
+        <p className='text-center text-secondary-1A162E'>
+          ©2023 - Bản quyền thuộc về BraveThinking Ecosystem
+        </p>
       </div>
     </footer>
   )

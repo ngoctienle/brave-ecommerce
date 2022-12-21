@@ -24,7 +24,13 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [userProfile, setUserProfile] = useState<User | null>(initialAppContext.userProfile)
 
   return (
-    <AppContext.Provider value={{ isAuthenticated, setIsAuthenticated, userProfile, setUserProfile }}>
+    <AppContext.Provider
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        userProfile,
+        setUserProfile
+      }}>
       {children}
     </AppContext.Provider>
   )

@@ -54,30 +54,36 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
         <div className='flex flex-wrap items-center gap-5'>
           <p className='fs-18 font-semibold uppercase text-secondary-1A162E'>Sắp xếp theo: </p>
           <button
-            className={cls('border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E', {
-              'bg-primary-FFB700': isActiveSortBy(sortBy.view),
-              'bg-transparent': !isActiveSortBy(sortBy.view)
-            })}
-            onClick={() => handleSort(sortBy.view)}
-          >
+            className={cls(
+              'border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E',
+              {
+                'bg-primary-FFB700': isActiveSortBy(sortBy.view),
+                'bg-transparent': !isActiveSortBy(sortBy.view)
+              }
+            )}
+            onClick={() => handleSort(sortBy.view)}>
             Phổ biến
           </button>
           <button
-            className={cls('border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E', {
-              'bg-primary-FFB700': isActiveSortBy(sortBy.createdAt),
-              'bg-transparent': !isActiveSortBy(sortBy.createdAt)
-            })}
-            onClick={() => handleSort(sortBy.createdAt)}
-          >
+            className={cls(
+              'border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E',
+              {
+                'bg-primary-FFB700': isActiveSortBy(sortBy.createdAt),
+                'bg-transparent': !isActiveSortBy(sortBy.createdAt)
+              }
+            )}
+            onClick={() => handleSort(sortBy.createdAt)}>
             Mới nhất
           </button>
           <button
-            className={cls('border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E', {
-              'bg-primary-FFB700': isActiveSortBy(sortBy.sold),
-              'bg-transparent': !isActiveSortBy(sortBy.sold)
-            })}
-            onClick={() => handleSort(sortBy.sold)}
-          >
+            className={cls(
+              'border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E',
+              {
+                'bg-primary-FFB700': isActiveSortBy(sortBy.sold),
+                'bg-transparent': !isActiveSortBy(sortBy.sold)
+              }
+            )}
+            onClick={() => handleSort(sortBy.sold)}>
             Bán chạy
           </button>
           <select
@@ -89,8 +95,9 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
               }
             )}
             value={order || ''}
-            onChange={(e) => handleSelectSort(e.target.value as Exclude<ProductListConfig['order'], undefined>)}
-          >
+            onChange={(e) =>
+              handleSelectSort(e.target.value as Exclude<ProductListConfig['order'], undefined>)
+            }>
             <option value='' disabled>
               Giá
             </option>
@@ -119,8 +126,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                     page: (page - 1).toString()
                   }).toString()
                 }}
-                className='border-sencondary-1A162E h-10 rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'
-              >
+                className='border-sencondary-1A162E h-10 rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
                 <img src='src/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
               </Link>
             )}
@@ -137,8 +143,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                     page: (page + 1).toString()
                   }).toString()
                 }}
-                className='border-sencondary-1A162E h-10 rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'
-              >
+                className='border-sencondary-1A162E h-10 rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
                 <img src='src/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
               </Link>
             )}

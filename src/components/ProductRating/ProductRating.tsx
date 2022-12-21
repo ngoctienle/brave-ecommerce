@@ -15,14 +15,15 @@ export default function ProductRating({ rating }: { rating: number }) {
         .fill(0)
         .map((_, index) => (
           <div className='relative' key={index}>
-            <div className='absolute top-0 left-0 h-full overflow-hidden' style={{ width: handleRating(index + 1) }}>
+            <div
+              className='absolute top-0 left-0 h-full overflow-hidden'
+              style={{ width: handleRating(index + 1) }}>
               <svg
                 enableBackground='new 0 0 24 24'
                 viewBox='0 0 24 24'
                 x={0}
                 y={0}
-                className='h-4 w-4 fill-primary-FFB700 text-primary-FFB700'
-              >
+                className='h-4 w-4 fill-primary-FFB700 text-primary-FFB700'>
                 <path
                   id='Stroke 1'
                   fillRule='evenodd'
@@ -36,8 +37,7 @@ export default function ProductRating({ rating }: { rating: number }) {
               x={0}
               y={0}
               viewBox='0 0 24 24'
-              className='h-4 w-4 fill-current text-secondary-D2D1D6'
-            >
+              className='h-4 w-4 fill-current text-secondary-D2D1D6'>
               <path
                 id='Stroke 1'
                 fillRule='evenodd'

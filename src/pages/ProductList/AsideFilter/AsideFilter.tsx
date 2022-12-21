@@ -58,7 +58,12 @@ export default function AsideFilter() {
             {Array(5)
               .fill(0)
               .map((_, index) => (
-                <img key={index} src='src/assets/icon-start-full-light.svg' alt='' className='h-4 w-4' />
+                <img
+                  key={index}
+                  src='src/assets/icon-start-full-light.svg'
+                  alt=''
+                  className='h-4 w-4'
+                />
               ))}
             <span className='fs-12 ml-3 text-secondary-1A162E'>Trở lên</span>
           </Link>
@@ -68,7 +73,12 @@ export default function AsideFilter() {
             {Array(5)
               .fill(0)
               .map((_, index) => (
-                <img key={index} src='src/assets/icon-start-full-light.svg' alt='' className='h-4 w-4' />
+                <img
+                  key={index}
+                  src='src/assets/icon-start-full-light.svg'
+                  alt=''
+                  className='h-4 w-4'
+                />
               ))}
             <span className='fs-12 ml-3 text-secondary-1A162E'>Trở lên</span>
           </Link>

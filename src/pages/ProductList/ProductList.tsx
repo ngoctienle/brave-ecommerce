@@ -49,18 +49,23 @@ export default function ProductList() {
               <AsideFilter />
             </div>
             <div className='col-span-9'>
-              <SortProductList queryConfig={queryConfig} pageSize={data.data.data.pagination.page_size} />
+              <SortProductList
+                queryConfig={queryConfig}
+                pageSize={data.data.data.pagination.page_size}
+              />
               <div className='mt-6 grid grid-cols-2 gap-6 md:grid-cols-3'>
                 {data.data.data.products.map((product) => (
                   <div
                     className='border-sencondary-1A162E b-sd col-span-1 overflow-hidden rounded-20 border bg-white'
-                    key={product._id}
-                  >
+                    key={product._id}>
                     <Product product={product} />
                   </div>
                 ))}
               </div>
-              <Pagination queryConfig={queryConfig} pageSize={data.data.data.pagination.page_size} />
+              <Pagination
+                queryConfig={queryConfig}
+                pageSize={data.data.data.pagination.page_size}
+              />
             </div>
           </div>
         )}
