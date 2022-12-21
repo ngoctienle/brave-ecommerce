@@ -1,9 +1,21 @@
-import { Link } from 'react-router-dom'
+import { Link, createSearchParams } from 'react-router-dom'
+import cls from 'classnames'
+
+import { QueryConfig } from '../ProductList'
+import { Category } from 'src/types/category.type'
+
 import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import paths from 'src/constants/paths'
 
-export default function AsideFilter() {
+interface Props {
+  queryConfig: QueryConfig
+  categories: Category[]
+}
+
+export default function AsideFilter({ queryConfig, categories }: Props) {
+  const { category } = queryConfig
+
   return (
     <div className='rounded-10 bg-FAFAFD p-4'>
       <Link to={paths.home} className='mb-2 flex items-center'>
@@ -11,16 +23,29 @@ export default function AsideFilter() {
         <span className='fs-18 font-semibold uppercase text-secondary-1A162E'>Tất cả danh mục</span>
       </Link>
       <ul className='list-disc border-t-[1px] border-t-secondary-D2D1D6 pt-2 pl-4'>
-        <li className='py-2'>
-          <Link to={paths.home} className='flex items-center'>
-            <span className='fs-14 capitalize text-secondary-1A162E'>Thời trang nam</span>
-          </Link>
-        </li>
-        <li className='py-2'>
-          <Link to={paths.home} className='flex items-center'>
-            <span className='fs-14 capitalize text-secondary-1A162E'>Thời trang nam</span>
-          </Link>
-        </li>
+        {categories.map((categoryItem) => {
+          const isActive = category === categoryItem._id
+          return (
+            <li className='py-2' key={categoryItem._id}>
+              <Link
+                to={{
+                  pathname: paths.home,
+                  search: createSearchParams({
+                    ...queryConfig,
+                    category: categoryItem._id
+                  }).toString()
+                }}
+                className='flex items-center'>
+                <span
+                  className={cls('fs-14 capitalize text-secondary-1A162E', {
+                    'font-semibold': isActive
+                  })}>
+                  {categoryItem.name}
+                </span>
+              </Link>
+            </li>
+          )
+        })}
       </ul>
       <Link to={paths.home} className='mt-4 mb-2 flex items-center'>
         <img src='src/assets/icon-fillter-light.svg' alt='' className='mr-2 h-4 w-4' />
