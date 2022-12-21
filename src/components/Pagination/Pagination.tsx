@@ -24,7 +24,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         return (
           <span
             key={index}
-            className='mx-2 cursor-pointer rounded border bg-white px-3 py-2 shadow-sm'>
+            className='b-sd flex h-8 w-8 items-center justify-center bg-transparent p-2 text-secondary-1A162E'>
             ...
           </span>
         )
@@ -38,7 +38,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         return (
           <span
             key={index}
-            className='mx-2 cursor-pointer rounded border bg-white px-3 py-2 shadow-sm'>
+            className='b-sd flex h-8 w-8 items-center justify-center bg-transparent p-2 text-secondary-1A162E'>
             ...
           </span>
         )
@@ -79,10 +79,13 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
               }).toString()
             }}
             key={index}
-            className={cls('mx-2 cursor-pointer rounded border bg-white px-3 py-2 shadow-sm', {
-              'border-cyan-500': pageNumber === page,
-              'border-transparent': pageNumber !== page
-            })}>
+            className={cls(
+              'b-sd flex h-8 w-8 items-center justify-center rounded-8 border bg-transparent p-2 text-secondary-1A162E transition-colors',
+              {
+                'border-secondary-77DAE6': pageNumber === page,
+                'border-transparent hover:border-secondary-EDEDF6': pageNumber !== page
+              }
+            )}>
             {pageNumber}
           </Link>
         )
@@ -90,10 +93,10 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
   }
 
   return (
-    <div className='mt-6 flex flex-wrap justify-center'>
+    <div className='mt-6 flex flex-wrap justify-center gap-3'>
       {page === 1 ? (
-        <span className='mx-2 cursor-not-allowed rounded border bg-white px-3 py-2 shadow-sm'>
-          Prev
+        <span className='b-sd flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2'>
+          <img src='src/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
         </span>
       ) : (
         <Link
@@ -104,14 +107,14 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
               page: (page - 1).toString()
             }).toString()
           }}
-          className='mx-2 cursor-pointer rounded border bg-white px-3 py-2 shadow-sm'>
-          Prev
+          className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'>
+          <img src='src/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
         </Link>
       )}
       {renderPagination()}
       {page === pageSize ? (
-        <span className='mx-2 cursor-not-allowed rounded border bg-white px-3 py-2 shadow-sm'>
-          Next
+        <span className='bg-secondary-F8F8F8 b-sd flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 p-2'>
+          <img src='src/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
         </span>
       ) : (
         <Link
@@ -122,8 +125,8 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
               page: (page + 1).toString()
             }).toString()
           }}
-          className='mx-2 cursor-pointer rounded border bg-white px-3 py-2 shadow-sm'>
-          Next
+          className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'>
+          <img src='src/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
         </Link>
       )}
     </div>

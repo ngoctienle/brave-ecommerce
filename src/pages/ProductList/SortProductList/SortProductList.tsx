@@ -114,7 +114,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           <span>/{pageSize}</span>
           <div className='ml-2 flex items-center gap-0.5'>
             {page === 1 ? (
-              <span className='border-sencondary-1A162E h-10 cursor-not-allowed rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
+              <span className='b-sd flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2'>
                 <img src='src/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
               </span>
             ) : (
@@ -126,12 +126,12 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                     page: (page - 1).toString()
                   }).toString()
                 }}
-                className='border-sencondary-1A162E h-10 rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
+                className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2 transition-colors hover:border-secondary-77DAE6'>
                 <img src='src/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
               </Link>
             )}
             {page === pageSize ? (
-              <span className='border-sencondary-1A162E h-10 cursor-not-allowed rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
+              <span className='b-sd flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2'>
                 <img src='src/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
               </span>
             ) : (
@@ -143,7 +143,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                     page: (page + 1).toString()
                   }).toString()
                 }}
-                className='border-sencondary-1A162E h-10 rounded-tl-8 rounded-bl-8 border bg-EEEEEE px-3'>
+                className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2 transition-colors hover:border-secondary-77DAE6'>
                 <img src='src/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
               </Link>
             )}
