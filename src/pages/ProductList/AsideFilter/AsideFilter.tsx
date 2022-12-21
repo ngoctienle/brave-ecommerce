@@ -12,6 +12,8 @@ import { Schema, schema } from 'src/utils/rules'
 
 import Button from 'src/components/Button'
 import InputNumber from 'src/components/InputNumber'
+import SortRatingStar from '../SortRatingStar'
+import { omit } from 'lodash'
 
 interface Props {
   queryConfig: QueryConfig
@@ -49,6 +51,15 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
       }).toString()
     })
   })
+
+  const handleRemoveAllFilter = () => {
+    navigate({
+      pathname: paths.home,
+      search: createSearchParams(
+        omit(queryConfig, ['price_min', 'price_max', 'rating_filter', 'category'])
+      ).toString()
+    })
+  }
 
   return (
     <div className='rounded-10 bg-FAFAFD p-4'>
@@ -140,39 +151,10 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
         </form>
       </div>
       <p className='fs-14 font-semibold capitalize text-secondary-1A162E'>Đánh giá</p>
-      <ul className='mb-4 border-b-[1px] border-b-secondary-D2D1D6 py-2'>
-        <li className='py-1'>
-          <Link to='' className='flex items-center text-sm'>
-            {Array(5)
-              .fill(0)
-              .map((_, index) => (
-                <img
-                  key={index}
-                  src='src/assets/icon-start-full-light.svg'
-                  alt=''
-                  className='h-4 w-4'
-                />
-              ))}
-            <span className='fs-12 ml-3 text-secondary-1A162E'>Trở lên</span>
-          </Link>
-        </li>
-        <li className='py-1'>
-          <Link to='' className='flex items-center text-sm'>
-            {Array(5)
-              .fill(0)
-              .map((_, index) => (
-                <img
-                  key={index}
-                  src='src/assets/icon-start-full-light.svg'
-                  alt=''
-                  className='h-4 w-4'
-                />
-              ))}
-            <span className='fs-12 ml-3 text-secondary-1A162E'>Trở lên</span>
-          </Link>
-        </li>
-      </ul>
-      <Button className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-F94545 p-2 uppercase text-white'>
+      <SortRatingStar queryConfig={queryConfig} />
+      <Button
+        onClick={handleRemoveAllFilter}
+        className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-F94545 p-2 uppercase text-white'>
         Xóa tất cả
       </Button>
     </div>
