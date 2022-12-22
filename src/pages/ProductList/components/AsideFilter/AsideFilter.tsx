@@ -82,8 +82,9 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                 }}
                 className='flex items-center'>
                 <span
-                  className={cls('fs-14 capitalize text-secondary-1A162E', {
-                    'font-semibold': isActive
+                  className={cls('fs-14 capitalize', {
+                    'font-semibold text-secondary-77DAE6': isActive,
+                    'text-secondary-1A162E': !isActive
                   })}>
                   {categoryItem.name}
                 </span>
@@ -97,7 +98,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
         <span className='fs-18 font-semibold uppercase text-secondary-1A162E'>Bộ lọc tìm kiếm</span>
       </Link>
       <div className='border-t-[1px] border-t-secondary-D2D1D6 py-2'>
-        <p className='fs-14 font-semibold capitalize text-secondary-1A162E'>Khoản giá</p>
+        <p className='fs-14 font-semibold capitalize text-secondary-1A162E'>Khoảng giá</p>
         <form className='mt-2' onSubmit={onSubmit}>
           <div className='flex items-start'>
             <Controller
@@ -109,7 +110,13 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     type='text'
                     className='grow'
                     placeholder='from'
-                    classNameInput='bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E'
+                    classNameInput={cls(
+                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E transition-colors',
+                      {
+                        'border-primary-F94545': errors.price_min,
+                        'focus:border-secondary-9E9DA8': !errors.price_min
+                      }
+                    )}
                     classNameError='hidden'
                     {...field}
                     onChange={(event) => {
@@ -130,7 +137,13 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     type='text'
                     className='grow'
                     placeholder='to'
-                    classNameInput='bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E'
+                    classNameInput={cls(
+                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E transition-colors',
+                      {
+                        'border-primary-F94545': errors.price_max,
+                        'focus:border-secondary-9E9DA8': !errors.price_max
+                      }
+                    )}
                     classNameError='hidden'
                     {...field}
                     onChange={(event) => {
@@ -142,7 +155,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
               }}
             />
           </div>
-          <div className='mt-1 min-h-[1.25rem] text-center text-sm text-red-600'>
+          <div className='fs-10 my-1 min-h-[1rem] text-center text-primary-F94545'>
             {errors.price_min?.message}
           </div>
           <Button className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-67B044 p-2 uppercase text-white'>

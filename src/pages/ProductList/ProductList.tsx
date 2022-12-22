@@ -65,7 +65,7 @@ export default function ProductList() {
               <div className='mt-6 grid grid-cols-2 gap-6 md:grid-cols-3'>
                 {productsData.data.data.products.map((product) => (
                   <div
-                    className='border-sencondary-1A162E b-sd col-span-1 overflow-hidden rounded-20 border bg-white'
+                    className='b-sd col-span-1 overflow-hidden rounded-20 border border-secondary-EDEDF6 bg-white'
                     key={product._id}>
                     <Product product={product} />
                   </div>
