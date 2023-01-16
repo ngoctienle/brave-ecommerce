@@ -1,14 +1,22 @@
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
+import { Product } from 'src/types/product.type'
 import productApi from 'src/apis/product.api'
+import DOMPurify from 'dompurify'
 
 import InputNumber from 'src/components/InputNumber'
 import ProductRating from 'src/components/ProductRating'
+
 import { calculateRateSale, formatCurrency, formatNumberToSocialStyle } from 'src/utils/utils'
-import DOMPurify from 'dompurify'
 
 export default function ProductDetail() {
+  const [curIndexImage, setCurIndexImage] = useState([0, 5])
+  const [activeImage, setActiveImage] = useState('')
+
+  const imgRef = useRef<HTMLImageElement>(null)
+
   const { id } = useParams()
   const { data: productDetailData } = useQuery({
     queryKey: ['productDetail', id],
@@ -16,23 +24,76 @@ export default function ProductDetail() {
   })
 
   const productDetail = productDetailData?.data.data
+  const curImage = useMemo(
+    () => (productDetail ? productDetail.images.slice(...curIndexImage) : []),
+    [productDetail, curIndexImage]
+  )
+
+  useEffect(() => {
+    if (productDetail && productDetail.images.length > 0) {
+      setActiveImage(productDetail.images[0])
+    }
+  }, [productDetail])
+
+  const hoverActive = (img: string) => {
+    setActiveImage(img)
+  }
+
+  const nextSlide = () => {
+    if (curIndexImage[1] < (productDetail as Product)?.images.length) {
+      setCurIndexImage((prev) => [prev[0] + 1, prev[1] + 1])
+    }
+  }
+
+  const prevSlide = () => {
+    if (curIndexImage[0] > 0) {
+      setCurIndexImage((prev) => [prev[0] - 1, prev[1] - 1])
+    }
+  }
+
+  const handleZoom = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const img = imgRef.current as HTMLImageElement
+    const { naturalHeight, naturalWidth } = img
+    const { offsetY, offsetX } = e.nativeEvent
+    const top = offsetY * (1 - naturalHeight / rect.height)
+    const left = offsetX * (1 - naturalWidth / rect.width)
+
+    img.style.width = naturalWidth + 'px'
+    img.style.height = naturalHeight + 'px'
+    img.style.maxWidth = 'unset'
+    img.style.top = top + 'px'
+    img.style.left = left + 'px'
+  }
+
+  const handleRemoveZoom = () => {
+    imgRef.current?.removeAttribute('style')
+  }
+
   if (!productDetail) return null
+
   return (
     <div className='py-6'>
       <div className='container'>
         <div className='grid grid-cols-12 gap-6'>
           <div className='col-span-5'>
             <div className='rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-              <div className='b-sd relative w-full overflow-hidden rounded-10 pt-[100%]'>
+              <div
+                className='b-sd relative w-full cursor-zoom-in overflow-hidden rounded-10 pt-[100%]'
+                onMouseMove={handleZoom}
+                onMouseLeave={handleRemoveZoom}>
                 <img
-                  src={productDetail.image}
+                  src={activeImage}
                   alt={productDetail.name}
                   title={productDetail.name}
-                  className='absolute top-0 left-0 h-full w-full bg-white object-cover'
+                  ref={imgRef}
+                  className='pointer-events-none absolute top-0 left-0 h-full w-full bg-white object-cover'
                 />
               </div>
               <div className='relative mt-6 grid grid-cols-5 gap-3'>
-                <button className='absolute -left-5 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent'>
+                <button
+                  className='absolute -left-5 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent'
+                  onClick={prevSlide}>
                   <img
                     src='src/assets/icon-arrow-left-light.svg'
                     title=''
@@ -40,14 +101,15 @@ export default function ProductDetail() {
                     className='h-4 w-4'
                   />
                 </button>
-                {productDetail.images.slice(0, 5).map((img, index) => {
-                  const isActive = index === 0
+                {curImage.map((img) => {
+                  const isActive = img === activeImage
                   return (
                     <div
                       className='z-1 relative w-full overflow-hidden rounded-8 pt-[100%]'
-                      key={index}>
+                      key={img}
+                      onMouseEnter={() => hoverActive(img)}>
                       <img
-                        src={productDetail.image}
+                        src={img}
                         alt={productDetail.name}
                         title={productDetail.name}
                         className='absolute top-0 left-0 h-full w-full bg-white object-cover'
@@ -58,7 +120,9 @@ export default function ProductDetail() {
                     </div>
                   )
                 })}
-                <button className='absolute -right-5 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent'>
+                <button
+                  className='absolute -right-5 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent'
+                  onClick={nextSlide}>
                   <img
                     src='src/assets/icon-arrow-right-light.svg'
                     title=''
@@ -85,7 +149,7 @@ export default function ProductDetail() {
                   <span className='ml-1'>Đã bán</span>
                 </p>
               </div>
-              <div className='mt-2 flex items-center rounded-10 border border-secondary-EDEDF6 bg-white justify-end p-2'>
+              <div className='mt-2 flex items-center justify-end rounded-10 border border-secondary-EDEDF6 bg-white p-2'>
                 <p className='fs-14 max-w-[50%] truncate text-primary-F94545/70 line-through'>
                   <span>₫</span>
                   <span>{formatCurrency(productDetail.price_before_discount)}</span>
