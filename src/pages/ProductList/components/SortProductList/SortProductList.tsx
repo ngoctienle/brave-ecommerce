@@ -6,7 +6,7 @@ import paths from 'src/constants/paths'
 
 import { sortBy, order as orderConstant } from 'src/constants/product'
 import { ProductListConfig } from 'src/types/product.type'
-import { QueryConfig } from '../../ProductList'
+import { QueryConfig } from 'src/hooks/useQueryConfig'
 
 interface Props {
   queryConfig: QueryConfig

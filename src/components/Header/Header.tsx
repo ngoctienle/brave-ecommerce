@@ -1,18 +1,35 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, createSearchParams, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 
 import { AppContext } from 'src/contexts/app.context'
+import { Schema, schema } from 'src/utils/rules'
 
 import authApi from 'src/apis/auth.api'
+import useQueryConfig from 'src/hooks/useQueryConfig'
+import paths from 'src/constants/paths'
 
 import Brand from 'src/components/Brand'
 import Popover from 'src/components/Popover'
-import paths from 'src/constants/paths'
+import { omit } from 'lodash'
+
+type FormData = Pick<Schema, 'name'>
+
+const nameSchema = schema.pick(['name'])
 
 export default function Header() {
   const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } =
     useContext(AppContext)
+  const queryConfig = useQueryConfig()
+  const navigate = useNavigate()
+  const { register, handleSubmit } = useForm<FormData>({
+    defaultValues: {
+      name: ''
+    },
+    resolver: yupResolver(nameSchema)
+  })
 
   const logoutMutation = useMutation({
     mutationFn: authApi.LogoutAccount,
@@ -25,6 +42,26 @@ export default function Header() {
   const handleLogout = () => {
     logoutMutation.mutate()
   }
+
+  const handleSearch = handleSubmit((data) => {
+    const config = queryConfig.order
+      ? omit(
+          {
+            ...queryConfig,
+            name: data.name
+          },
+          ['order', 'sort_by']
+        )
+      : {
+          ...queryConfig,
+          name: data.name
+        }
+
+    navigate({
+      pathname: paths.home,
+      search: createSearchParams(config).toString()
+    })
+  })
 
   return (
     <header className='bg-F6F6F6 pb-5 pt-2'>
@@ -108,12 +145,14 @@ export default function Header() {
           </Link>
 
           <div className='col-span-9 flex items-center justify-end gap-5'>
-            <form className='flex h-10 w-[400px] items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white px-4'>
+            <form
+              className='flex h-10 w-[400px] items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white px-4'
+              onSubmit={handleSearch}>
               <input
                 type='text'
-                name='search'
                 placeholder='Free ship đơn từ 0 đồng..'
                 className='flex-grow border-none bg-transparent text-secondary-1A162E outline-none placeholder:fs-14 placeholder:text-secondary-1A162E/70'
+                {...register('name')}
               />
               <button className='flex-shrink-0 rounded-8'>
                 <img
