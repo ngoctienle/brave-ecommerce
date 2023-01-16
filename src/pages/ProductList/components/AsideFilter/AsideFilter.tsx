@@ -6,10 +6,10 @@ import cls from 'classnames'
 
 import paths from 'src/constants/paths'
 
-import { QueryConfig } from '../../ProductList'
 import { Category } from 'src/types/category.type'
 import { NoUndefinedField } from 'src/types/utils.type'
 import { Schema, schema } from 'src/utils/rules'
+import { QueryConfig } from 'src/hooks/useQueryConfig'
 
 import Button from 'src/components/Button'
 import InputNumber from 'src/components/InputNumber'
