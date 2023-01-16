@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
+
 import productApi from 'src/apis/product.api'
+
 import InputNumber from 'src/components/InputNumber'
 import ProductRating from 'src/components/ProductRating'
 import { calculateRateSale, formatCurrency, formatNumberToSocialStyle } from 'src/utils/utils'
@@ -67,10 +69,10 @@ export default function ProductDetail() {
               </div>
             </div>
           </div>
-          <div className='col-span-7'>
+          <div className='col-span-7 h-full'>
             <div className='rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
               <h1 className='fs-22 font-semibold uppercase'>{productDetail.name}</h1>
-              <div className='mt-2 flex items-center justify-end gap-3'>
+              <div className='mt-2 flex items-center gap-3'>
                 <div className='flex items-center gap-1'>
                   <span className='fs-14 border-b border-b-primary-FFB700 text-primary-FFB700'>
                     {productDetail.rating}
@@ -83,7 +85,7 @@ export default function ProductDetail() {
                   <span className='ml-1'>Đã bán</span>
                 </p>
               </div>
-              <div className='mt-2 flex items-center bg-white p-4 rounded-10 border border-secondary-EDEDF6 justify-end'>
+              <div className='mt-2 flex items-center rounded-10 border border-secondary-EDEDF6 bg-white justify-end p-2'>
                 <p className='fs-14 max-w-[50%] truncate text-primary-F94545/70 line-through'>
                   <span>₫</span>
                   <span>{formatCurrency(productDetail.price_before_discount)}</span>
@@ -92,14 +94,14 @@ export default function ProductDetail() {
                   <span>₫</span>
                   <span>{formatCurrency(productDetail.price)}</span>
                 </p>
-                <p className='bg-orange ml-4 rounded px-1 py-[2px] text-xs font-semibold'>
+                <p className='fs-12 ml-4 rounded-8 bg-primary-67B044 p-2 font-semibold'>
                   {calculateRateSale(productDetail.price_before_discount, productDetail.price)}
                 </p>
               </div>
-              <div className='mt-8 flex items-center'>
-                <div className='capitalize text-black'>số lượng</div>
-                <div className='ml-10 flex items-center'>
-                  <button className='flex h-8 w-8 items-center justify-center'>
+              <div className='mt-8 flex items-center justify-end gap-5'>
+                <p className='fs-16 capitalize text-secondary-1A162E'>số lượng</p>
+                <div className='flex items-center gap-1'>
+                  <button className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'>
                     <img
                       src='src/assets/icon-arrow-left-light.svg'
                       title=''
@@ -107,8 +109,12 @@ export default function ProductDetail() {
                       className='h-4 w-4'
                     />
                   </button>
-                  <InputNumber value={1} className='' classNameError='hidden' classNameInput='' />
-                  <button className='flex h-8 w-8 items-center justify-center'>
+                  <InputNumber
+                    className='flex h-8 w-10 items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white'
+                    classNameError='hidden'
+                    classNameInput='px-2 w-full h-full border-none bg-transparent text-center text-secondary-1A162E outline-none placeholder:fs-14 placeholder:text-secondary-1A162E/70'
+                  />
+                  <button className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'>
                     <img
                       src='src/assets/icon-arrow-right-light.svg'
                       title=''
@@ -117,19 +123,26 @@ export default function ProductDetail() {
                     />
                   </button>
                 </div>
-                <div>{productDetail.quantity}Số lượng sản phẩm có sẵn</div>
-                <div>
-                  <button>Thêm</button>
-                  <button>Mua</button>
-                </div>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(productDetail.description)
-                  }}></div>
+                <p className='fs-14 text-secondary-1A162E'>
+                  {productDetail.quantity} sản phẩm có sẵn
+                </p>
+              </div>
+              <div className='mt-8 flex items-center justify-end gap-5'>
+                <button className='h-10 max-w-max rounded-8 bg-primary-FFB700 px-4'>
+                  Thêm vào giỏ hàng
+                </button>
+                <button className='h-10 max-w-max rounded-8 border border-primary-FFB700 bg-transparent px-4'>
+                  Đi đến thanh toán
+                </button>
               </div>
             </div>
           </div>
         </div>
+        <div
+          className='mt-6 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(productDetail.description)
+          }}></div>
       </div>
     </div>
   )

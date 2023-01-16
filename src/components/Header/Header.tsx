@@ -108,7 +108,7 @@ export default function Header() {
           </Link>
 
           <div className='col-span-9 flex items-center justify-end gap-5'>
-            <form className='border-sencondary-1A162E flex h-10 w-[400px] items-center overflow-hidden rounded-8 border bg-white px-4'>
+            <form className='flex h-10 w-[400px] items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white px-4'>
               <input
                 type='text'
                 name='search'
@@ -174,7 +174,7 @@ export default function Header() {
               }>
               <Link
                 to='/'
-                className='border-sencondary-1A162E relative block h-10 w-10 rounded-8 border bg-white'>
+                className='relative block h-10 w-10 rounded-8 border border-secondary-EDEDF6 bg-white'>
                 <img
                   className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                   src='src/assets/icon-cart-light.svg'

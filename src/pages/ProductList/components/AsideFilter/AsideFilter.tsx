@@ -111,7 +111,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     className='grow'
                     placeholder='from'
                     classNameInput={cls(
-                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E transition-colors',
+                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
                       {
                         'border-primary-F94545': errors.price_min,
                         'focus:border-secondary-9E9DA8': !errors.price_min
@@ -138,7 +138,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     className='grow'
                     placeholder='to'
                     classNameInput={cls(
-                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-sencondary-1A162E transition-colors',
+                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
                       {
                         'border-primary-F94545': errors.price_max,
                         'focus:border-secondary-9E9DA8': !errors.price_max

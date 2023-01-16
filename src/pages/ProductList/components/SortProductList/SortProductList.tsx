@@ -55,7 +55,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           <p className='fs-18 font-semibold uppercase text-secondary-1A162E'>Sắp xếp theo: </p>
           <button
             className={cls(
-              'border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-secondary-1A162E',
               {
                 'bg-primary-FFB700': isActiveSortBy(sortBy.view),
                 'bg-transparent': !isActiveSortBy(sortBy.view)
@@ -66,7 +66,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <button
             className={cls(
-              'border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-secondary-1A162E',
               {
                 'bg-primary-FFB700': isActiveSortBy(sortBy.createdAt),
                 'bg-transparent': !isActiveSortBy(sortBy.createdAt)
@@ -77,7 +77,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <button
             className={cls(
-              'border-sencondary-1A162E h-10 rounded-8 border px-5 text-center text-secondary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-secondary-1A162E',
               {
                 'bg-primary-FFB700': isActiveSortBy(sortBy.sold),
                 'bg-transparent': !isActiveSortBy(sortBy.sold)
@@ -88,7 +88,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <select
             className={cls(
-              'border-sencondary-1A162E h-10 rounded-8 border px-5 text-left text-secondary-1A162E outline-none',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-left text-secondary-1A162E outline-none',
               {
                 'bg-primary-FFB700': isActiveSortBy(sortBy.price),
                 'bg-transparent': !isActiveSortBy(sortBy.price)
