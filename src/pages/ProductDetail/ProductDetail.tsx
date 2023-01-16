@@ -9,7 +9,12 @@ import DOMPurify from 'dompurify'
 import InputNumber from 'src/components/InputNumber'
 import ProductRating from 'src/components/ProductRating'
 
-import { calculateRateSale, formatCurrency, formatNumberToSocialStyle } from 'src/utils/utils'
+import {
+  calculateRateSale,
+  formatCurrency,
+  formatNumberToSocialStyle,
+  getIdFromNameId
+} from 'src/utils/utils'
 
 export default function ProductDetail() {
   const [curIndexImage, setCurIndexImage] = useState([0, 5])
@@ -17,7 +22,8 @@ export default function ProductDetail() {
 
   const imgRef = useRef<HTMLImageElement>(null)
 
-  const { id } = useParams()
+  const { nameId } = useParams()
+  const id = getIdFromNameId(nameId as string)
   const { data: productDetailData } = useQuery({
     queryKey: ['productDetail', id],
     queryFn: () => productApi.getProductDetail(id as string)
