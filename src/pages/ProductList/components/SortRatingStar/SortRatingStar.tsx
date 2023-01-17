@@ -40,7 +40,7 @@ export default function SortRatingStar({ queryConfig }: Props) {
                     return (
                       <img
                         key={indexStart}
-                        src='src/assets/icon-start-full-light.svg'
+                        src='/assets/icon-start-full-light.svg'
                         alt=''
                         className='h-4 w-4'
                       />
@@ -49,7 +49,7 @@ export default function SortRatingStar({ queryConfig }: Props) {
                   return (
                     <img
                       key={indexStart}
-                      src='src/assets/icon-start-light.svg'
+                      src='/assets/icon-start-light.svg'
                       alt=''
                       className='h-4 w-4'
                     />

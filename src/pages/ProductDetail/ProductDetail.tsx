@@ -101,7 +101,7 @@ export default function ProductDetail() {
                   className='absolute -left-5 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent'
                   onClick={prevSlide}>
                   <img
-                    src='src/assets/icon-arrow-left-light.svg'
+                    src='/assets/icon-arrow-left-light.svg'
                     title=''
                     alt=''
                     className='h-4 w-4'
@@ -130,7 +130,7 @@ export default function ProductDetail() {
                   className='absolute -right-5 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent'
                   onClick={nextSlide}>
                   <img
-                    src='src/assets/icon-arrow-right-light.svg'
+                    src='/assets/icon-arrow-right-light.svg'
                     title=''
                     alt=''
                     className='h-4 w-4'
@@ -173,7 +173,7 @@ export default function ProductDetail() {
                 <div className='flex items-center gap-1'>
                   <button className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'>
                     <img
-                      src='src/assets/icon-arrow-left-light.svg'
+                      src='/assets/icon-arrow-left-light.svg'
                       title=''
                       alt=''
                       className='h-4 w-4'
@@ -186,7 +186,7 @@ export default function ProductDetail() {
                   />
                   <button className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'>
                     <img
-                      src='src/assets/icon-arrow-right-light.svg'
+                      src='/assets/icon-arrow-right-light.svg'
                       title=''
                       alt=''
                       className='h-4 w-4'

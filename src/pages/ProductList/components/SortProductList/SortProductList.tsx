@@ -115,7 +115,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           <div className='ml-2 flex items-center gap-0.5'>
             {page === 1 ? (
               <span className='b-sd flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2'>
-                <img src='src/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
+                <img src='/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
               </span>
             ) : (
               <Link
@@ -127,12 +127,12 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                   }).toString()
                 }}
                 className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2 transition-colors hover:border-secondary-77DAE6'>
-                <img src='src/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
+                <img src='/assets/icon-arrow-left-light.svg' alt='' className='h-4 w-4' />
               </Link>
             )}
             {page === pageSize ? (
               <span className='b-sd flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2'>
-                <img src='src/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
+                <img src='/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
               </span>
             ) : (
               <Link
@@ -144,7 +144,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                   }).toString()
                 }}
                 className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2 transition-colors hover:border-secondary-77DAE6'>
-                <img src='src/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
+                <img src='/assets/icon-arrow-right-light.svg' alt='' className='h-4 w-4' />
               </Link>
             )}
           </div>

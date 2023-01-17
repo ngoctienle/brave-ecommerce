@@ -46,16 +46,16 @@ export default function Header() {
   const handleSearch = handleSubmit((data) => {
     const config = queryConfig.order
       ? omit(
-          {
-            ...queryConfig,
-            name: data.name
-          },
-          ['order', 'sort_by']
-        )
-      : {
+        {
           ...queryConfig,
           name: data.name
-        }
+        },
+        ['order', 'sort_by']
+      )
+      : {
+        ...queryConfig,
+        name: data.name
+      }
 
     navigate({
       pathname: paths.home,
@@ -91,7 +91,7 @@ export default function Header() {
               }>
               <div className='mr-1 h-5 w-5 flex-shrink-0'>
                 <img
-                  src='src/assets/icon-profile-light.svg'
+                  src='/assets/icon-profile-light.svg'
                   alt='My Profile'
                   title='My Profile'
                   className='h-full w-full rounded-full object-cover'
@@ -131,7 +131,7 @@ export default function Header() {
               </div>
             }>
             <img
-              src='src/assets/icon-global-light.svg'
+              src='/assets/icon-global-light.svg'
               alt='Support Language'
               title='Support Language'
               width={24}
@@ -156,7 +156,7 @@ export default function Header() {
               />
               <button className='flex-shrink-0 rounded-8'>
                 <img
-                  src='src/assets/icon-search-light.svg'
+                  src='/assets/icon-search-light.svg'
                   alt='Search Icon'
                   title='Search Icon'
                   width={24}
@@ -177,7 +177,7 @@ export default function Header() {
                   </div>
                   <div className='mt-2 h-[1px] bg-secondary-EDEDF6'></div>
                   <div className='mt-2 flex items-center gap-2 rounded-8 p-3 hover:bg-secondary-F8F8FB/60'>
-                    <img src='src/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
+                    <img src='/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
                     <div className='flex-grow overflow-hidden'>
                       <p className='fs-16 truncate text-secondary-1A162E'>
                         Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi
@@ -188,7 +188,7 @@ export default function Header() {
                     </div>
                   </div>
                   <div className='mt-2 flex items-center gap-2 rounded-8 p-3 hover:bg-secondary-F8F8FB/60'>
-                    <img src='src/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
+                    <img src='/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
                     <div className='flex-grow overflow-hidden'>
                       <p className='fs-16 truncate text-secondary-1A162E'>
                         Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi
@@ -199,7 +199,7 @@ export default function Header() {
                     </div>
                   </div>
                   <div className='mt-2 flex items-center gap-2 rounded-8 p-3 hover:bg-secondary-F8F8FB/60'>
-                    <img src='src/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
+                    <img src='/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
                     <div className='flex-grow overflow-hidden'>
                       <p className='fs-16 truncate text-secondary-1A162E'>
                         Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi
@@ -216,7 +216,7 @@ export default function Header() {
                 className='relative block h-10 w-10 rounded-8 border border-secondary-EDEDF6 bg-white'>
                 <img
                   className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
-                  src='src/assets/icon-cart-light.svg'
+                  src='/assets/icon-cart-light.svg'
                   alt='Add To Cart'
                   title='Add To Cart'
                   width={24}

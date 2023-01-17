@@ -64,7 +64,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
   return (
     <div className='rounded-10 bg-FAFAFD p-4'>
       <Link to={paths.home} className='mb-2 flex items-center'>
-        <img src='src/assets/icon-more-light.svg' alt='' className='mr-2 h-4 w-4' />
+        <img src='/assets/icon-more-light.svg' alt='' className='mr-2 h-4 w-4' />
         <span className='fs-18 font-semibold uppercase text-secondary-1A162E'>Tất cả danh mục</span>
       </Link>
       <ul className='list-disc border-t-[1px] border-t-secondary-D2D1D6 pt-2 pl-4'>
@@ -94,7 +94,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
         })}
       </ul>
       <Link to={paths.home} className='mt-4 mb-2 flex items-center'>
-        <img src='src/assets/icon-fillter-light.svg' alt='' className='mr-2 h-4 w-4' />
+        <img src='/assets/icon-fillter-light.svg' alt='' className='mr-2 h-4 w-4' />
         <span className='fs-18 font-semibold uppercase text-secondary-1A162E'>Bộ lọc tìm kiếm</span>
       </Link>
       <div className='border-t-[1px] border-t-secondary-D2D1D6 py-2'>

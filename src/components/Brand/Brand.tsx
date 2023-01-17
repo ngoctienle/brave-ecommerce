@@ -4,7 +4,7 @@ export default function Brand() {
   return (
     <Fragment>
       <img
-        src='src/assets/logo.svg'
+        src='/assets/logo.svg'
         alt='Brave Ecommerce'
         title='Brave Ecommerce'
         width={32}
