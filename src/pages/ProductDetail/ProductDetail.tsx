@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
-import { Product } from 'src/types/product.type'
+import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
 import productApi from 'src/apis/product.api'
 import DOMPurify from 'dompurify'
 
@@ -15,6 +15,7 @@ import {
   formatNumberToSocialStyle,
   getIdFromNameId
 } from 'src/utils/utils'
+import Product from '../ProductList/components/Product'
 
 export default function ProductDetail() {
   const [curIndexImage, setCurIndexImage] = useState([0, 5])
@@ -35,6 +36,20 @@ export default function ProductDetail() {
     [productDetail, curIndexImage]
   )
 
+  const queryConfig: ProductListConfig = {
+    limit: '3',
+    page: '1',
+    category: productDetail?.category._id
+  }
+  const { data: productsRelativeData } = useQuery({
+    queryKey: ['products', queryConfig],
+    queryFn: () => {
+      return productApi.getProductList(queryConfig)
+    },
+    staleTime: 3 * 60 * 1000,
+    enabled: Boolean(productDetail)
+  })
+
   useEffect(() => {
     if (productDetail && productDetail.images.length > 0) {
       setActiveImage(productDetail.images[0])
@@ -46,7 +61,7 @@ export default function ProductDetail() {
   }
 
   const nextSlide = () => {
-    if (curIndexImage[1] < (productDetail as Product)?.images.length) {
+    if (curIndexImage[1] < (productDetail as ProductType)?.images.length) {
       setCurIndexImage((prev) => [prev[0] + 1, prev[1] + 1])
     }
   }
@@ -83,7 +98,7 @@ export default function ProductDetail() {
       <div className='container'>
         <div className='grid grid-cols-12 gap-6'>
           <div className='col-span-5'>
-            <div className='rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
+            <div className='rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6 h-full'>
               <div
                 className='b-sd relative w-full cursor-zoom-in overflow-hidden rounded-10 pt-[100%]'
                 onMouseMove={handleZoom}
@@ -139,9 +154,9 @@ export default function ProductDetail() {
               </div>
             </div>
           </div>
-          <div className='col-span-7 h-full'>
+          <div className='col-span-7'>
             <div className='rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-              <h1 className='fs-22 font-semibold uppercase'>{productDetail.name}</h1>
+              <h1 className='fs-20 font-semibold uppercase text-secondary-1A162E'>{productDetail.name}</h1>
               <div className='mt-2 flex items-center gap-3'>
                 <div className='flex items-center gap-1'>
                   <span className='fs-14 border-b border-b-primary-FFB700 text-primary-FFB700'>
@@ -206,6 +221,20 @@ export default function ProductDetail() {
                 </button>
               </div>
             </div>
+            {productsRelativeData && (
+              <div className='mt-6 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
+                <p className='fs-20 font-semibold uppercase text-secondary-1A162E'>Có Thể Bạn Sẽ Thích</p>
+                <div className='grid grid-cols-2 gap-6 md:grid-cols-3 mt-6'>
+                  {productsRelativeData.data.data.products.map((product) => (
+                    <div
+                      className='b-sd col-span-1 overflow-hidden rounded-20 border border-secondary-EDEDF6 bg-white'
+                      key={product._id}>
+                      <Product product={product} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div

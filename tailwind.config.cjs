@@ -61,6 +61,10 @@ module.exports = {
           fontSize: '22px',
           lineHeight: '32px'
         },
+        '.fs-20': {
+          fontSize: '20px',
+          lineHeight: '32px'
+        },
         'fs-18': {
           fontSize: '18px',
           lineHeight: '26px'
