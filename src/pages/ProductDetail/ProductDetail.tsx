@@ -98,7 +98,7 @@ export default function ProductDetail() {
       <div className='container'>
         <div className='grid grid-cols-12 gap-6'>
           <div className='col-span-5'>
-            <div className='rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6 h-full'>
+            <div className='h-full rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
               <div
                 className='b-sd relative w-full cursor-zoom-in overflow-hidden rounded-10 pt-[100%]'
                 onMouseMove={handleZoom}
@@ -156,7 +156,9 @@ export default function ProductDetail() {
           </div>
           <div className='col-span-7'>
             <div className='rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-              <h1 className='fs-20 font-semibold uppercase text-secondary-1A162E'>{productDetail.name}</h1>
+              <h1 className='fs-20 font-semibold uppercase text-secondary-1A162E'>
+                {productDetail.name}
+              </h1>
               <div className='mt-2 flex items-center gap-3'>
                 <div className='flex items-center gap-1'>
                   <span className='fs-14 border-b border-b-primary-FFB700 text-primary-FFB700'>
@@ -223,8 +225,10 @@ export default function ProductDetail() {
             </div>
             {productsRelativeData && (
               <div className='mt-6 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-                <p className='fs-20 font-semibold uppercase text-secondary-1A162E'>Có Thể Bạn Sẽ Thích</p>
-                <div className='grid grid-cols-2 gap-6 md:grid-cols-3 mt-6'>
+                <p className='fs-20 font-semibold uppercase text-secondary-1A162E'>
+                  Có Thể Bạn Sẽ Thích
+                </p>
+                <div className='mt-6 grid grid-cols-2 gap-6 md:grid-cols-3'>
                   {productsRelativeData.data.data.products.map((product) => (
                     <div
                       className='b-sd col-span-1 overflow-hidden rounded-20 border border-secondary-EDEDF6 bg-white'
