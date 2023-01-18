@@ -69,7 +69,8 @@ export default function Header() {
 
   const { data: purchaseInCartData } = useQuery({
     queryKey: ['purchase', { status: purchaseStatus.inCart }],
-    queryFn: () => purchaseApi.getPurchaseList({ status: purchaseStatus.inCart })
+    queryFn: () => purchaseApi.getPurchaseList({ status: purchaseStatus.inCart }),
+    enabled: isAuthenticated
   })
 
   const purchaseListInCart = purchaseInCartData?.data.data
@@ -177,7 +178,7 @@ export default function Header() {
             </form>
             <Popover
               renderPopover={
-                <div className='flex max-w-[400px] flex-col rounded-16 bg-white p-3 shadow-lg'>
+                <div className='flex w-[400px] flex-col rounded-16 bg-white p-3 shadow-lg'>
                   <div className='flex items-center justify-between'>
                     <span className='fs-16 font-semibold capitalize text-secondary-1A162E'>
                       Sản phẩm mới thêm
@@ -223,9 +224,11 @@ export default function Header() {
                   width={24}
                   height={24}
                 />
-                <span className='fs-9 absolute -top-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-secondary-77DAE6'>
-                  {purchaseListInCart?.length}
-                </span>
+                {purchaseListInCart && (
+                  <span className='fs-9 absolute -top-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-secondary-77DAE6'>
+                    {purchaseListInCart.length}
+                  </span>
+                )}
               </Link>
             </Popover>
           </div>
