@@ -2,22 +2,26 @@ import { useContext } from 'react'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { AppContext } from 'src/contexts/app.context'
 import { Schema, schema } from 'src/utils/rules'
 
 import authApi from 'src/apis/auth.api'
+import purchaseApi from 'src/apis/purchase.api'
 import useQueryConfig from 'src/hooks/useQueryConfig'
 import paths from 'src/constants/paths'
 
 import Brand from 'src/components/Brand'
 import Popover from 'src/components/Popover'
 import { omit } from 'lodash'
+import { purchaseStatus } from 'src/constants/purchase'
+import { formatCurrency } from 'src/utils/utils'
 
 type FormData = Pick<Schema, 'name'>
 
 const nameSchema = schema.pick(['name'])
+const MAX_PRODUCT = 5
 
 export default function Header() {
   const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } =
@@ -62,6 +66,13 @@ export default function Header() {
       search: createSearchParams(config).toString()
     })
   })
+
+  const { data: purchaseInCartData } = useQuery({
+    queryKey: ['purchase', { status: purchaseStatus.inCart }],
+    queryFn: () => purchaseApi.getPurchaseList({ status: purchaseStatus.inCart })
+  })
+
+  const purchaseListInCart = purchaseInCartData?.data.data
 
   return (
     <header className='bg-F6F6F6 pb-5 pt-2'>
@@ -176,39 +187,29 @@ export default function Header() {
                     </span>
                   </div>
                   <div className='mt-2 h-[1px] bg-secondary-EDEDF6'></div>
-                  <div className='mt-2 flex items-center gap-2 rounded-8 p-3 hover:bg-secondary-F8F8FB/60'>
-                    <img src='/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
-                    <div className='flex-grow overflow-hidden'>
-                      <p className='fs-16 truncate text-secondary-1A162E'>
-                        Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi
-                      </p>
-                    </div>
-                    <div className='flex-shrink-0'>
-                      <span className='text-secondary-77DAE6'>455.000</span>
-                    </div>
-                  </div>
-                  <div className='mt-2 flex items-center gap-2 rounded-8 p-3 hover:bg-secondary-F8F8FB/60'>
-                    <img src='/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
-                    <div className='flex-grow overflow-hidden'>
-                      <p className='fs-16 truncate text-secondary-1A162E'>
-                        Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi
-                      </p>
-                    </div>
-                    <div className='flex-shrink-0'>
-                      <span className='text-secondary-77DAE6'>455.000</span>
-                    </div>
-                  </div>
-                  <div className='mt-2 flex items-center gap-2 rounded-8 p-3 hover:bg-secondary-F8F8FB/60'>
-                    <img src='/assets/react.svg' alt='' className='h-10 w-10 object-cover' />
-                    <div className='flex-grow overflow-hidden'>
-                      <p className='fs-16 truncate text-secondary-1A162E'>
-                        Đây là name của sản phẩm vừa được thêm ahihihihihihihiihi
-                      </p>
-                    </div>
-                    <div className='flex-shrink-0'>
-                      <span className='text-secondary-77DAE6'>455.000</span>
-                    </div>
-                  </div>
+                  {purchaseListInCart
+                    ? purchaseListInCart.slice(0, MAX_PRODUCT).map((purchase) => (
+                        <div
+                          className='mt-2 flex items-center gap-2 rounded-8 p-3 hover:bg-secondary-F8F8FB/60'
+                          key={purchase._id}>
+                          <img
+                            src={purchase.product.image}
+                            alt={purchase.product.name}
+                            className='h-10 w-10 object-cover'
+                          />
+                          <div className='flex-grow overflow-hidden'>
+                            <p className='fs-16 truncate text-secondary-1A162E'>
+                              {purchase.product.name}
+                            </p>
+                          </div>
+                          <div className='flex-shrink-0'>
+                            <span className='text-secondary-77DAE6'>
+                              {formatCurrency(purchase.product.price)}
+                            </span>
+                          </div>
+                        </div>
+                      ))
+                    : ''}
                 </div>
               }>
               <Link
@@ -223,7 +224,7 @@ export default function Header() {
                   height={24}
                 />
                 <span className='fs-9 absolute -top-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-secondary-77DAE6'>
-                  1
+                  {purchaseListInCart?.length}
                 </span>
               </Link>
             </Popover>

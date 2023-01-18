@@ -9,7 +9,7 @@ function App() {
   return (
     <Fragment>
       {routeElements}
-      <ToastContainer />
+      <ToastContainer position='bottom-right' />
     </Fragment>
   )
 }

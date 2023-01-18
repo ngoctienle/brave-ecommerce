@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-
-import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
-import productApi from 'src/apis/product.api'
 import DOMPurify from 'dompurify'
 
-import ProductRating from 'src/components/ProductRating'
+import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
+import { purchaseStatus } from 'src/constants/purchase'
+import productApi from 'src/apis/product.api'
+import purchaseApi from 'src/apis/purchase.api'
 
 import {
   calculateRateSale,
@@ -14,8 +14,11 @@ import {
   formatNumberToSocialStyle,
   getIdFromNameId
 } from 'src/utils/utils'
+
+import ProductRating from 'src/components/ProductRating'
 import Product from '../ProductList/components/Product'
 import QuantityController from 'src/components/QuantityController'
+import { toast } from 'react-toastify'
 
 export default function ProductDetail() {
   const [curIndexImage, setCurIndexImage] = useState([0, 5])
@@ -50,6 +53,8 @@ export default function ProductDetail() {
     staleTime: 3 * 60 * 1000,
     enabled: Boolean(productDetail)
   })
+
+  const addToCartMutation = useMutation(purchaseApi.addToCart)
 
   useEffect(() => {
     if (productDetail && productDetail.images.length > 0) {
@@ -94,6 +99,21 @@ export default function ProductDetail() {
 
   const handleBuyCount = (value: number) => {
     setBuyCount(value)
+  }
+
+  const queryClient = useQueryClient()
+  const addToCart = () => {
+    addToCartMutation.mutate(
+      { buy_count: buyCount, product_id: productDetail?._id as string },
+      {
+        onSuccess: (data) => {
+          toast.success(data.data.message, { autoClose: 1200 })
+          queryClient.invalidateQueries({
+            queryKey: ['purchase', { status: purchaseStatus.inCart }]
+          })
+        }
+      }
+    )
   }
 
   if (!productDetail) return null
@@ -191,7 +211,9 @@ export default function ProductDetail() {
               </p>
             </div>
             <div className='mt-8 flex items-end justify-end gap-5'>
-              <button className='h-10 max-w-max rounded-8 bg-primary-FFB700 px-4'>
+              <button
+                onClick={addToCart}
+                className='h-10 max-w-max rounded-8 bg-primary-FFB700 px-4'>
                 Thêm vào giỏ hàng
               </button>
               <button className='h-10 max-w-max rounded-8 border border-primary-FFB700 bg-transparent px-4'>
