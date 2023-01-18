@@ -11,3 +11,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
 }
+
+.dcs-product p:not(:last-child) {
+  margin-bottom: 10px;
+}
