@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { AppContext } from 'src/contexts/app.context'
 import { Schema, schema } from 'src/utils/rules'
@@ -27,6 +27,7 @@ export default function Header() {
   const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } =
     useContext(AppContext)
   const queryConfig = useQueryConfig()
+  const queryClient = useQueryClient()
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm<FormData>({
     defaultValues: {
@@ -40,6 +41,7 @@ export default function Header() {
     onSuccess: () => {
       setIsAuthenticated(false)
       setUserProfile(null)
+      queryClient.removeQueries({ queryKey: ['purchase', { status: purchaseStatus.inCart }] })
     }
   })
 
@@ -183,9 +185,11 @@ export default function Header() {
                     <span className='fs-16 font-semibold capitalize text-secondary-1A162E'>
                       Sản phẩm mới thêm
                     </span>
-                    <span className='fs-12 cursor-pointer capitalize text-primary-0071DC hover:underline'>
+                    <Link
+                      to={paths.cart}
+                      className='fs-12 cursor-pointer capitalize text-primary-0071DC hover:underline'>
                       xem giỏ hàng
-                    </span>
+                    </Link>
                   </div>
                   <div className='mt-2 h-[1px] bg-secondary-EDEDF6'></div>
                   {purchaseListInCart

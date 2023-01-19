@@ -127,6 +127,24 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                 )
               }}
             />
+            {/* <InputV2
+              control={control}
+              type='number'
+              name='price_min'
+              className='grow'
+              placeholder='from'
+              classNameInput={cls(
+                'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
+                {
+                  'border-primary-F94545': errors.price_min,
+                  'focus:border-secondary-9E9DA8': !errors.price_min
+                }
+              )}
+              classNameError='hidden'
+              onChange={() => {
+                trigger('price_max')
+              }}
+            /> */}
             <div className='mx-2 mt-2 shrink-0'>-</div>
             <Controller
               control={control}
