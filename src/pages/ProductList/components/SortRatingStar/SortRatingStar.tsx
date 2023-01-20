@@ -55,7 +55,7 @@ export default function SortRatingStar({ queryConfig }: Props) {
                     />
                   )
                 })}
-              {index !== 0 && <span className='fs-12 ml-3 text-secondary-1A162E'>Trở lên</span>}
+              {index !== 0 && <span className='fs-12 ml-3 text-primary-1A162E'>Trở lên</span>}
             </div>
           </li>
         ))}

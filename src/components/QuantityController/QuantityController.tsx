@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import InputNumber, { InputNumberProps } from '../InputNumber'
 
 interface Props extends InputNumberProps {
@@ -6,6 +6,7 @@ interface Props extends InputNumberProps {
   onIncrease?: (value: number) => void
   onDecrease?: (value: number) => void
   onTyping?: (value: number) => void
+  onFocusOut?: (value: number) => void
   classNameWrapper?: string
 }
 
@@ -13,8 +14,9 @@ export default function QuantityController({
   max,
   onIncrease,
   onDecrease,
-  classNameWrapper = '',
   onTyping,
+  onFocusOut,
+  classNameWrapper = '',
   value,
   ...rest
 }: Props) {
@@ -49,6 +51,10 @@ export default function QuantityController({
     setLocalValue(_value)
   }
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    onFocusOut && onFocusOut(Number(e.target.value))
+  }
+
   return (
     <div className={'flex items-center gap-1 ' + classNameWrapper}>
       <button
@@ -59,8 +65,9 @@ export default function QuantityController({
       <InputNumber
         className='flex h-8 w-10 items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white'
         classNameError='hidden'
-        classNameInput='px-2 w-full h-full border-none bg-transparent text-center text-secondary-1A162E outline-none placeholder:fs-14 placeholder:text-secondary-1A162E/70'
+        classNameInput='px-2 w-full h-full border-none bg-transparent text-center text-primary-1A162E outline-none placeholder:fs-14 placeholder:text-primary-1A162E/70'
         onChange={handleChange}
+        onBlur={handleBlur}
         value={value || localValue}
         {...rest}
       />

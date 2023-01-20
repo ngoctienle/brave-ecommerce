@@ -168,7 +168,7 @@ export default function ProductDetail() {
             </div>
           </div>
           <div className='col-span-7'>
-            <h1 className='fs-20 font-semibold uppercase text-secondary-1A162E'>
+            <h1 className='fs-20 font-semibold uppercase text-primary-1A162E'>
               {productDetail.name}
             </h1>
             <div className='mt-4 flex items-center gap-4'>
@@ -189,7 +189,7 @@ export default function ProductDetail() {
                 <span>₫</span>
                 <span>{formatCurrency(productDetail.price_before_discount)}</span>
               </p>
-              <p className='fs-14 ml-2 max-w-[50%] truncate text-secondary-1A162E'>
+              <p className='fs-14 ml-2 max-w-[50%] truncate text-primary-1A162E'>
                 <span>₫</span>
                 <span>{formatCurrency(productDetail.price)}</span>
               </p>
@@ -198,7 +198,7 @@ export default function ProductDetail() {
               </p>
             </div>
             <div className='mt-8 flex items-center gap-5'>
-              <p className='fs-16 capitalize text-secondary-1A162E'>số lượng</p>
+              <p className='fs-16 capitalize text-primary-1A162E'>số lượng</p>
               <QuantityController
                 onDecrease={handleBuyCount}
                 onIncrease={handleBuyCount}
@@ -206,9 +206,7 @@ export default function ProductDetail() {
                 value={buyCount}
                 max={productDetail.quantity}
               />
-              <p className='fs-14 text-secondary-1A162E'>
-                {productDetail.quantity} sản phẩm có sẵn
-              </p>
+              <p className='fs-14 text-primary-1A162E'>{productDetail.quantity} sản phẩm có sẵn</p>
             </div>
             <div className='mt-8 flex items-end justify-end gap-5'>
               <button
@@ -223,7 +221,7 @@ export default function ProductDetail() {
           </div>
         </div>
         <div className='mt-6 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-          <h2 className='fs-20 mb-4 font-semibold uppercase text-secondary-1A162E'>
+          <h2 className='fs-20 mb-4 font-semibold uppercase text-primary-1A162E'>
             chi tiết sản phẩm
           </h2>
           <div
@@ -234,9 +232,7 @@ export default function ProductDetail() {
         </div>
         {productsRelativeData && (
           <div className='mt-6 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-            <p className='fs-20 font-semibold uppercase text-secondary-1A162E'>
-              Có Thể Bạn Sẽ Thích
-            </p>
+            <p className='fs-20 font-semibold uppercase text-primary-1A162E'>Có Thể Bạn Sẽ Thích</p>
             <div className='mt-6 grid grid-cols-2 gap-6 md:grid-cols-3'>
               {productsRelativeData.data.data.products.map((product) => (
                 <div

@@ -17,7 +17,6 @@ module.exports = {
         'primary-FFB700': '#FFB700',
         'primary-1A162E': '#1A162E',
         'secondary-77DAE6': '#77DAE6',
-        'secondary-1A162E': '#1A162E',
         'secondary-9E9DA8': '#9E9DA8',
         'secondary-D2D1D6': '#D2D1D6',
         'secondary-EDEDF6': '#EDEDF6',

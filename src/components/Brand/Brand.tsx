@@ -10,7 +10,7 @@ export default function Brand() {
         width={32}
         height={32}
       />
-      <span className='fs-22 ml-3 font-bold text-secondary-1A162E'>Brave Ecommerce</span>
+      <span className='fs-22 ml-3 font-bold text-primary-1A162E'>Brave Ecommerce</span>
     </Fragment>
   )
 }

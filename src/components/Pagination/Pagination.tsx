@@ -23,7 +23,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         return (
           <span
             key={index}
-            className='b-sd flex h-8 w-8 items-center justify-center bg-transparent p-2 text-secondary-1A162E'>
+            className='b-sd flex h-8 w-8 items-center justify-center bg-transparent p-2 text-primary-1A162E'>
             ...
           </span>
         )
@@ -37,7 +37,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         return (
           <span
             key={index}
-            className='b-sd flex h-8 w-8 items-center justify-center bg-transparent p-2 text-secondary-1A162E'>
+            className='b-sd flex h-8 w-8 items-center justify-center bg-transparent p-2 text-primary-1A162E'>
             ...
           </span>
         )
@@ -79,7 +79,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
             }}
             key={index}
             className={cls(
-              'b-sd flex h-8 w-8 items-center justify-center rounded-8 border bg-transparent p-2 text-secondary-1A162E transition-colors',
+              'b-sd flex h-8 w-8 items-center justify-center rounded-8 border bg-transparent p-2 text-primary-1A162E transition-colors',
               {
                 'border-secondary-77DAE6': pageNumber === page,
                 'border-transparent hover:border-secondary-EDEDF6': pageNumber !== page

@@ -65,7 +65,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     <div className='rounded-10 bg-FAFAFD p-4'>
       <Link to={paths.home} className='mb-2 flex items-center'>
         <img src='/assets/icon-more-light.svg' alt='' className='mr-2 h-4 w-4' />
-        <span className='fs-18 font-semibold uppercase text-secondary-1A162E'>Tất cả danh mục</span>
+        <span className='fs-18 font-semibold uppercase text-primary-1A162E'>Tất cả danh mục</span>
       </Link>
       <ul className='list-disc border-t-[1px] border-t-secondary-D2D1D6 pt-2 pl-4'>
         {categories.map((categoryItem) => {
@@ -84,7 +84,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                 <span
                   className={cls('fs-14 capitalize', {
                     'font-semibold text-secondary-77DAE6': isActive,
-                    'text-secondary-1A162E': !isActive
+                    'text-primary-1A162E': !isActive
                   })}>
                   {categoryItem.name}
                 </span>
@@ -95,10 +95,10 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
       </ul>
       <Link to={paths.home} className='mt-4 mb-2 flex items-center'>
         <img src='/assets/icon-fillter-light.svg' alt='' className='mr-2 h-4 w-4' />
-        <span className='fs-18 font-semibold uppercase text-secondary-1A162E'>Bộ lọc tìm kiếm</span>
+        <span className='fs-18 font-semibold uppercase text-primary-1A162E'>Bộ lọc tìm kiếm</span>
       </Link>
       <div className='border-t-[1px] border-t-secondary-D2D1D6 py-2'>
-        <p className='fs-14 font-semibold capitalize text-secondary-1A162E'>Khoảng giá</p>
+        <p className='fs-14 font-semibold capitalize text-primary-1A162E'>Khoảng giá</p>
         <form className='mt-2' onSubmit={onSubmit}>
           <div className='flex items-start'>
             <Controller
@@ -111,7 +111,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     className='grow'
                     placeholder='from'
                     classNameInput={cls(
-                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
+                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-primary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
                       {
                         'border-primary-F94545': errors.price_min,
                         'focus:border-secondary-9E9DA8': !errors.price_min
@@ -134,7 +134,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
               className='grow'
               placeholder='from'
               classNameInput={cls(
-                'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
+                'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-primary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
                 {
                   'border-primary-F94545': errors.price_min,
                   'focus:border-secondary-9E9DA8': !errors.price_min
@@ -156,7 +156,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                     className='grow'
                     placeholder='to'
                     classNameInput={cls(
-                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-secondary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
+                      'bg-white py-2 px-3 rounded-8 w-full outline-none placeholder:text-primary-1A162E/70 placeholder:fs-14 placeholder:capitalize border border-secondary-EDEDF6 transition-colors',
                       {
                         'border-primary-F94545': errors.price_max,
                         'focus:border-secondary-9E9DA8': !errors.price_max
@@ -181,7 +181,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
           </Button>
         </form>
       </div>
-      <p className='fs-14 font-semibold capitalize text-secondary-1A162E'>Đánh giá</p>
+      <p className='fs-14 font-semibold capitalize text-primary-1A162E'>Đánh giá</p>
       <SortRatingStar queryConfig={queryConfig} />
       <Button
         onClick={handleRemoveAllFilter}

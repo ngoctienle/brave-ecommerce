@@ -22,7 +22,7 @@ export default function Product({ product }: Props) {
         />
       </div>
       <div className='overflow-hidden p-4'>
-        <p className='fs-16 min-h-[48px] font-semibold text-secondary-1A162E line-clamp-2'>
+        <p className='fs-16 min-h-[48px] font-semibold text-primary-1A162E line-clamp-2'>
           {product.name}
         </p>
         <div className='mt-3 flex items-center'>
@@ -30,14 +30,14 @@ export default function Product({ product }: Props) {
             <span>₫</span>
             <span>{formatCurrency(product.price_before_discount)}</span>
           </p>
-          <p className='fs-14 ml-2 max-w-[50%] truncate text-secondary-1A162E'>
+          <p className='fs-14 ml-2 max-w-[50%] truncate text-primary-1A162E'>
             <span>₫</span>
             <span>{formatCurrency(product.price)}</span>
           </p>
         </div>
         <div className='mt-3 flex items-center justify-end'>
           <ProductRating rating={product.rating} />
-          <p className='fs-14 ml-2 font-semibold text-secondary-1A162E'>
+          <p className='fs-14 ml-2 font-semibold text-primary-1A162E'>
             <span>{formatNumberToSocialStyle(product.sold)}</span>
             <span className='ml-1'>Đã bán</span>
           </p>

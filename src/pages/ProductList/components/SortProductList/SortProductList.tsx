@@ -52,10 +52,10 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
     <div className='rounded-10 bg-FAFAFD p-4'>
       <div className='flex flex-wrap items-center justify-between gap-2'>
         <div className='flex flex-wrap items-center gap-5'>
-          <p className='fs-18 font-semibold uppercase text-secondary-1A162E'>Sắp xếp theo: </p>
+          <p className='fs-18 font-semibold uppercase text-primary-1A162E'>Sắp xếp theo: </p>
           <button
             className={cls(
-              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-secondary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E',
               {
                 'bg-primary-FFB700': isActiveSortBy(sortBy.view),
                 'bg-transparent': !isActiveSortBy(sortBy.view)
@@ -66,7 +66,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <button
             className={cls(
-              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-secondary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E',
               {
                 'bg-primary-FFB700': isActiveSortBy(sortBy.createdAt),
                 'bg-transparent': !isActiveSortBy(sortBy.createdAt)
@@ -77,7 +77,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <button
             className={cls(
-              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-secondary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E',
               {
                 'bg-primary-FFB700': isActiveSortBy(sortBy.sold),
                 'bg-transparent': !isActiveSortBy(sortBy.sold)
@@ -88,7 +88,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <select
             className={cls(
-              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-left text-secondary-1A162E outline-none',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-left text-primary-1A162E outline-none',
               {
                 'bg-primary-FFB700': isActiveSortBy(sortBy.price),
                 'bg-transparent': !isActiveSortBy(sortBy.price)
@@ -101,10 +101,10 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
             <option value='' disabled>
               Giá
             </option>
-            <option value={orderConstant.asc} className='bg-white text-secondary-1A162E'>
+            <option value={orderConstant.asc} className='bg-white text-primary-1A162E'>
               Giá: Thấp đến cao
             </option>
-            <option value={orderConstant.desc} className='bg-white text-secondary-1A162E'>
+            <option value={orderConstant.desc} className='bg-white text-primary-1A162E'>
               Giá: Cao đến thấp
             </option>
           </select>
