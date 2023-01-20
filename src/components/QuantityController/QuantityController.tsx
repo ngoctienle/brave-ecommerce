@@ -50,7 +50,7 @@ export default function QuantityController({
   }
 
   return (
-    <div className={'flex items-center gap-1' + classNameWrapper}>
+    <div className={'flex items-center gap-1 ' + classNameWrapper}>
       <button
         className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'
         onClick={decrease}>
