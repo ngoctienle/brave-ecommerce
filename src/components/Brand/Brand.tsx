@@ -7,10 +7,11 @@ export default function Brand() {
         src='/assets/logo.svg'
         alt='Brave Ecommerce'
         title='Brave Ecommerce'
-        width={32}
-        height={32}
+        className='h-6 w-6 lg:h-8 lg:w-8'
       />
-      <span className='fs-22 ml-3 font-bold text-primary-1A162E'>Brave Ecommerce</span>
+      <span className='white-space-nowrap fs-16 ml-2 font-bold text-primary-1A162E md:fs-18 md:ml-3 lg:fs-22'>
+        Brave Shop
+      </span>
     </Fragment>
   )
 }

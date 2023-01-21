@@ -37,6 +37,11 @@ module.exports = {
     },
     fontFamily: {
       'brave-ecom': 'Source Sans Pro, Arial, sans-serif'
+    },
+    screens: {
+      sm: '576px',
+      md: '768px',
+      lg: '992px'
     }
   },
   plugins: [
@@ -64,7 +69,7 @@ module.exports = {
           fontSize: '20px',
           lineHeight: '32px'
         },
-        'fs-18': {
+        '.fs-18': {
           fontSize: '18px',
           lineHeight: '26px'
         },
