@@ -65,10 +65,10 @@ export default function Register() {
 
   return (
     <div className='grid h-screen grid-cols-1 md:grid-cols-12'>
-      <div className='md:bg-FAFAFD md:col-span-6 hidden md:block'>
+      <div className='hidden md:col-span-6 md:block md:bg-FAFAFD'>
         <div className='md:flex md:h-full md:flex-col md:items-center md:justify-center md:px-4'>
-          <img src='/assets/auth-img.svg' alt='' title='' className='lg:w-[420px] w-[350px]' />
-          <p className='lg:fs-20 fs-18 mt-10 max-w-[420px] text-center'>
+          <img src='/assets/auth-img.svg' alt='' title='' className='w-[350px] lg:w-[420px]' />
+          <p className='fs-18 mt-10 max-w-[420px] text-center lg:fs-20'>
             The best of luxury brand values, high quality products, and innovative services
           </p>
         </div>
@@ -78,14 +78,14 @@ export default function Register() {
           <Link to='/' className='flex max-w-max items-center'>
             <Brand />
           </Link>
-          <form onSubmit={onSubmit} noValidate className='lg:w-[460px] sm:w-[350px] w-full'>
-            <h1 className='lg:fs-30 fs-22 text-center font-bold text-primary-1A162E'>Sign Up</h1>
-            <p className='md:fs-16 fs-14 mt-[10px] text-center text-secondary-9E9DA8'>
+          <form onSubmit={onSubmit} noValidate className='w-full sm:w-[350px] lg:w-[460px]'>
+            <h1 className='fs-22 text-center font-bold text-primary-1A162E lg:fs-30'>Sign Up</h1>
+            <p className='fs-14 mt-[10px] text-center text-secondary-9E9DA8 md:fs-16'>
               {' '}
               Let’s create your account and Shop like a pro and save money.
             </p>
             <Input
-              className='sm:mt-10 mt-5'
+              className='mt-5 sm:mt-10'
               type='email'
               name='email'
               placeholder='Email'
@@ -112,7 +112,7 @@ export default function Register() {
             />
             <div className='mt-4'>
               <Button
-                className='md:fs-16 fs-14 flex md:h-[50px] h-10 w-full items-center justify-center rounded-10 bg-primary-FFB700 font-semibold uppercase text-primary-1A162E'
+                className='fs-14 flex h-10 w-full items-center justify-center rounded-10 bg-primary-FFB700 font-semibold uppercase text-primary-1A162E md:fs-16 md:h-[50px]'
                 isLoading={registerAccountMutation.isLoading}
                 disabled={registerAccountMutation.isLoading}>
                 Đăng Ký
@@ -120,9 +120,9 @@ export default function Register() {
             </div>
           </form>
           <div className='flex items-center justify-center'>
-            <span className='md:fs-18 fs-14 text-secondary-9E9DA8'>Bạn đã có tài khoản?</span>
+            <span className='fs-14 text-secondary-9E9DA8 md:fs-18'>Bạn đã có tài khoản?</span>
             <Link
-              className='md:fs-18 fs-14 ml-2 font-semibold capitalize text-primary-0071DC'
+              className='fs-14 ml-2 font-semibold capitalize text-primary-0071DC md:fs-18'
               to={paths.login}>
               Đăng nhập
             </Link>
