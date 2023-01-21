@@ -63,28 +63,28 @@ export default function Login() {
 
   return (
     <div className='grid h-screen grid-cols-1 md:grid-cols-12'>
-      <div className='bg-FAFAFD md:col-span-6'>
-        <div className='flex h-full flex-col items-center justify-center'>
-          <img src='/assets/auth-img.svg' alt='' title='' />
-          <p className='fs-20 mt-10 max-w-[420px] text-center'>
+      <div className='md:bg-FAFAFD md:col-span-6 hidden md:block'>
+        <div className='md:flex md:h-full md:flex-col md:items-center md:justify-center md:px-4'>
+          <img src='/assets/auth-img.svg' alt='' title='' className='lg:w-[420px] w-[350px]' />
+          <p className='lg:fs-20 fs-18 mt-10 max-w-[420px] text-center'>
             The best of luxury brand values, high quality products, and innovative services
           </p>
         </div>
       </div>
       <div className='bg-white md:col-span-6'>
-        <div className='flex h-full flex-col items-center justify-around py-[50px]'>
+        <div className='flex h-full flex-col items-center justify-around py-[50px] px-4'>
           <Link to='/' className='flex max-w-max items-center'>
             <Brand />
           </Link>
-          <form onSubmit={onSubmit} className='mt-10 w-[460px]' noValidate>
-            <h1 className='fs-30 text-center font-bold text-primary-1A162E'>Sign In</h1>
-            <p className='fs-14 mt-[10px] text-center text-secondary-9E9DA8'>
+          <form onSubmit={onSubmit} className='lg:w-[460px] sm:w-[350px] w-full' noValidate>
+            <h1 className='lg:fs-30 fs-22 text-center font-bold text-primary-1A162E'>Sign In</h1>
+            <p className='md:fs-16 fs-14 mt-[10px] text-center text-secondary-9E9DA8'>
               {' '}
               Welcome back to sign in. As a returning customer, you have access to your previously
               saved all information.
             </p>
             <Input
-              className='mt-10'
+              className='sm:mt-10 mt-5'
               type='email'
               name='email'
               placeholder='Email'
@@ -100,20 +100,20 @@ export default function Login() {
               register={register}
               errorMessage={errors.password?.message}
             />
-            <div className='mt-8'>
+            <div className='mt-4'>
               <Button
                 type='submit'
-                className='fs-16 flex h-[50px] w-full items-center justify-center rounded-10 bg-primary-FFB700 font-semibold uppercase text-primary-1A162E'
+                className='md:fs-16 fs-14 flex md:h-[50px] h-10 w-full items-center justify-center rounded-10 bg-primary-FFB700 font-semibold uppercase text-primary-1A162E'
                 isLoading={loginAccountMutation.isLoading}
                 disabled={loginAccountMutation.isLoading}>
                 Đăng Nhập
               </Button>
             </div>
           </form>
-          <div className='mt-[60px] flex items-center justify-center'>
-            <span className='fs-18 text-secondary-9E9DA8'>Bạn chưa có tài khoản?</span>
+          <div className='flex items-center justify-center'>
+            <span className='md:fs-18 fs-14 text-secondary-9E9DA8'>Bạn chưa có tài khoản?</span>
             <Link
-              className='fs-18 ml-2 font-semibold capitalize text-primary-0071DC'
+              className='md:fs-18 fs-14 ml-2 font-semibold capitalize text-primary-0071DC'
               to={paths.register}>
               Đăng ký
             </Link>
