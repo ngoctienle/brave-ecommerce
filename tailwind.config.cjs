@@ -57,6 +57,10 @@ module.exports = {
         '.b-sd': {
           boxShadow: '0px 20px 60px 10px rgba(237, 237, 246, 0.2)'
         },
+        '.fs-30': {
+          fontSize: '30px',
+          lineHeight: '44px'
+        },
         '.fs-26': {
           fontSize: '26px',
           lineHeight: '32px'

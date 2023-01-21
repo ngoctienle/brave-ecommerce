@@ -15,6 +15,7 @@ import authApi from 'src/apis/auth.api'
 import Input from 'src/components/Input'
 import Button from 'src/components/Button'
 import paths from 'src/constants/paths'
+import Brand from 'src/components/Brand'
 
 type FormData = Pick<Schema, 'email' | 'password'>
 
@@ -61,48 +62,61 @@ export default function Login() {
   })
 
   return (
-    <div className='bg-primary-F94545'>
-      <div className='container'>
-        <div className='lg:grids-cols-5 grid grid-cols-1 py-12 lg:py-32 lg:pr-10'>
-          <div className='lg:col-span-2 lg:col-start-4'>
-            <form
-              onSubmit={onSubmit}
-              className='rounded bg-white p-10 shadow-sm lg:min-w-[500px]'
-              noValidate>
-              <div className='text-2xl'>Đăng Nhập</div>
-              <Input
-                className='mt-8'
-                type='email'
-                name='email'
-                placeholder='Email'
-                register={register}
-                errorMessage={errors.email?.message}
-              />
-              <Input
-                className='mt-2'
-                type='password'
-                name='password'
-                placeholder='Password'
-                autoComplete='on'
-                register={register}
-                errorMessage={errors.password?.message}
-              />
-              <div className='mt-3'>
-                <Button
-                  type='submit'
-                  className='flex w-full items-center justify-center bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'
-                  isLoading={loginAccountMutation.isLoading}
-                  disabled={loginAccountMutation.isLoading}>
-                  Đăng Nhập
-                </Button>
-              </div>
-              <div className='mt-8 flex items-center justify-center'>
-                <span className='text-gray-300'>Bạn chưa có tài khoản?</span>
-                <Link className='ml-1 text-red-400' to={paths.register}>
-                  Đăng ký
-                </Link>
-              </div>
-            </form>
+    <div className='grid h-screen grid-cols-1 md:grid-cols-12'>
+      <div className='bg-FAFAFD md:col-span-6'>
+        <div className='flex h-full flex-col items-center justify-center'>
+          <img src='/assets/auth-img.svg' alt='' title='' />
+          <p className='fs-20 mt-10 max-w-[420px] text-center'>
+            The best of luxury brand values, high quality products, and innovative services
+          </p>
+        </div>
+      </div>
+      <div className='bg-white md:col-span-6'>
+        <div className='flex h-full flex-col items-center justify-around py-[50px]'>
+          <Link to='/' className='flex max-w-max items-center'>
+            <Brand />
+          </Link>
+          <form onSubmit={onSubmit} className='mt-10 w-[460px]' noValidate>
+            <h1 className='fs-30 text-center font-bold text-primary-1A162E'>Sign In</h1>
+            <p className='fs-14 mt-[10px] text-center text-secondary-9E9DA8'>
+              {' '}
+              Welcome back to sign in. As a returning customer, you have access to your previously
+              saved all information.
+            </p>
+            <Input
+              className='mt-10'
+              type='email'
+              name='email'
+              placeholder='Email'
+              register={register}
+              errorMessage={errors.email?.message}
+            />
+            <Input
+              className='mt-1'
+              type='password'
+              name='password'
+              placeholder='Password'
+              autoComplete='on'
+              register={register}
+              errorMessage={errors.password?.message}
+            />
+            <div className='mt-8'>
+              <Button
+                type='submit'
+                className='fs-16 flex h-[50px] w-full items-center justify-center rounded-10 bg-primary-FFB700 font-semibold uppercase text-primary-1A162E'
+                isLoading={loginAccountMutation.isLoading}
+                disabled={loginAccountMutation.isLoading}>
+                Đăng Nhập
+              </Button>
+            </div>
+          </form>
+          <div className='mt-[60px] flex items-center justify-center'>
+            <span className='fs-18 text-secondary-9E9DA8'>Bạn chưa có tài khoản?</span>
+            <Link
+              className='fs-18 ml-2 font-semibold capitalize text-primary-0071DC'
+              to={paths.register}>
+              Đăng ký
+            </Link>
           </div>
         </div>
       </div>
