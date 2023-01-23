@@ -23,7 +23,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         return (
           <span
             key={index}
-            className='b-sd flex h-8 w-8 items-center justify-center bg-transparent p-2 text-primary-1A162E'>
+            className='b-sd flex h-7 w-7 items-center justify-center bg-transparent p-1 text-primary-1A162E lg:h-8 lg:w-8 lg:p-2'>
             ...
           </span>
         )
@@ -37,7 +37,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         return (
           <span
             key={index}
-            className='b-sd flex h-8 w-8 items-center justify-center bg-transparent p-2 text-primary-1A162E'>
+            className='b-sd flex h-7 w-7 items-center justify-center bg-transparent p-1 text-primary-1A162E lg:h-8 lg:w-8 lg:p-2'>
             ...
           </span>
         )
@@ -79,7 +79,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
             }}
             key={index}
             className={cls(
-              'b-sd flex h-8 w-8 items-center justify-center rounded-8 border bg-transparent p-2 text-primary-1A162E transition-colors',
+              'b-sd flex h-7 w-7 items-center justify-center rounded-8 border bg-transparent p-1 text-primary-1A162E transition-colors lg:h-8 lg:w-8 lg:p-2',
               {
                 'border-secondary-77DAE6': pageNumber === page,
                 'border-transparent hover:border-secondary-EDEDF6': pageNumber !== page
@@ -92,9 +92,9 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
   }
 
   return (
-    <div className='mt-6 flex flex-wrap justify-center gap-3'>
+    <div className='mt-5 flex flex-wrap justify-center gap-3 lg:mt-6'>
       {page === 1 ? (
-        <span className='b-sd flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-2'>
+        <span className='b-sd flex h-7 w-7 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-1 lg:h-8 lg:w-8 lg:p-2'>
           <img src='/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
         </span>
       ) : (
@@ -106,13 +106,13 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
               page: (page - 1).toString()
             }).toString()
           }}
-          className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'>
+          className='b-sd flex h-7 w-7 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-1 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8 lg:p-2'>
           <img src='/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
         </Link>
       )}
       {renderPagination()}
       {page === pageSize ? (
-        <span className='bg-secondary-F8F8F8 b-sd flex h-8 w-8 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 p-2'>
+        <span className='bg-secondary-F8F8F8 b-sd flex h-7 w-7 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 p-1 lg:h-8 lg:w-8 lg:p-2'>
           <img src='/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
         </span>
       ) : (
@@ -124,7 +124,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
               page: (page + 1).toString()
             }).toString()
           }}
-          className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'>
+          className='b-sd flex h-7 w-7 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-1 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8 lg:p-2'>
           <img src='/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
         </Link>
       )}

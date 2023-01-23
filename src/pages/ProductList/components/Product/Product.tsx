@@ -21,11 +21,11 @@ export default function Product({ product }: Props) {
           className='absolute top-0 left-0 h-full w-full bg-white object-cover'
         />
       </div>
-      <div className='overflow-hidden p-4'>
-        <p className='fs-16 min-h-[48px] font-semibold text-primary-1A162E line-clamp-2'>
+      <div className='overflow-hidden p-3 mlg:p-4'>
+        <p className='fs-14 font-semibold text-primary-1A162E line-clamp-2 mlg:fs-16 mlg:min-h-[48px]'>
           {product.name}
         </p>
-        <div className='mt-3 flex items-center'>
+        <div className='mt-2 flex items-center mlg:mt-3'>
           <p className='fs-14 max-w-[50%] truncate text-primary-F94545/70 line-through'>
             <span>₫</span>
             <span>{formatCurrency(product.price_before_discount)}</span>
@@ -35,9 +35,9 @@ export default function Product({ product }: Props) {
             <span>{formatCurrency(product.price)}</span>
           </p>
         </div>
-        <div className='mt-3 flex items-center justify-end'>
+        <div className='mt-2 flex flex-wrap items-center justify-between mlg:mt-3 mlg:justify-end'>
           <ProductRating rating={product.rating} />
-          <p className='fs-14 ml-2 font-semibold text-primary-1A162E'>
+          <p className='fs-14 font-semibold text-primary-1A162E mlg:ml-2'>
             <span>{formatNumberToSocialStyle(product.sold)}</span>
             <span className='ml-1'>Đã bán</span>
           </p>

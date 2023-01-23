@@ -22,7 +22,7 @@ export default function SortRatingStar({ queryConfig }: Props) {
   }
 
   return (
-    <ul className='mb-4 border-b-[1px] border-b-secondary-D2D1D6 py-2'>
+    <ul className='mb-2 border-b-[1px] border-b-secondary-D2D1D6 py-1 lg:mb-4 lg:py-2'>
       {Array(5)
         .fill(0)
         .map((_, index) => (

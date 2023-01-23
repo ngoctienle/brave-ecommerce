@@ -39,9 +39,12 @@ module.exports = {
       'brave-ecom': 'Source Sans Pro, Arial, sans-serif'
     },
     screens: {
+      xsm: '420px',
       sm: '576px',
       md: '768px',
-      lg: '992px'
+      mmd: '868px',
+      lg: '992px',
+      mlg: '1120px'
     }
   },
   plugins: [

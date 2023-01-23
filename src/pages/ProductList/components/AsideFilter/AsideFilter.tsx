@@ -62,16 +62,18 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
   }
 
   return (
-    <div className='rounded-10 bg-FAFAFD p-4'>
-      <Link to={paths.home} className='mb-2 flex items-center'>
+    <div className='rounded-10 bg-FAFAFD p-3 lg:p-4'>
+      <Link to={paths.home} className='mb-1 flex items-center lg:mb-2'>
         <img src='/assets/icon-more-light.svg' alt='' className='mr-2 h-4 w-4' />
-        <span className='fs-18 font-semibold uppercase text-primary-1A162E'>Tất cả danh mục</span>
+        <span className='fs-16 font-semibold uppercase text-primary-1A162E lg:fs-18'>
+          Tất cả danh mục
+        </span>
       </Link>
-      <ul className='list-disc border-t-[1px] border-t-secondary-D2D1D6 pt-2 pl-4'>
+      <ul className='list-disc border-t-[1px] border-t-secondary-D2D1D6 pt-1 pl-4 lg:pt-2'>
         {categories.map((categoryItem) => {
           const isActive = category === categoryItem._id
           return (
-            <li className='py-2' key={categoryItem._id}>
+            <li className='py-1 lg:py-2' key={categoryItem._id}>
               <Link
                 to={{
                   pathname: paths.home,
@@ -83,7 +85,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                 className='flex items-center'>
                 <span
                   className={cls('fs-14 capitalize', {
-                    'font-semibold text-secondary-77DAE6': isActive,
+                    'font-semibold text-secondary-77DAE6 marker:text-secondary-77DAE6': isActive,
                     'text-primary-1A162E': !isActive
                   })}>
                   {categoryItem.name}
@@ -93,11 +95,13 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
           )
         })}
       </ul>
-      <Link to={paths.home} className='mt-4 mb-2 flex items-center'>
+      <Link to={paths.home} className='mt-2 mb-1 flex items-center lg:mt-4 lg:mb-2'>
         <img src='/assets/icon-fillter-light.svg' alt='' className='mr-2 h-4 w-4' />
-        <span className='fs-18 font-semibold uppercase text-primary-1A162E'>Bộ lọc tìm kiếm</span>
+        <span className='fs-16 font-semibold uppercase text-primary-1A162E lg:fs-18'>
+          Bộ lọc tìm kiếm
+        </span>
       </Link>
-      <div className='border-t-[1px] border-t-secondary-D2D1D6 py-2'>
+      <div className='border-t-[1px] border-t-secondary-D2D1D6 py-1 lg:py-2'>
         <p className='fs-14 font-semibold capitalize text-primary-1A162E'>Khoảng giá</p>
         <form className='mt-2' onSubmit={onSubmit}>
           <div className='flex items-start'>
@@ -176,7 +180,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
           <div className='fs-10 my-1 min-h-[1rem] text-center text-primary-F94545'>
             {errors.price_min?.message}
           </div>
-          <Button className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-67B044 p-2 uppercase text-white'>
+          <Button className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-67B044 py-2 px-5 uppercase text-white mmd:p-2'>
             Áp dụng
           </Button>
         </form>
@@ -185,7 +189,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
       <SortRatingStar queryConfig={queryConfig} />
       <Button
         onClick={handleRemoveAllFilter}
-        className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-F94545 p-2 uppercase text-white'>
+        className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-F94545 py-2 px-5 uppercase text-white mmd:p-2'>
         Xóa tất cả
       </Button>
     </div>

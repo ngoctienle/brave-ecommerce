@@ -31,19 +31,19 @@ export default function ProductList() {
   })
 
   return (
-    <div className='py-6'>
+    <div className='py-4 lg:py-6'>
       <div className='container'>
         {productsData && (
-          <div className='grid grid-cols-12 gap-6'>
-            <div className='col-span-3'>
+          <div className='grid grid-cols-1 gap-5 mmd:grid-cols-12 lg:gap-6'>
+            <div className='mmd:col-span-3'>
               <AsideFilter categories={categoriesData?.data.data || []} queryConfig={queryConfig} />
             </div>
-            <div className='col-span-9'>
+            <div className='mmd:col-span-9'>
               <SortProductList
                 queryConfig={queryConfig}
                 pageSize={productsData.data.data.pagination.page_size}
               />
-              <div className='mt-6 grid grid-cols-2 gap-6 md:grid-cols-3'>
+              <div className='mt-5 grid grid-cols-1 gap-5 xsm:grid-cols-2 sm:grid-cols-3 lg:mt-6 lg:gap-6'>
                 {productsData.data.data.products.map((product) => (
                   <div
                     className='b-sd col-span-1 overflow-hidden rounded-20 border border-secondary-EDEDF6 bg-white'
