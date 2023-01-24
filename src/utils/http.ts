@@ -1,5 +1,4 @@
 import axios, { AxiosError, type AxiosInstance } from 'axios'
-import { toast } from 'react-toastify'
 
 import { clearAuthLS, setAccessTokenToLS, getAccessTokenFromLS, setUserProfileToLS } from './auth'
 import { AuthRespone } from 'src/types/auth.type'
@@ -44,12 +43,8 @@ class Http {
         return respone
       },
       function (error: AxiosError) {
-        if (error.response?.status !== HttpStatusCode.UnprocessableEntity) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const data: any | undefined = error.response?.data
-          const message = data.message || error.message
-
-          toast.error(message)
+        if (error.response?.status === HttpStatusCode.Unauthorized) {
+          clearAuthLS()
         }
         return Promise.reject(error)
       }
