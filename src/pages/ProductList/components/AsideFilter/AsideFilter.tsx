@@ -84,8 +84,8 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
                 }}
                 className='flex items-center'>
                 <span
-                  className={cls('fs-14 capitalize', {
-                    'font-semibold text-secondary-77DAE6 marker:text-secondary-77DAE6': isActive,
+                  className={cls('fs-14 capitalize hover:underline', {
+                    'font-semibold text-secondary-77DAE6': isActive,
                     'text-primary-1A162E': !isActive
                   })}>
                   {categoryItem.name}
@@ -180,7 +180,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
           <div className='fs-10 my-1 min-h-[1rem] text-center text-primary-F94545'>
             {errors.price_min?.message}
           </div>
-          <Button className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-67B044 py-2 px-5 uppercase text-white mmd:p-2'>
+          <Button className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-67B044/90 py-2 px-5 uppercase text-white transition-colors hover:bg-primary-67B044 mmd:p-2'>
             Áp dụng
           </Button>
         </form>
@@ -189,7 +189,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
       <SortRatingStar queryConfig={queryConfig} />
       <Button
         onClick={handleRemoveAllFilter}
-        className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-F94545 py-2 px-5 uppercase text-white mmd:p-2'>
+        className='fs-14 flex w-full items-center justify-center rounded-8 bg-primary-F94545/90 py-2 px-5 uppercase text-white transition-colors hover:bg-primary-F94545 mmd:p-2'>
         Xóa tất cả
       </Button>
     </div>

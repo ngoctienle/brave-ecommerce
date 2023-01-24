@@ -119,10 +119,10 @@ export default function ProductDetail() {
   if (!productDetail) return null
 
   return (
-    <div className='py-6'>
+    <div className='py-4 lg:py-6'>
       <div className='container'>
-        <div className='grid grid-cols-12 gap-8 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-          <div className='col-span-5'>
+        <div className='grid grid-cols-1 gap-6 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-4 md:grid-cols-12 md:gap-8 lg:p-6'>
+          <div className='md:col-span-5'>
             <div
               className='b-sd relative w-full cursor-zoom-in overflow-hidden rounded-10 pt-[100%]'
               onMouseMove={handleZoom}
@@ -135,9 +135,9 @@ export default function ProductDetail() {
                 className='pointer-events-none absolute top-0 left-0 h-full w-full bg-white object-cover'
               />
             </div>
-            <div className='relative mt-6 grid grid-cols-5 gap-3'>
+            <div className='relative mt-4 grid grid-cols-5 gap-2 md:gap-3 lg:mt-6'>
               <button
-                className='absolute -left-5 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent'
+                className='absolute -left-4 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent md:-left-5'
                 onClick={prevSlide}>
                 <img src='/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
               </button>
@@ -161,17 +161,17 @@ export default function ProductDetail() {
                 )
               })}
               <button
-                className='absolute -right-5 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent'
+                className='absolute -right-4 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent md:-right-5'
                 onClick={nextSlide}>
                 <img src='/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
               </button>
             </div>
           </div>
-          <div className='col-span-7'>
-            <h1 className='fs-20 font-semibold uppercase text-primary-1A162E'>
+          <div className='md:col-span-7'>
+            <h1 className='fs-18 font-semibold uppercase text-primary-1A162E lg:fs-20'>
               {productDetail.name}
             </h1>
-            <div className='mt-4 flex items-center gap-4'>
+            <div className='mt-2 flex items-center gap-2 lg:mt-4 lg:gap-4'>
               <div className='flex items-center gap-1'>
                 <span className='fs-14 border-b border-b-primary-FFB700 text-primary-FFB700'>
                   {productDetail.rating}
@@ -184,7 +184,7 @@ export default function ProductDetail() {
                 <span className='ml-1'>Đã bán</span>
               </p>
             </div>
-            <div className='mt-6 flex max-w-max items-center rounded-10 border border-secondary-EDEDF6 bg-white p-2'>
+            <div className='mt-3 flex max-w-max items-center rounded-10 border border-secondary-EDEDF6 bg-white p-2 lg:mt-6'>
               <p className='fs-14 max-w-[50%] truncate text-primary-F94545/70 line-through'>
                 <span>₫</span>
                 <span>{formatCurrency(productDetail.price_before_discount)}</span>
@@ -197,8 +197,10 @@ export default function ProductDetail() {
                 {calculateRateSale(productDetail.price_before_discount, productDetail.price)}
               </p>
             </div>
-            <div className='mt-8 flex items-center gap-5'>
-              <p className='fs-16 capitalize text-primary-1A162E'>số lượng</p>
+            <div className='xsx:flex-nowrap xsx:gap-5 mt-4 flex flex-wrap items-center gap-4 lg:mt-8'>
+              <p className='fs-14 whitespace-nowrap capitalize text-primary-1A162E md:fs-16'>
+                số lượng
+              </p>
               <QuantityController
                 onDecrease={handleBuyCount}
                 onIncrease={handleBuyCount}
@@ -206,37 +208,41 @@ export default function ProductDetail() {
                 value={buyCount}
                 max={productDetail.quantity}
               />
-              <p className='fs-14 text-primary-1A162E'>{productDetail.quantity} sản phẩm có sẵn</p>
+              <p className='fs-14 whitespace-nowrap text-primary-1A162E'>
+                {productDetail.quantity} Sản phẩm có sẵn
+              </p>
             </div>
-            <div className='mt-8 flex items-end justify-end gap-5'>
+            <div className='xsx:flex-nowrap xsx:justify-end mt-4 flex flex-wrap items-end justify-start gap-4 lg:mt-8 lg:gap-5'>
               <button
                 onClick={addToCart}
-                className='h-10 max-w-max rounded-8 bg-primary-FFB700 px-4'>
+                className='xsx:max-w-max h-10 whitespace-nowrap rounded-8 bg-primary-FFB700 px-4'>
                 Thêm vào giỏ hàng
               </button>
-              <button className='h-10 max-w-max rounded-8 border border-primary-FFB700 bg-transparent px-4'>
+              <button className='xsx:max-w-max h-10 whitespace-nowrap rounded-8 border border-primary-FFB700 bg-transparent px-4'>
                 Đi đến thanh toán
               </button>
             </div>
           </div>
         </div>
-        <div className='mt-6 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-          <h2 className='fs-20 mb-4 font-semibold uppercase text-primary-1A162E'>
+        <div className='mt-3 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-4 lg:mt-6 lg:p-6'>
+          <h2 className='fs-18 mb-2 font-semibold uppercase text-primary-1A162E lg:fs-20 lg:mb-4'>
             chi tiết sản phẩm
           </h2>
           <div
-            className='dcs-product'
+            className='dcs-product fs-14 text-primary-1A162E lg:fs-16'
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(productDetail.description)
             }}></div>
         </div>
         {productsRelativeData && (
-          <div className='mt-6 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-6'>
-            <p className='fs-20 font-semibold uppercase text-primary-1A162E'>Có Thể Bạn Sẽ Thích</p>
-            <div className='mt-6 grid grid-cols-2 gap-6 md:grid-cols-3'>
+          <div className='mt-3 rounded-16 border border-secondary-EDEDF6 bg-FAFAFD p-4 lg:mt-6 lg:p-6'>
+            <p className='fs-18 font-semibold uppercase text-primary-1A162E lg:fs-20'>
+              Có Thể Bạn Sẽ Thích
+            </p>
+            <div className='mt-3 grid grid-cols-1 gap-4 md:grid-cols-3 lg:mt-6 lg:gap-6'>
               {productsRelativeData.data.data.products.map((product) => (
                 <div
-                  className='b-sd col-span-1 overflow-hidden rounded-20 border border-secondary-EDEDF6 bg-white'
+                  className='b-sd col-span-1 overflow-hidden rounded-16 border border-secondary-EDEDF6 bg-white'
                   key={product._id}>
                   <Product product={product} />
                 </div>

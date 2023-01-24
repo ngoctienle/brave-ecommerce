@@ -88,7 +88,7 @@ export default function Header() {
             <div className='col-span-6 flex items-center justify-end gap-3 md:col-span-9 md:gap-5'>
               {/* Form Search Desktop*/}
               <form
-                className='hidden h-9 w-[400px] items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white px-4 md:flex lg:h-10'
+                className='hidden h-9 w-[400px] items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white px-4 transition-colors focus-within:border-secondary-9E9DA8 md:flex lg:h-10'
                 onSubmit={handleSearch}>
                 <input
                   type='text'
@@ -148,7 +148,7 @@ export default function Header() {
                 }>
                 <Link
                   to='/'
-                  className='relative block h-8 w-8 rounded-8 border border-secondary-EDEDF6 bg-white md:h-9 md:w-9 lg:h-10 lg:w-10'>
+                  className='relative block h-8 w-8 rounded-8 border border-secondary-EDEDF6 bg-white transition-colors hover:border-secondary-9E9DA8 md:h-9 md:w-9 lg:h-10 lg:w-10'>
                   <img
                     className='absolute top-1/2 left-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 lg:h-6 lg:w-6'
                     src='/assets/icon-cart-light.svg'
@@ -166,7 +166,7 @@ export default function Header() {
 
               {/* Language */}
               <Popover
-                className='flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-white md:h-9 md:w-9 lg:h-10 lg:w-10'
+                className='flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-white transition-colors hover:border-secondary-9E9DA8 md:h-9 md:w-9 lg:h-10 lg:w-10'
                 renderPopover={
                   <div className='flex flex-col rounded-8 bg-white p-2 shadow-lg lg:rounded-16 lg:p-3'>
                     <button className='fs-14 rounded-8 py-2 px-4 text-primary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6'>
@@ -189,7 +189,7 @@ export default function Header() {
               {/* Auth */}
               {isAuthenticated && (
                 <Popover
-                  className='flex h-8 w-8 cursor-pointer items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-white md:h-9 md:w-9 lg:h-10 lg:w-10'
+                  className='flex h-8 w-8 cursor-pointer items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-white transition-colors hover:border-secondary-9E9DA8 md:h-9 md:w-9 lg:h-10 lg:w-10'
                   renderPopover={
                     <div className='flex flex-col rounded-8 bg-white p-2 shadow-lg lg:rounded-16 lg:p-3'>
                       <Link
@@ -225,7 +225,7 @@ export default function Header() {
               {!isAuthenticated && (
                 <Link
                   to={paths.login}
-                  className='fs-14 flex h-8 items-center whitespace-nowrap rounded-8 border border-secondary-EDEDF6 bg-white px-2 text-center capitalize text-primary-1A162E transition-colors md:h-9 lg:fs-16 lg:h-10 lg:px-4'>
+                  className='fs-14 flex h-8 items-center whitespace-nowrap rounded-8 border border-secondary-EDEDF6 bg-white px-2 text-center capitalize text-primary-1A162E transition-colors hover:border-secondary-9E9DA8 md:h-9 lg:fs-16 lg:h-10 lg:px-4'>
                   Đăng nhập
                 </Link>
               )}
@@ -238,7 +238,7 @@ export default function Header() {
       <div className='container'>
         <div className='mx-auto mt-4 block md:mt-0 md:hidden'>
           <form
-            className='flex h-9 items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white px-3 py-2 lg:h-10 lg:px-4'
+            className='flex h-9 items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white px-3 py-2 transition-colors focus-within:border-secondary-9E9DA8 lg:h-10 lg:px-4'
             onSubmit={handleSearch}>
             <input
               type='text'

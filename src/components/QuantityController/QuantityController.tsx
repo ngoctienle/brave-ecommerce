@@ -58,12 +58,12 @@ export default function QuantityController({
   return (
     <div className={'flex items-center gap-1 ' + classNameWrapper}>
       <button
-        className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'
+        className='b-sd flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8'
         onClick={decrease}>
         <img src='/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
       </button>
       <InputNumber
-        className='flex h-8 w-10 items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white'
+        className='flex h-7 w-9 flex-shrink-0 items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white lg:h-8 lg:w-10'
         classNameError='hidden'
         classNameInput='px-2 w-full h-full border-none bg-transparent text-center text-primary-1A162E outline-none placeholder:fs-14 placeholder:text-primary-1A162E/70'
         onChange={handleChange}
@@ -72,7 +72,7 @@ export default function QuantityController({
         {...rest}
       />
       <button
-        className='b-sd flex h-8 w-8 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6'
+        className='b-sd flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8'
         onClick={increase}>
         <img src='/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
       </button>

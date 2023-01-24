@@ -59,9 +59,11 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           <p className='fs-18 font-semibold uppercase text-primary-1A162E'>Sắp xếp theo: </p>
           <button
             className={cls(
-              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E transition-colors hover:border-secondary-9E9DA8',
               {
-                'bg-secondary-77DAE6 font-semibold': isActiveSortBy(sortBy.view),
+                'bg-secondary-77DAE6 font-semibold hover:border-transparent': isActiveSortBy(
+                  sortBy.view
+                ),
                 'bg-transparent': !isActiveSortBy(sortBy.view)
               }
             )}
@@ -70,9 +72,11 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <button
             className={cls(
-              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E transition-colors hover:border-secondary-9E9DA8',
               {
-                'bg-secondary-77DAE6 font-semibold': isActiveSortBy(sortBy.createdAt),
+                'bg-secondary-77DAE6 font-semibold hover:border-transparent': isActiveSortBy(
+                  sortBy.createdAt
+                ),
                 'bg-transparent': !isActiveSortBy(sortBy.createdAt)
               }
             )}
@@ -81,37 +85,46 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </button>
           <button
             className={cls(
-              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E',
+              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-center text-primary-1A162E transition-colors hover:border-secondary-9E9DA8',
               {
-                'bg-secondary-77DAE6 font-semibold': isActiveSortBy(sortBy.sold),
+                'bg-secondary-77DAE6 font-semibold hover:border-transparent': isActiveSortBy(
+                  sortBy.sold
+                ),
                 'bg-transparent': !isActiveSortBy(sortBy.sold)
               }
             )}
             onClick={() => handleSort(sortBy.sold)}>
             Bán chạy
           </button>
-          <select
-            className={cls(
-              'h-10 rounded-8 border border-secondary-EDEDF6 px-5 text-left text-primary-1A162E outline-none',
-              {
-                'bg-secondary-77DAE6 font-semibold': isActiveSortBy(sortBy.price),
-                'bg-transparent': !isActiveSortBy(sortBy.price)
-              }
-            )}
-            value={order || ''}
-            onChange={(e) =>
-              handleSelectSort(e.target.value as Exclude<ProductListConfig['order'], undefined>)
-            }>
-            <option value='' disabled>
-              Giá
-            </option>
-            <option value={orderConstant.asc} className='bg-white text-primary-1A162E'>
-              Giá: Thấp đến cao
-            </option>
-            <option value={orderConstant.desc} className='bg-white text-primary-1A162E'>
-              Giá: Cao đến thấp
-            </option>
-          </select>
+          <div className='relative'>
+            <select
+              className={cls(
+                'h-10 min-w-[160px] appearance-none rounded-8 border border-secondary-EDEDF6 px-5 text-left text-primary-1A162E outline-none transition-colors hover:border-secondary-9E9DA8',
+                {
+                  'bg-secondary-77DAE6 font-semibold hover:border-transparent': isActiveSortBy(
+                    sortBy.price
+                  ),
+                  'bg-transparent': !isActiveSortBy(sortBy.price)
+                }
+              )}
+              value={order || ''}
+              onChange={(e) =>
+                handleSelectSort(e.target.value as Exclude<ProductListConfig['order'], undefined>)
+              }>
+              <option value='' disabled>
+                Giá
+              </option>
+              <option value={orderConstant.asc} className='bg-white text-primary-1A162E'>
+                Thấp đến Cao
+              </option>
+              <option value={orderConstant.desc} className='bg-white text-primary-1A162E'>
+                Cao đến thấp
+              </option>
+            </select>
+            <div className='absolute top-1/2 right-4 -translate-y-1/2'>
+              <ArrowDown className='h-4 w-4' stroke='#1A162E' />
+            </div>
+          </div>
         </div>
         {/* End Sort Desktop */}
 
@@ -129,7 +142,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
             leave='transition ease-in duration-75'
             leaveFrom='transform opacity-100 scale-100'
             leaveTo='transform opacity-0 scale-95'>
-            <Menu.Items className='absolute -left-2 z-10 mt-2 flex w-[200px] origin-top-left flex-col justify-center rounded-16 bg-white p-3 shadow-lg'>
+            <Menu.Items className='absolute -left-2 z-10 mt-2 flex min-w-max origin-top-left flex-col justify-center rounded-16 bg-white p-3 shadow-lg'>
               <Menu.Item>
                 <button
                   className={cls(
@@ -168,6 +181,60 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                   onClick={() => handleSort(sortBy.sold)}>
                   Bán chạy
                 </button>
+              </Menu.Item>
+              <Menu.Item>
+                <div
+                  className={cls(
+                    'flex cursor-pointer items-center rounded-8 py-2 px-4 transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6',
+                    {
+                      'font-semibold text-secondary-77DAE6':
+                        isActiveSortBy(sortBy.price) && (order as string) === orderConstant.asc,
+                      'font-normal text-primary-1A162E':
+                        !isActiveSortBy(sortBy.price) && (order as string) !== orderConstant.asc
+                    }
+                  )}>
+                  <input
+                    id='asc'
+                    type='checkbox'
+                    value={orderConstant.asc}
+                    onChange={(e) => {
+                      handleSelectSort(
+                        e.target.value as Exclude<ProductListConfig['order'], undefined>
+                      )
+                    }}
+                    className='hidden'
+                  />
+                  <label htmlFor='asc' className='fs-14 cursor-pointer lg:fs-16'>
+                    Giá Thấp đến Cao
+                  </label>
+                </div>
+              </Menu.Item>
+              <Menu.Item>
+                <div
+                  className={cls(
+                    'flex cursor-pointer items-center rounded-8 py-2 px-4 transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6',
+                    {
+                      'font-semibold text-secondary-77DAE6':
+                        isActiveSortBy(sortBy.price) && (order as string) === orderConstant.desc,
+                      'font-normal text-primary-1A162E':
+                        !isActiveSortBy(sortBy.price) && (order as string) !== orderConstant.desc
+                    }
+                  )}>
+                  <input
+                    id='desc'
+                    type='checkbox'
+                    value={orderConstant.desc}
+                    onChange={(e) =>
+                      handleSelectSort(
+                        e.target.value as Exclude<ProductListConfig['order'], undefined>
+                      )
+                    }
+                    className='hidden'
+                  />
+                  <label htmlFor='desc' className='fs-14 cursor-pointer lg:fs-16'>
+                    Giá Cao đến Thấp
+                  </label>
+                </div>
               </Menu.Item>
             </Menu.Items>
           </Transition>
