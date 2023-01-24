@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 
 import { AppContext } from 'src/contexts/app.context'
+import useQueryParams from 'src/hooks/useQueryParams'
 
 import { ErrorRespone } from 'src/types/utils.type'
 import { schema, Schema } from 'src/utils/rules'
@@ -24,6 +25,8 @@ const LoginSchema = schema.pick(['email', 'password'])
 export default function Login() {
   const { setIsAuthenticated, setUserProfile } = useContext(AppContext)
   const navigate = useNavigate()
+  const params = useQueryParams()
+  const queryRedirect = Object.keys(params).length !== 0 ? '/' + Object.values(params) : '/'
 
   const {
     register,
@@ -43,7 +46,9 @@ export default function Login() {
       onSuccess: (data) => {
         setIsAuthenticated(true)
         setUserProfile(data.data.data.user)
-        navigate('/')
+        navigate({
+          pathname: queryRedirect
+        })
       },
       onError: (error) => {
         if (isAxiosUnprocessableEntityError<ErrorRespone<FormData>>(error)) {

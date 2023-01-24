@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import DOMPurify from 'dompurify'
 
 import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
@@ -8,6 +8,8 @@ import { purchaseStatus } from 'src/constants/purchase'
 import productApi from 'src/apis/product.api'
 import purchaseApi from 'src/apis/purchase.api'
 
+import { AppContext } from 'src/contexts/app.context'
+import paths from 'src/constants/paths'
 import {
   calculateRateSale,
   formatCurrency,
@@ -21,9 +23,11 @@ import QuantityController from 'src/components/QuantityController'
 import { toast } from 'react-toastify'
 
 export default function ProductDetail() {
+  const { isAuthenticated } = useContext(AppContext)
   const [curIndexImage, setCurIndexImage] = useState([0, 5])
   const [activeImage, setActiveImage] = useState('')
   const [buyCount, setBuyCount] = useState(1)
+  const navigate = useNavigate()
 
   const imgRef = useRef<HTMLImageElement>(null)
 
@@ -111,9 +115,31 @@ export default function ProductDetail() {
           queryClient.invalidateQueries({
             queryKey: ['purchase', { status: purchaseStatus.inCart }]
           })
+        },
+        onError: () => {
+          if (!isAuthenticated) {
+            navigate({
+              pathname: paths.login,
+              search: `redirect=${nameId}`
+            })
+          }
         }
       }
     )
+  }
+
+  const handleBuyNow = async () => {
+    const res = await addToCartMutation.mutateAsync({
+      buy_count: buyCount,
+      product_id: productDetail?._id as string
+    })
+
+    const purchase = res.data.data
+    navigate(paths.cart, {
+      state: {
+        purchaseId: purchase._id
+      }
+    })
   }
 
   if (!productDetail) return null
@@ -218,7 +244,9 @@ export default function ProductDetail() {
                 className='xsx:max-w-max h-10 whitespace-nowrap rounded-8 bg-primary-FFB700 px-4'>
                 Thêm vào giỏ hàng
               </button>
-              <button className='xsx:max-w-max h-10 whitespace-nowrap rounded-8 border border-primary-FFB700 bg-transparent px-4'>
+              <button
+                onClick={handleBuyNow}
+                className='xsx:max-w-max h-10 whitespace-nowrap rounded-8 border border-primary-FFB700 bg-transparent px-4'>
                 Đi đến thanh toán
               </button>
             </div>
