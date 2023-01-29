@@ -3,20 +3,26 @@ import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { omit } from 'lodash'
+import {
+  LanguageIcon,
+  UserIcon,
+  ShoppingCartIcon,
+  MagnifyingGlassIcon
+} from '@heroicons/react/24/outline'
 
 import { AppContext } from 'src/contexts/app.context'
 import { Schema, schema } from 'src/utils/rules'
+import { formatCurrency, getAvatarUrl } from 'src/utils/utils'
+import { purchaseStatus } from 'src/constants/purchase'
+import paths from 'src/constants/paths'
 
 import authApi from 'src/apis/auth.api'
 import purchaseApi from 'src/apis/purchase.api'
 import useQueryConfig from 'src/hooks/useQueryConfig'
-import paths from 'src/constants/paths'
 
 import Brand from 'src/components/Brand'
 import Popover from 'src/components/Popover'
-import { omit } from 'lodash'
-import { purchaseStatus } from 'src/constants/purchase'
-import { formatCurrency } from 'src/utils/utils'
 
 type FormData = Pick<Schema, 'name'>
 
@@ -24,7 +30,8 @@ const nameSchema = schema.pick(['name'])
 const MAX_PRODUCT = 5
 
 export default function Header() {
-  const { setIsAuthenticated, isAuthenticated, setUserProfile } = useContext(AppContext)
+  const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } =
+    useContext(AppContext)
   const queryConfig = useQueryConfig()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
@@ -97,12 +104,7 @@ export default function Header() {
                   {...register('name')}
                 />
                 <button className='flex-shrink-0 rounded-8'>
-                  <img
-                    src='/assets/icon-search-light.svg'
-                    alt='Search Icon'
-                    title='Search Icon'
-                    className='h-5 w-5 lg:h-6 lg:w-6'
-                  />
+                  <MagnifyingGlassIcon className='h-5 w-5 lg:h-6 lg:w-6' />
                 </button>
               </form>
               {/* End Form Search */}
@@ -149,12 +151,7 @@ export default function Header() {
                 <Link
                   to='/'
                   className='relative block h-8 w-8 rounded-8 border border-secondary-EDEDF6 bg-white transition-colors hover:border-secondary-9E9DA8 md:h-9 md:w-9 lg:h-10 lg:w-10'>
-                  <img
-                    className='absolute top-1/2 left-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 lg:h-6 lg:w-6'
-                    src='/assets/icon-cart-light.svg'
-                    alt='Add To Cart'
-                    title='Add To Cart'
-                  />
+                  <ShoppingCartIcon className='absolute top-1/2 left-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 text-primary-1A162E lg:h-6 lg:w-6' />
                   {purchaseListInCart && (
                     <span className='fs-9 absolute -top-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-secondary-77DAE6'>
                       {purchaseListInCart.length}
@@ -177,12 +174,7 @@ export default function Header() {
                     </button>
                   </div>
                 }>
-                <img
-                  src='/assets/icon-global-light.svg'
-                  alt='Support Language'
-                  title='Support Language'
-                  className='h-5 w-5 lg:h-6 lg:w-6'
-                />
+                <LanguageIcon className='h-5 w-5 text-primary-1A162E lg:h-6 lg:w-6' />
               </Popover>
               {/* End Language */}
 
@@ -210,12 +202,16 @@ export default function Header() {
                     </div>
                   }>
                   <div className='h-5 w-5 flex-shrink-0 lg:h-6 lg:w-6'>
-                    <img
-                      src='/assets/icon-profile-light.svg'
-                      alt='My Profile'
-                      title='My Profile'
-                      className='h-full w-full rounded-full object-cover'
-                    />
+                    {userProfile?.avatar ? (
+                      <img
+                        src={getAvatarUrl(userProfile.avatar)}
+                        alt={userProfile.email}
+                        title={userProfile.email}
+                        className='h-full w-full object-cover'
+                      />
+                    ) : (
+                      <UserIcon className='h-full w-full object-cover text-primary-1A162E' />
+                    )}
                   </div>
                   {/* <span className='fs-14 text-primary-1A162E transition-colors hover:text-primary-1A162E/70'>
                   {userProfile?.email}

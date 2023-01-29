@@ -10,8 +10,8 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(function Inpu
   {
     errorMessage,
     className,
-    classNameInput = 'w-full rounded-sm border border-gray-300 p-3 outline-none focus:border-gray-500 focus:shadow-sm',
-    classNameError = 'mt-1 min-h-[1.25rem] text-sm text-red-600',
+    classNameInput = 'w-full md:h-12 h-10 rounded-10 border border-secondary-D2D1D6 placeholder:text-secondary-D2D1D6 placeholder:fs-14 md:placeholder:fs-16 fs-14 md:fs-16 text-primary-1A162E md:px-4 px-3 outline-none focus:border-primary-1A162E transition-colors',
+    classNameError = 'mt-1 min-h-[1.25rem] fs-12 text-primary-F94545',
     onChange,
     value = '',
     ...restParams
