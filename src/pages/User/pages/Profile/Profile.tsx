@@ -173,7 +173,7 @@ export default function Profile() {
               <div className='flex flex-col flex-wrap sm:flex-row'>
                 <p className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E'>Địa chỉ</p>
                 <Input
-                  className='w-80% flex-grow'
+                  className='w-[80%] flex-grow'
                   register={register}
                   name='address'
                   placeholder='Địa chỉ'

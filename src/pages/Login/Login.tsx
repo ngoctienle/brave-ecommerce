@@ -97,7 +97,7 @@ export default function Login() {
               errorMessage={errors.email?.message}
             />
             <Input
-              className='mt-1'
+              className='relative mt-1'
               type='password'
               name='password'
               placeholder='Password'

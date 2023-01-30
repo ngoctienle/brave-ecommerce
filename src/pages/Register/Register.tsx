@@ -93,7 +93,7 @@ export default function Register() {
               errorMessage={errors.email?.message}
             />
             <Input
-              className='mt-1'
+              className='relative mt-1'
               type='password'
               name='password'
               placeholder='Password'
@@ -102,7 +102,7 @@ export default function Register() {
               errorMessage={errors.password?.message}
             />
             <Input
-              className='mt-1'
+              className='relative mt-1'
               type='password'
               name='confirm_password'
               placeholder='Confirm Password'

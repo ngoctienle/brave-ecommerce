@@ -1,4 +1,5 @@
-import { InputHTMLAttributes } from 'react'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
+import { InputHTMLAttributes, useState } from 'react'
 import type { RegisterOptions, UseFormRegister } from 'react-hook-form'
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
@@ -20,10 +21,35 @@ export default function Input({
   classNameError = 'mt-1 min-h-[1.25rem] fs-12 text-primary-F94545',
   ...restParams
 }: Props) {
+  const [visible, setVisible] = useState(false)
   const registerResult = register && name ? register(name, rules) : null
+
+  const toggleVisible = () => {
+    setVisible((prev) => !prev)
+  }
+
+  const handleType = () => {
+    if (restParams.type === 'password') {
+      return visible ? 'text' : 'password'
+    }
+    return restParams.type
+  }
+
   return (
     <div className={className}>
-      <input className={classNameInput} {...registerResult} {...restParams} />
+      <input className={classNameInput} {...registerResult} {...restParams} type={handleType()} />
+      {restParams.type === 'password' && visible && (
+        <EyeIcon
+          className='absolute top-[15px] right-3 h-5 w-5 cursor-pointer md:right-4'
+          onClick={toggleVisible}
+        />
+      )}
+      {restParams.type === 'password' && !visible && (
+        <EyeSlashIcon
+          className='absolute top-[15px] right-3 h-5 w-5 cursor-pointer md:right-4'
+          onClick={toggleVisible}
+        />
+      )}
       <div className={classNameError}>{errorMessage}</div>
     </div>
   )
