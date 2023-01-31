@@ -1,15 +1,15 @@
+import { Fragment } from 'react'
 import { createSearchParams, Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames'
 
-import { purchaseStatus } from 'src/constants/purchase'
-import paths from 'src/constants/paths'
-import { PurchaseListStatus } from 'src/types/purchase.type'
-import useQueryParams from 'src/hooks/useQueryParams'
-
-import purchaseApi from 'src/apis/purchase.api'
-
 import { formatCurrency, generateNameId } from 'src/utils/utils'
+import { PurchaseListStatus } from 'src/types/purchase.type'
+import { purchaseStatus } from 'src/constants/purchase'
+import purchaseApi from 'src/apis/purchase.api'
+import paths from 'src/constants/paths'
+
+import useQueryParams from 'src/hooks/useQueryParams'
 
 const purchaseTabs = [
   { status: purchaseStatus.all, name: 'Tất cả' },
@@ -40,27 +40,26 @@ export default function HistoryPurchase() {
           status: String(tab.status)
         }).toString()
       }}
-      className={classNames(
-        'flex flex-1 items-center justify-center border-b-2 bg-white py-4 text-center',
-        {
-          'border-b-orange text-orange': status === tab.status,
-          'border-b-black/10 text-gray-900': status !== tab.status
-        }
-      )}>
+      className={classNames('flex flex-1 items-center justify-center bg-white py-3 text-center', {
+        'text-red-500': status === tab.status,
+        'text-gray-900': status !== tab.status
+      })}>
       {tab.name}
     </Link>
   ))
 
   return (
-    <div>
+    <Fragment>
       <div className='overflow-x-auto'>
         <div className='min-w-[700px]'>
-          <div className='sticky top-0 flex rounded-t-sm shadow-sm'>{purchaseTabsLink}</div>
-          <div>
+          <div className='sticky top-0 flex h-[81px] items-center border-l border-b border-l-secondary-EDEDF6 border-b-secondary-EDEDF6 p-4'>
+            {purchaseTabsLink}
+          </div>
+          <div className='border-l border-l-secondary-EDEDF6 p-4'>
             {purchasesInCart?.map((purchase) => (
               <div
                 key={purchase._id}
-                className='mt-4 rounded-sm border-black/10 bg-white p-6 text-gray-800 shadow-sm'>
+                className='mt-4 rounded-16 bg-white p-6 text-gray-800 first:mt-0'>
                 <Link
                   to={`${paths.home}${generateNameId({
                     name: purchase.product.name,
@@ -100,6 +99,6 @@ export default function HistoryPurchase() {
           </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   )
 }
