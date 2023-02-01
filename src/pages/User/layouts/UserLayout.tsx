@@ -8,7 +8,7 @@ export default function UserLayout() {
     <Fragment>
       <div className='py-4 lg:py-6'>
         <div className='container'>
-          <div className='grid grid-cols-1 rounded-16 bg-FAFAFD md:grid-cols-12'>
+          <div className='grid grid-cols-1 rounded-16 bg-FAFAFD mmd:grid-cols-12'>
             <div className='mmd:col-span-3'>
               <UserSideBar />
             </div>

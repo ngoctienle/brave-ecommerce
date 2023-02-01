@@ -55,16 +55,18 @@ export default function ChangePassword() {
 
   return (
     <Fragment>
-      <div className='border-b border-l border-b-secondary-EDEDF6 border-l-secondary-EDEDF6 py-4 px-6'>
-        <h1 className='fs-18 font-bold capitalize text-primary-1A162E'>Đổi mật khẩu</h1>
+      <div className='border-b border-t border-t-secondary-EDEDF6 border-b-secondary-EDEDF6 p-3 md:py-4 md:px-6 mmd:border-t-0 mmd:border-l mmd:border-l-secondary-EDEDF6'>
+        <h1 className='fs-16 font-bold capitalize text-primary-1A162E md:fs-18'>Đổi mật khẩu</h1>
         <p className='fs-14 text-secondary-9E9DA8'>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
       </div>
-      <div className='border-l border-b-secondary-EDEDF6 py-4 px-6'>
+      <div className='p-3 md:py-4 md:px-6 mmd:border-l'>
         <form className='mr-auto max-w-2xl' onSubmit={onSubmit}>
-          <div className='mt-2 flex flex-col flex-wrap sm:flex-row'>
-            <p className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E'>Mật khẩu cũ</p>
+          <div className='flex flex-col gap-2 md:gap-3'>
+            <p className='fs-14 truncate font-semibold capitalize text-primary-1A162E md:fs-16'>
+              Mật khẩu cũ
+            </p>
             <Input
-              className='relative w-[80%] flex-grow'
+              className='relative'
               register={register}
               name='password'
               type='password'
@@ -72,12 +74,12 @@ export default function ChangePassword() {
               errorMessage={errors.password?.message}
             />
           </div>
-          <div className='mt-2 flex flex-col flex-wrap sm:flex-row'>
-            <p className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E'>
+          <div className='flex flex-col gap-2 md:gap-3'>
+            <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>
               Mật khẩu mới
             </p>
             <Input
-              className='relative w-[80%] flex-grow'
+              className='relative'
               register={register}
               name='new_password'
               type='password'
@@ -85,12 +87,12 @@ export default function ChangePassword() {
               errorMessage={errors.new_password?.message}
             />
           </div>
-          <div className='mt-2 flex flex-col flex-wrap sm:flex-row'>
-            <p className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E'>
+          <div className='flex flex-col gap-2 md:gap-3'>
+            <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>
               Nhập lại mật khẩu
             </p>
             <Input
-              className='relative w-[80%] flex-grow'
+              className='relative'
               register={register}
               name='confirm_password'
               type='password'
@@ -98,15 +100,12 @@ export default function ChangePassword() {
               errorMessage={errors.confirm_password?.message}
             />
           </div>
-          <div className='mt-2 flex flex-col flex-wrap sm:flex-row'>
-            <div className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E' />
-            <div className='sm:w-[80%] sm:pl-5'>
-              <Button
-                className='bg-orange hover:bg-orange/80 flex h-9 items-center rounded-sm px-5 text-center text-sm text-white'
-                type='submit'>
-                Lưu
-              </Button>
-            </div>
+          <div className='mt-1 flex flex-col'>
+            <Button
+              className='fs-14 flex h-10 min-w-[80px] items-center justify-center rounded-10 bg-primary-67B044 px-5 text-white transition-colors hover:border-primary-1A162E sm:ml-auto md:fs-16 md:h-10 md:px-5'
+              type='submit'>
+              Lưu
+            </Button>
           </div>
         </form>
       </div>

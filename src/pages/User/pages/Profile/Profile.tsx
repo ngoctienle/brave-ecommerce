@@ -33,24 +33,22 @@ function Info() {
   } = useFormContext<FormData>()
   return (
     <Fragment>
-      <div className='mt-6 flex flex-col sm:flex-row'>
-        <p className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E'>Tên</p>
+      <div className='mt-5 flex flex-col gap-3 md:mt-6'>
+        <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>Tên</p>
         <Input
-          className='w-80% flex-grow'
           register={register}
           name='name'
           placeholder='Họ và tên'
           errorMessage={errors.name?.message}
         />
       </div>
-      <div className='flex flex-col flex-wrap sm:flex-row'>
-        <p className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E'>Số điện thoại</p>
+      <div className='flex flex-col gap-2 md:gap-3'>
+        <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>Số điện thoại</p>
         <Controller
           control={control}
           name='phone'
           render={({ field }) => (
             <InputNumber
-              className='w-80% flex-grow'
               placeholder='Số điện thoại'
               errorMessage={errors.phone?.message}
               {...field}
@@ -153,27 +151,30 @@ export default function Profile() {
 
   return (
     <Fragment>
-      <div className='border-b border-l border-b-secondary-EDEDF6 border-l-secondary-EDEDF6 py-4 px-6'>
-        <h1 className='fs-18 font-bold capitalize text-primary-1A162E'>Hồ Sơ Của Tôi</h1>
+      <div className='border-b border-t border-t-secondary-EDEDF6 border-b-secondary-EDEDF6 p-3 md:py-4 md:px-6 mmd:border-t-0 mmd:border-l mmd:border-l-secondary-EDEDF6'>
+        <h1 className='fs-16 font-bold capitalize text-primary-1A162E md:fs-18'>Hồ Sơ Của Tôi</h1>
         <p className='fs-14 text-secondary-9E9DA8'>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
       </div>
-      <div className='border-l border-b-secondary-EDEDF6 py-4 px-6'>
+      <div className='p-3 md:py-4 md:px-6 mmd:border-l'>
         <FormProvider {...methods}>
           <form
-            className='flex flex-col-reverse gap-6 md:flex-row md:items-start'
+            className='flex flex-col-reverse gap-4 md:flex-row md:items-start md:gap-6'
             onSubmit={onSubmit}>
-            <div className='mt-6 flex-grow md:mt-0'>
-              <div className='flex flex-col flex-wrap items-center sm:flex-row'>
-                <p className='w-[20%] truncate capitalize text-primary-1A162E'>Email</p>
-                <div className='w-80% fs-14 flex h-10 flex-grow cursor-not-allowed items-center rounded-10 border border-secondary-D2D1D6 bg-secondary-F8F8FB px-3 text-secondary-D2D1D6 sm:w-[80%] md:fs-16 md:h-12 md:px-4'>
+            <div className='flex-grow'>
+              <div className='flex flex-col gap-2 md:gap-3'>
+                <p className='fs-14 truncate font-semibold capitalize text-primary-1A162E md:fs-16'>
+                  Email
+                </p>
+                <div className='fs-14 flex h-10 w-full cursor-not-allowed items-center rounded-10 border border-secondary-D2D1D6 bg-secondary-F8F8FB px-3 text-secondary-D2D1D6 md:fs-16 md:h-12 md:px-4'>
                   {profile?.email}
                 </div>
               </div>
               <Info />
-              <div className='flex flex-col flex-wrap sm:flex-row'>
-                <p className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E'>Địa chỉ</p>
+              <div className='flex flex-col gap-3'>
+                <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>
+                  Địa chỉ
+                </p>
                 <Input
-                  className='w-[80%] flex-grow'
                   register={register}
                   name='address'
                   placeholder='Địa chỉ'
@@ -191,35 +192,35 @@ export default function Profile() {
                   />
                 )}
               />
-              <div className='mt-2 flex flex-col flex-wrap sm:flex-row'>
-                <div className='truncate pt-3 capitalize sm:w-[20%] sm:text-right' />
-                <div className='sm:w-[80%] sm:pl-5'>
-                  <Button
-                    className='bg-orange hover:bg-orange/80 flex h-9 items-center rounded-sm px-5 text-center'
-                    type='submit'>
-                    Lưu
-                  </Button>
-                </div>
+              <div className='mt-1 flex flex-col'>
+                <Button
+                  className='fs-14 flex h-10 min-w-[80px] items-center justify-center rounded-10 bg-primary-67B044 px-5 text-white transition-colors hover:border-primary-1A162E sm:ml-auto md:fs-16 md:h-10 md:px-5'
+                  type='submit'>
+                  Lưu
+                </Button>
               </div>
             </div>
-            <div className='flex justify-center md:w-72 md:border-l md:border-l-gray-200'>
-              <div className='flex flex-col items-center'>
-                <div className='my-5 h-24 w-24'>
-                  {!avatar ? (
-                    <UserIcon />
-                  ) : (
-                    <img
-                      src={previewImage || getAvatarUrl(avatar)}
-                      alt=''
-                      className='h-full w-full rounded-full object-cover'
-                    />
-                  )}
-                </div>
-                <InputFile onChange={handleChangeFile} />
-                <div className='mt-3 text-gray-400'>
-                  <div>Dụng lượng file tối đa 1 MB</div>
-                  <div>Định dạng: .JPEG, .PNG</div>
-                </div>
+
+            <div className='flex flex-col items-center mmd:w-[250px]'>
+              <div className='my-4 h-24 w-24 md:my-5'>
+                {!avatar ? (
+                  <UserIcon />
+                ) : (
+                  <img
+                    src={previewImage || getAvatarUrl(avatar)}
+                    alt=''
+                    className='h-full w-full rounded-full object-cover'
+                  />
+                )}
+              </div>
+              <InputFile onChange={handleChangeFile} />
+              <div className='fs-12 mt-3 text-secondary-9E9DA8 md:fs-14'>
+                <p>
+                  Dụng lượng file tối đa <span className='font-semibold'>1 MB</span>
+                </p>
+                <p>
+                  Định dạng: <span className='font-semibold'>.JPEG, .PNG</span>
+                </p>
               </div>
             </div>
           </form>

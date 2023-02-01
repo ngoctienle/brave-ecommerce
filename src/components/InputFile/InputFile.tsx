@@ -40,7 +40,7 @@ export default function InputFile({ onChange }: Props) {
         }}
       />
       <button
-        className='flex h-10 items-center justify-end rounded-sm border bg-white px-6 text-sm text-gray-600 shadow-sm'
+        className='fs-14 flex h-9 items-center justify-center rounded-10 border border-secondary-D2D1D6 px-3 text-primary-1A162E transition-colors hover:border-primary-1A162E md:fs-16 md:h-10 md:px-4'
         type='button'
         onClick={handleUpload}>
         Chọn ảnh

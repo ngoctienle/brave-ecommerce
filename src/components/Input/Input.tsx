@@ -40,13 +40,13 @@ export default function Input({
       <input className={classNameInput} {...registerResult} {...restParams} type={handleType()} />
       {restParams.type === 'password' && visible && (
         <EyeIcon
-          className='absolute top-[15px] right-3 h-5 w-5 cursor-pointer md:right-4'
+          className='absolute top-[11px] right-3 h-5 w-5 cursor-pointer md:right-4'
           onClick={toggleVisible}
         />
       )}
       {restParams.type === 'password' && !visible && (
         <EyeSlashIcon
-          className='absolute top-[15px] right-3 h-5 w-5 cursor-pointer md:right-4'
+          className='absolute top-[11px] right-3 h-5 w-5 cursor-pointer md:right-4'
           onClick={toggleVisible}
         />
       )}

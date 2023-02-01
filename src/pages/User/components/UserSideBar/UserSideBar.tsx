@@ -17,7 +17,7 @@ export default function UserSideBar() {
 
   return (
     <Fragment>
-      <div className='flex items-center border-b border-b-secondary-EDEDF6 p-4'>
+      <div className='flex items-center border-b border-b-secondary-EDEDF6 p-3 md:p-4'>
         <Link
           to={paths.profile}
           className='flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-8 border border-secondary-D2D1D6'>
@@ -40,16 +40,16 @@ export default function UserSideBar() {
           </Link>
         </div>
       </div>
-      <div className='p-4'>
+      <div className='p-3 md:p-4'>
         <NavLink
           to={paths.profile}
           className={({ isActive }) =>
-            classNames('flex items-center capitalize transition-colors', {
+            classNames('fs-14 flex items-center capitalize transition-colors md:fs-16', {
               'font-semibold text-secondary-77DAE6': isActive,
               'text-primary-1A162E': !isActive
             })
           }>
-          <div className='mr-3 h-[22px] w-[22px]'>
+          <div className='mr-3 h-5 w-5 md:h-6 md:w-6'>
             <UserIcon stroke='currentColor' />
           </div>
           Tài khoản của tôi
@@ -57,12 +57,12 @@ export default function UserSideBar() {
         <NavLink
           to={paths.changePassword}
           className={({ isActive }) =>
-            classNames('mt-4 flex items-center capitalize transition-colors', {
+            classNames('fs-14 mt-4 flex items-center capitalize transition-colors md:fs-16', {
               'font-semibold text-secondary-77DAE6': isActive,
               'text-primary-1A162E': !isActive
             })
           }>
-          <div className='mr-3 h-[22px] w-[22px]'>
+          <div className='mr-3 h-5 w-5 md:h-6 md:w-6'>
             <AdjustmentsHorizontalIcon stroke='currentColor' />
           </div>
           Đổi mật khẩu
@@ -70,12 +70,12 @@ export default function UserSideBar() {
         <NavLink
           to={paths.historyPurchase}
           className={({ isActive }) =>
-            classNames('mt-4 flex items-center  capitalize transition-colors', {
+            classNames('fs-14 mt-4 flex  items-center capitalize transition-colors md:fs-16', {
               'font-semibold text-secondary-77DAE6': isActive,
               'text-primary-1A162E': !isActive
             })
           }>
-          <div className='mr-3 h-[22px] w-[22px]'>
+          <div className='mr-3 h-5 w-5 md:h-6 md:w-6'>
             <ClipboardDocumentCheckIcon stroke='currentColor' />
           </div>
           Đơn mua

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import range from 'lodash/range'
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
@@ -38,10 +38,10 @@ export default function DataSelect({ value, onChange, errorMessage }: Props) {
   }
 
   return (
-    <div className='flex flex-col flex-wrap sm:flex-row'>
-      <p className='w-[20%] truncate pt-[15px] capitalize text-primary-1A162E'>Ngày sinh</p>
-      <div className='w-[80%] flex-grow'>
-        <div className='flex gap-5'>
+    <Fragment>
+      <div className='flex flex-col gap-2 md:gap-3'>
+        <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>Ngày sinh</p>
+        <div className='flex gap-3 sm:gap-5'>
           <div className='relative w-1/3'>
             <select
               onChange={handleChange}
@@ -88,8 +88,8 @@ export default function DataSelect({ value, onChange, errorMessage }: Props) {
             <ChevronDownIcon className='absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 text-primary-1A162E' />
           </div>
         </div>
-        <div className='fs-12 mt-1 min-h-[1.25rem] text-primary-F94545'>{errorMessage}</div>
       </div>
-    </div>
+      <div className='fs-12 mt-1 min-h-[1rem] text-primary-F94545'>{errorMessage}</div>
+    </Fragment>
   )
 }
