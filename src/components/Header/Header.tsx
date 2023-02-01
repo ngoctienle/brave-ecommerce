@@ -13,7 +13,7 @@ import {
 
 import { AppContext } from 'src/contexts/app.context'
 import { Schema, schema } from 'src/utils/rules'
-import { formatCurrency, getAvatarUrl } from 'src/utils/utils'
+import { formatCurrency, generateNameId, getAvatarUrl } from 'src/utils/utils'
 import { purchaseStatus } from 'src/constants/purchase'
 import paths from 'src/constants/paths'
 
@@ -125,7 +125,11 @@ export default function Header() {
                     </div>
                     {purchaseListInCart
                       ? purchaseListInCart.slice(0, MAX_PRODUCT).map((purchase) => (
-                          <div
+                          <Link
+                            to={`${paths.home}${generateNameId({
+                              name: purchase.product.name,
+                              id: purchase.product._id
+                            })}`}
                             className='mt-2 flex items-center gap-2 rounded-8 p-2 hover:bg-secondary-F8F8FB/60 lg:p-3'
                             key={purchase._id}>
                             <img
@@ -143,7 +147,7 @@ export default function Header() {
                                 {formatCurrency(purchase.product.price)}
                               </span>
                             </div>
-                          </div>
+                          </Link>
                         ))
                       : ''}
                   </div>
