@@ -21,6 +21,7 @@ import ProductRating from 'src/components/ProductRating'
 import Product from '../ProductList/components/Product'
 import QuantityController from 'src/components/QuantityController'
 import { toast } from 'react-toastify'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 
 export default function ProductDetail() {
   const { isAuthenticated } = useContext(AppContext)
@@ -165,7 +166,7 @@ export default function ProductDetail() {
               <button
                 className='absolute -left-4 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent md:-left-5'
                 onClick={prevSlide}>
-                <img src='/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
+                <ChevronLeftIcon className='h-4 w-4' />
               </button>
               {curImage.map((img) => {
                 const isActive = img === activeImage
@@ -189,7 +190,7 @@ export default function ProductDetail() {
               <button
                 className='absolute -right-4 top-1/2 h-4 w-4 -translate-y-1/2 bg-transparent md:-right-5'
                 onClick={nextSlide}>
-                <img src='/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
+                <ChevronRightIcon className='h-4 w-4' />
               </button>
             </div>
           </div>

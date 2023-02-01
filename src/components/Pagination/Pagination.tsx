@@ -1,5 +1,6 @@
 import { Link, createSearchParams } from 'react-router-dom'
 import cls from 'classnames'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 
 import { QueryConfig } from 'src/hooks/useQueryConfig'
 import paths from 'src/constants/paths'
@@ -95,7 +96,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
     <div className='mt-5 flex flex-wrap justify-center gap-3 lg:mt-6'>
       {page === 1 ? (
         <span className='b-sd flex h-7 w-7 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-1 lg:h-8 lg:w-8 lg:p-2'>
-          <img src='/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
+          <ChevronLeftIcon className='h-4 w-4' />
         </span>
       ) : (
         <Link
@@ -107,13 +108,13 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
             }).toString()
           }}
           className='b-sd flex h-7 w-7 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-1 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8 lg:p-2'>
-          <img src='/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
+          <ChevronLeftIcon className='h-4 w-4' />
         </Link>
       )}
       {renderPagination()}
       {page === pageSize ? (
         <span className='bg-secondary-F8F8F8 b-sd flex h-7 w-7 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 p-1 lg:h-8 lg:w-8 lg:p-2'>
-          <img src='/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
+          <ChevronRightIcon className='h-4 w-4' />
         </span>
       ) : (
         <Link
@@ -125,7 +126,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
             }).toString()
           }}
           className='b-sd flex h-7 w-7 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-1 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8 lg:p-2'>
-          <img src='/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
+          <ChevronRightIcon className='h-4 w-4' />
         </Link>
       )}
     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import InputNumber, { InputNumberProps } from '../InputNumber'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 
+import InputNumber, { InputNumberProps } from '../InputNumber'
 interface Props extends InputNumberProps {
   max?: number
   onIncrease?: (value: number) => void
@@ -60,7 +61,7 @@ export default function QuantityController({
       <button
         className='b-sd flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8'
         onClick={decrease}>
-        <img src='/assets/icon-arrow-left-light.svg' title='' alt='' className='h-4 w-4' />
+        <ChevronLeftIcon className='h-4 w-4' />
       </button>
       <InputNumber
         className='flex h-7 w-9 flex-shrink-0 items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white lg:h-8 lg:w-10'
@@ -74,7 +75,7 @@ export default function QuantityController({
       <button
         className='b-sd flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-transparent p-2 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8'
         onClick={increase}>
-        <img src='/assets/icon-arrow-right-light.svg' title='' alt='' className='h-4 w-4' />
+        <ChevronRightIcon className='h-4 w-4' />
       </button>
     </div>
   )

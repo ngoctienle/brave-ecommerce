@@ -1,3 +1,3 @@
-import { Logo, ArrowLeft, ArrowRight, ArrowDown, Check, User } from './Icon'
+import { Logo } from './Icon'
 
-export { Logo, ArrowLeft, ArrowRight, ArrowDown, Check, User }
+export { Logo }

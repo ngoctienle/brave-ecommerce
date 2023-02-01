@@ -3,6 +3,8 @@ import { createSearchParams, useNavigate } from 'react-router-dom'
 import { QueryConfig } from 'src/hooks/useQueryConfig'
 
 import paths from 'src/constants/paths'
+import { StarIcon } from '@heroicons/react/24/solid'
+import { StarIcon as StartOutLine } from '@heroicons/react/24/outline'
 
 interface Props {
   queryConfig: QueryConfig
@@ -37,23 +39,9 @@ export default function SortRatingStar({ queryConfig }: Props) {
                 .fill(0)
                 .map((_, indexStart) => {
                   if (indexStart < 5 - index) {
-                    return (
-                      <img
-                        key={indexStart}
-                        src='/assets/icon-start-full-light.svg'
-                        alt=''
-                        className='h-4 w-4'
-                      />
-                    )
+                    return <StarIcon key={indexStart} className='h-4 w-4' />
                   }
-                  return (
-                    <img
-                      key={indexStart}
-                      src='/assets/icon-start-light.svg'
-                      alt=''
-                      className='h-4 w-4'
-                    />
-                  )
+                  return <StartOutLine key={indexStart} className='h-4 w-4' />
                 })}
               {index !== 0 && <span className='fs-12 ml-3 text-primary-1A162E'>Trở lên</span>}
             </div>

@@ -2,11 +2,11 @@ import { Fragment } from 'react'
 import { createSearchParams, Link, useNavigate } from 'react-router-dom'
 import cls from 'classnames'
 import { omit } from 'lodash'
+import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Menu, Transition } from '@headlessui/react'
 
 import paths from 'src/constants/paths'
 
-import { ArrowDown, ArrowLeft, ArrowRight } from 'src/components/Icon'
 import { sortBy, order as orderConstant } from 'src/constants/product'
 import { ProductListConfig } from 'src/types/product.type'
 import { QueryConfig } from 'src/hooks/useQueryConfig'
@@ -122,7 +122,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
               </option>
             </select>
             <div className='absolute top-1/2 right-4 -translate-y-1/2'>
-              <ArrowDown className='h-4 w-4' stroke='#1A162E' />
+              <ChevronDownIcon className='h-4 w-4' />
             </div>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
         <Menu as='div' className='relative inline-block text-left mlg:hidden'>
           <Menu.Button className='fs-16 inline-flex h-9 w-full items-center justify-center rounded-10 font-semibold uppercase text-primary-1A162E outline-none focus:bg-transparent lg:fs-18 lg:h-10'>
             Sắp Xếp Theo
-            <ArrowDown className='ml-2 h-4 w-4 lg:h-5 lg:w-5' stroke='#1A162E' />
+            <ChevronDownIcon className='ml-2 h-4 w-4 lg:h-5 lg:w-5' />
           </Menu.Button>
           <Transition
             as={Fragment}
@@ -251,7 +251,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           <div className='ml-2 flex items-center gap-0.5'>
             {page === 1 ? (
               <span className='b-sd flex h-7 w-7 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-1 lg:h-8 lg:w-8 lg:p-2'>
-                <ArrowLeft stroke='#1A162E' className='h-4 w-4' />
+                <ChevronLeftIcon className='h-4 w-4' />
               </span>
             ) : (
               <Link
@@ -263,12 +263,12 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                   }).toString()
                 }}
                 className='b-sd flex h-7 w-7 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-1 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8 lg:p-2'>
-                <ArrowLeft stroke='#1A162E' className='h-4 w-4' />
+                <ChevronLeftIcon className='h-4 w-4' />
               </Link>
             )}
             {page === pageSize ? (
               <span className='b-sd flex h-7 w-7 cursor-not-allowed items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-1 lg:h-8 lg:w-8 lg:p-2'>
-                <ArrowRight stroke='#1A162E' className='h-4 w-4' />
+                <ChevronRightIcon className='h-4 w-4' />
               </span>
             ) : (
               <Link
@@ -280,7 +280,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                   }).toString()
                 }}
                 className='b-sd flex h-7 w-7 items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-secondary-F8F8FB p-1 transition-colors hover:border-secondary-77DAE6 lg:h-8 lg:w-8 lg:p-2'>
-                <ArrowRight stroke='#1A162E' className='h-4 w-4' />
+                <ChevronRightIcon className='h-4 w-4' />
               </Link>
             )}
           </div>

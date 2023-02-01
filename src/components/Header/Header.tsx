@@ -148,16 +148,14 @@ export default function Header() {
                       : ''}
                   </div>
                 }>
-                <Link
-                  to='/'
-                  className='relative block h-8 w-8 rounded-8 border border-secondary-EDEDF6 bg-white transition-colors hover:border-secondary-9E9DA8 md:h-9 md:w-9 lg:h-10 lg:w-10'>
+                <div className='relative h-8 w-8 cursor-pointer rounded-8 border border-secondary-EDEDF6 bg-white transition-colors hover:border-secondary-9E9DA8 md:h-9 md:w-9 lg:h-10 lg:w-10'>
                   <ShoppingCartIcon className='absolute top-1/2 left-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 text-primary-1A162E lg:h-6 lg:w-6' />
-                  {purchaseListInCart && (
+                  {purchaseListInCart && purchaseListInCart.length > 0 && (
                     <span className='fs-9 absolute -top-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-secondary-77DAE6'>
                       {purchaseListInCart.length}
                     </span>
                   )}
-                </Link>
+                </div>
               </Popover>
               {/* End Cart */}
 
@@ -191,7 +189,7 @@ export default function Header() {
                       </Link>
                       <Link
                         className='fs-14 rounded-8 py-2 px-4 text-left text-primary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6'
-                        to={paths.home}>
+                        to={paths.historyPurchase}>
                         Đơn mua
                       </Link>
                       <button
@@ -243,12 +241,7 @@ export default function Header() {
               {...register('name')}
             />
             <button className='flex-shrink-0 rounded-8'>
-              <img
-                src='/assets/icon-search-light.svg'
-                alt='Search Icon'
-                title='Search Icon'
-                className='h-5 w-5 lg:h-6 lg:w-6'
-              />
+              <MagnifyingGlassIcon className='h-5 w-5 lg:h-6 lg:w-6' />
             </button>
           </form>
         </div>

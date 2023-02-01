@@ -3,6 +3,10 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { omit } from 'lodash'
 import cls from 'classnames'
+import {
+  AdjustmentsHorizontalIcon,
+  EllipsisHorizontalCircleIcon
+} from '@heroicons/react/24/outline'
 
 import paths from 'src/constants/paths'
 
@@ -64,7 +68,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
   return (
     <div className='rounded-10 bg-FAFAFD p-3 lg:p-4'>
       <Link to={paths.home} className='mb-1 flex items-center lg:mb-2'>
-        <img src='/assets/icon-more-light.svg' alt='' className='mr-2 h-4 w-4' />
+        <EllipsisHorizontalCircleIcon className='mr-2 h-4 w-4' />
         <span className='fs-16 font-semibold uppercase text-primary-1A162E lg:fs-18'>
           Tất cả danh mục
         </span>
@@ -96,7 +100,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
         })}
       </ul>
       <Link to={paths.home} className='mt-2 mb-1 flex items-center lg:mt-4 lg:mb-2'>
-        <img src='/assets/icon-fillter-light.svg' alt='' className='mr-2 h-4 w-4' />
+        <AdjustmentsHorizontalIcon className='mr-2 h-4 w-4' />
         <span className='fs-16 font-semibold uppercase text-primary-1A162E lg:fs-18'>
           Bộ lọc tìm kiếm
         </span>
