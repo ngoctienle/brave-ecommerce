@@ -6,6 +6,7 @@
   - Sign up
   - Sign in
   - Log out
+  - Refresh Token
 - Product Page:
   - Pagination
   - Sort by Product's attributes
