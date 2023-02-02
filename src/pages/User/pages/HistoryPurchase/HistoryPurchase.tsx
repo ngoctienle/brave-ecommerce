@@ -26,7 +26,8 @@ export default function HistoryPurchase() {
 
   const { data: purchasesInCartData } = useQuery({
     queryKey: ['purchases', { status }],
-    queryFn: () => purchaseApi.getPurchaseList({ status: status as PurchaseListStatus })
+    queryFn: () => purchaseApi.getPurchaseList({ status: status as PurchaseListStatus }),
+    retry: 0
   })
 
   const purchasesInCart = purchasesInCartData?.data.data
