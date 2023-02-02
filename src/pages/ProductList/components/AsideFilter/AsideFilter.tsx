@@ -1,7 +1,7 @@
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { omit } from 'lodash'
+import omit from 'lodash/omit'
 import cls from 'classnames'
 import {
   AdjustmentsHorizontalIcon,

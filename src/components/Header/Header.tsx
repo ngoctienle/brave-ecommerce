@@ -3,7 +3,7 @@ import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { omit } from 'lodash'
+import omit from 'lodash/omit'
 import {
   LanguageIcon,
   UserIcon,

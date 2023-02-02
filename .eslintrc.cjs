@@ -45,9 +45,10 @@ module.exports = {
         semi: false,
         trailingComma: 'none',
         tabWidth: 2,
+        endOfLine: 'auto',
         useTabs: false,
-        printWidth: 100,
         singleQuote: true,
+        printWidth: 100,
         jsxSingleQuote: true,
         bracketSpacing: true,
         bracketSameLine: true

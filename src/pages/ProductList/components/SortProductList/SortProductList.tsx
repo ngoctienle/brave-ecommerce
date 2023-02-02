@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { createSearchParams, Link, useNavigate } from 'react-router-dom'
 import cls from 'classnames'
-import { omit } from 'lodash'
+import omit from 'lodash/omit'
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Menu, Transition } from '@headlessui/react'
 

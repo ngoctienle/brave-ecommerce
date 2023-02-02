@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { toast } from 'react-toastify'
 import { produce } from 'immer'
-import { keyBy } from 'lodash'
+import keyBy from 'lodash/keyBy'
 
 import { AppContext } from 'src/contexts/app.context'
 import { purchaseStatus } from 'src/constants/purchase'
