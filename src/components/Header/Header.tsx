@@ -41,6 +41,12 @@ export default function Header() {
     },
     resolver: yupResolver(nameSchema)
   })
+  const { register: registerMobile, handleSubmit: handleSubmitMobile } = useForm<FormData>({
+    defaultValues: {
+      name: ''
+    },
+    resolver: yupResolver(nameSchema)
+  })
 
   const logoutMutation = useMutation({
     mutationFn: authApi.LogoutAccount,
@@ -56,6 +62,25 @@ export default function Header() {
   }
 
   const handleSearch = handleSubmit((data) => {
+    const config = queryConfig.order
+      ? omit(
+          {
+            ...queryConfig,
+            name: data.name
+          },
+          ['order', 'sort_by']
+        )
+      : {
+          ...queryConfig,
+          name: data.name
+        }
+
+    navigate({
+      pathname: paths.home,
+      search: createSearchParams(config).toString()
+    })
+  })
+  const handleSearchMobile = handleSubmitMobile((data) => {
     const config = queryConfig.order
       ? omit(
           {
@@ -237,12 +262,12 @@ export default function Header() {
         <div className='mx-auto mt-4 block md:mt-0 md:hidden'>
           <form
             className='flex h-9 items-center overflow-hidden rounded-8 border border-secondary-EDEDF6 bg-white px-3 py-2 transition-colors focus-within:border-secondary-9E9DA8 lg:h-10 lg:px-4'
-            onSubmit={handleSearch}>
+            onSubmit={handleSearchMobile}>
             <input
               type='text'
               placeholder='Free ship đơn từ 0 đồng..'
               className='flex-grow border-none bg-transparent text-primary-1A162E outline-none placeholder:fs-14 placeholder:text-primary-1A162E/70'
-              {...register('name')}
+              {...registerMobile('name')}
             />
             <button className='flex-shrink-0 rounded-8'>
               <MagnifyingGlassIcon className='h-5 w-5 lg:h-6 lg:w-6' />
