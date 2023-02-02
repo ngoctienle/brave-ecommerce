@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const { calc } = require('caniuse-lite/data/features')
 const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
