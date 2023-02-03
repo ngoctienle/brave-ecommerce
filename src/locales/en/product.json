@@ -21,5 +21,14 @@
   "txt-instock": "In Stock",
   "txt-addtocart": "Add To Cart",
   "txt-purchase": "Purchase",
-  "txt-relative": "You May Also Like"
+  "txt-relative": "You May Also Like",
+  "pd": "Product",
+  "u-price": "Unit Price",
+  "total-price": "Total Price",
+  "action": "Action",
+  "select-all": "Select All",
+  "delete": "Delete",
+  "total-payment": "Total Payment",
+  "saving": "Saving",
+  "buy": "Buy Now"
 }

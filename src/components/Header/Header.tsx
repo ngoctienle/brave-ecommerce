@@ -15,7 +15,7 @@ import {
 
 import { AppContext } from 'src/contexts/app.context'
 import { Schema, schema } from 'src/utils/rules'
-import { formatCurrency, generateNameId, getAvatarUrl } from 'src/utils/utils'
+import { convertToEN, formatCurrency, generateNameId, getAvatarUrl } from 'src/utils/utils'
 import { purchaseStatus } from 'src/constants/purchase'
 import paths from 'src/constants/paths'
 
@@ -169,12 +169,23 @@ export default function Header() {
                             key={purchase._id}>
                             <img
                               src={purchase.product.image}
-                              alt={purchase.product.name}
+                              title={
+                                currentLanguage === 'vi'
+                                  ? purchase.product.name
+                                  : convertToEN(purchase.product.name)
+                              }
+                              alt={
+                                currentLanguage === 'vi'
+                                  ? purchase.product.name
+                                  : convertToEN(purchase.product.name)
+                              }
                               className='h-8 w-8 object-cover lg:h-10 lg:w-10'
                             />
                             <div className='flex-grow overflow-hidden'>
-                              <p className='fs-14 truncate text-primary-1A162E lg:fs-16'>
-                                {purchase.product.name}
+                              <p className='fs-14 truncate capitalize text-primary-1A162E lg:fs-16'>
+                                {currentLanguage === 'vi'
+                                  ? purchase.product.name
+                                  : convertToEN(purchase.product.name)}
                               </p>
                             </div>
                             <div className='flex-shrink-0'>

@@ -21,5 +21,14 @@
   "txt-instock": "Sản Phẩm Có Sẵn",
   "txt-addtocart": "Thêm Vào Giỏ Hàng",
   "txt-purchase": "Thanh Toán Ngay",
-  "txt-relative": "Có Thể Bạn Sẽ Thích"
+  "txt-relative": "Có Thể Bạn Sẽ Thích",
+  "pd": "Sản Phẩm",
+  "u-price": "Đơn Giá",
+  "total-price": "Tổng Tiền",
+  "action": "Thao Tác",
+  "select-all": "Chọn Tất Cả",
+  "delete": "Xóa",
+  "total-payment": "Tổng Thanh Toán",
+  "saving": "Tiết Kiệm",
+  "buy": "Mua Ngay"
 }

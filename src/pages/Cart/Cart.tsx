@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -8,7 +9,7 @@ import keyBy from 'lodash/keyBy'
 
 import { AppContext } from 'src/contexts/app.context'
 import { purchaseStatus } from 'src/constants/purchase'
-import { formatCurrency, generateNameId } from 'src/utils/utils'
+import { convertToEN, formatCurrency, generateNameId } from 'src/utils/utils'
 import paths from 'src/constants/paths'
 
 import { Purchase } from 'src/types/purchase.type'
@@ -19,6 +20,9 @@ import QuantityController from 'src/components/QuantityController'
 
 export default function Cart() {
   const { extendedPurchase, setExtendedPurchase } = useContext(AppContext)
+  const { t, i18n } = useTranslation('product')
+  const currentLanguage = i18n.language
+
   const location = useLocation()
   const choosenPurchaseIdFromLocation = (location.state as { purchaseId: string } | null)
     ?.purchaseId
@@ -179,23 +183,23 @@ export default function Cart() {
                     />
                   </div>
                   <p className='fs-14 flex-grow font-semibold capitalize text-primary-1A162E lg:fs-16'>
-                    Sản phẩm
+                    {t('product:pd')}
                   </p>
                 </div>
               </div>
               <div className='col-span-6'>
                 <div className='grid grid-cols-5 text-center'>
                   <p className='fs-14 col-span-2 font-semibold capitalize text-primary-1A162E lg:fs-16'>
-                    Đơn giá
+                    {t('product:u-price')}
                   </p>
                   <p className='fs-14 col-span-1 font-semibold capitalize text-primary-1A162E lg:fs-16'>
-                    Số lượng
+                    {t('product:txt-qty')}
                   </p>
                   <p className='fs-14 col-span-1 font-semibold capitalize text-primary-1A162E lg:fs-16'>
-                    Số tiền
+                    {t('product:total-price')}
                   </p>
                   <p className='fs-14 col-span-1 font-semibold capitalize text-primary-1A162E lg:fs-16'>
-                    Thao tác
+                    {t('product:action')}
                   </p>
                 </div>
               </div>
@@ -225,8 +229,16 @@ export default function Cart() {
                                 id: purchase.product._id
                               })}`}>
                               <img
-                                alt={purchase.product.name}
-                                title={purchase.product.name}
+                                alt={
+                                  currentLanguage === 'vi'
+                                    ? purchase.product.name
+                                    : convertToEN(purchase.product.name)
+                                }
+                                title={
+                                  currentLanguage === 'vi'
+                                    ? purchase.product.name
+                                    : convertToEN(purchase.product.name)
+                                }
                                 src={purchase.product.image}
                               />
                             </Link>
@@ -236,8 +248,10 @@ export default function Cart() {
                                   name: purchase.product.name,
                                   id: purchase.product._id
                                 })}`}
-                                className='fs-14 text-left text-primary-1A162E line-clamp-2 lg:fs-16'>
-                                {purchase.product.name}
+                                className='fs-14 text-left capitalize text-primary-1A162E line-clamp-2 lg:fs-16'>
+                                {currentLanguage === 'vi'
+                                  ? purchase.product.name
+                                  : convertToEN(purchase.product.name)}
                               </Link>
                             </div>
                           </div>
@@ -287,7 +301,7 @@ export default function Cart() {
                           <button
                             onClick={handleDelete(index)}
                             className='fs-12 w-full bg-none text-primary-F94545 transition-colors hover:underline lg:fs-14'>
-                            Xóa
+                            {t('product:delete')}
                           </button>
                         </div>
                       </div>
@@ -321,24 +335,26 @@ export default function Cart() {
               />
             </div>
             <button className='mx-2 border-none bg-none lg:mx-3' onClick={handleCheckAll}>
-              Chọn tất cả ({extendedPurchase.length})
+              {t('product:select-all')} ({extendedPurchase.length})
             </button>
             <button className='mx-2 border-none bg-none lg:mx-3' onClick={handleDeleteMulti}>
-              Xóa
+              {t('product:delete')}
             </button>
           </div>
           <div className='mt-2 flex flex-col items-center md:mt-0 md:flex-row'>
             <div className='mr-0 md:mr-6'>
               <div className='flex items-center justify-end'>
-                <p className='fs-14 text-primary-1A162E lg:fs-16'>
-                  Tổng thanh toán ({countChecked} sản phẩm):
+                <p className='fs-14 font-semibold text-primary-1A162E lg:fs-16'>
+                  {t('product:total-payment')} ({countChecked} {t('product:pd')}):
                 </p>
                 <p className='fs-18 ml-2 text-primary-67B044 lg:fs-20'>
                   ₫{formatCurrency(totalPriceChecked)}
                 </p>
               </div>
               <div className='flex items-center justify-end'>
-                <div className='fs-14 text-primary-1A162E'>Tiết kiệm</div>
+                <div className='fs-14 font-semibold text-primary-1A162E'>
+                  {t('product:saving')}:
+                </div>
                 <div className='ml-3 text-primary-F94545/40 lg:ml-6'>
                   ₫{formatCurrency(totalDiscountChecked)}
                 </div>
@@ -348,7 +364,7 @@ export default function Cart() {
               className='mt-2 h-10 w-full rounded-8 bg-primary-FFB700 px-4 md:mt-0 md:max-w-max lg:h-[50px]'
               onClick={handleBuyProduct}
               disabled={buyProductMutation.isLoading}>
-              Mua hàng
+              {t('product:buy')}
             </Button>
           </div>
         </div>
