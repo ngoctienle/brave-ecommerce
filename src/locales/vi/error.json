@@ -1,0 +1,26 @@
+{
+  "email": {
+    "required": "Email là bắt buộc",
+    "invalid": "Email không hợp lệ",
+    "length": "Độ dài từ 5-160 ký tự"
+  },
+  "pw": {
+    "required": "Password là bắt buộc",
+    "length": "Độ dài từ 6-160 ký tự"
+  },
+  "confirm-pw": {
+    "required": "Nhập lại password là bắt buộc",
+    "length": "Độ dài từ 6-160 ký tự",
+    "same": "Password không giống nhau"
+  },
+  "price": {
+    "valid": "Giá không phù hợp"
+  },
+  "name": "Độ dài tối đa là 160 ký tự",
+  "phone": "Độ dài tối đa là 20 ký tự",
+  "address": "Độ dài tối đa là 160 ký tự",
+  "avatar": "Độ dài tối đa là 1000 ký tự",
+  "dob": "Ngày sinh không hợp lệ",
+  "wrong-auth": "Email hoặc password không đúng",
+  "exist-auth": "Email đã tồn tại"
+}

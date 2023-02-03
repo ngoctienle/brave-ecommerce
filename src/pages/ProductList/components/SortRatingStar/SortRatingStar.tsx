@@ -1,16 +1,18 @@
+import { useTranslation } from 'react-i18next'
 import { createSearchParams, useNavigate } from 'react-router-dom'
+import { StarIcon as StartOutLine } from '@heroicons/react/24/outline'
+import { StarIcon } from '@heroicons/react/24/solid'
 
 import { QueryConfig } from 'src/hooks/useQueryConfig'
 
 import paths from 'src/constants/paths'
-import { StarIcon } from '@heroicons/react/24/solid'
-import { StarIcon as StartOutLine } from '@heroicons/react/24/outline'
 
 interface Props {
   queryConfig: QueryConfig
 }
 
 export default function SortRatingStar({ queryConfig }: Props) {
+  const { t } = useTranslation('product')
   const navigate = useNavigate()
 
   const handleFilterStar = (ratingFilter: number) => {
@@ -43,7 +45,9 @@ export default function SortRatingStar({ queryConfig }: Props) {
                   }
                   return <StartOutLine key={indexStart} className='h-4 w-4' />
                 })}
-              {index !== 0 && <span className='fs-12 ml-3 text-primary-1A162E'>Trở lên</span>}
+              {index !== 0 && (
+                <span className='fs-12 ml-3 text-primary-1A162E'>{t('product:txt-above')}</span>
+              )}
             </div>
           </li>
         ))}

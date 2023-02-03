@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { Product as ProductType } from 'src/types/product.type'
-import { formatCurrency, formatNumberToSocialStyle, generateNameId } from 'src/utils/utils'
+import {
+  convertToEN,
+  formatCurrency,
+  formatNumberToSocialStyle,
+  generateNameId
+} from 'src/utils/utils'
 
 import ProductRating from 'src/components/ProductRating'
 import paths from 'src/constants/paths'
@@ -11,6 +17,9 @@ interface Props {
 }
 
 export default function Product({ product }: Props) {
+  const { t, i18n } = useTranslation('product')
+  const currentLanguage = i18n.language
+
   return (
     <Link to={`${paths.home}${generateNameId({ name: product.name, id: product._id })}`}>
       <div className='relative w-full overflow-hidden pt-[100%]'>
@@ -22,8 +31,8 @@ export default function Product({ product }: Props) {
         />
       </div>
       <div className='overflow-hidden p-3 mlg:p-4'>
-        <p className='fs-14 font-semibold text-primary-1A162E line-clamp-2 mlg:fs-16 mlg:min-h-[48px]'>
-          {product.name}
+        <p className='fs-14 font-semibold capitalize text-primary-1A162E line-clamp-2 mlg:fs-16 mlg:min-h-[48px]'>
+          {currentLanguage === 'vi' ? product.name : convertToEN(product.name)}
         </p>
         <div className='mt-2 flex items-center mlg:mt-3'>
           <p className='fs-14 max-w-[50%] truncate text-primary-F94545/70 line-through'>
@@ -39,7 +48,7 @@ export default function Product({ product }: Props) {
           <ProductRating rating={product.rating} />
           <p className='fs-14 font-semibold text-primary-1A162E mlg:ml-2'>
             <span>{formatNumberToSocialStyle(product.sold)}</span>
-            <span className='ml-1'>Đã bán</span>
+            <span className='ml-1'>{t('product:txt-sold')}</span>
           </p>
         </div>
       </div>

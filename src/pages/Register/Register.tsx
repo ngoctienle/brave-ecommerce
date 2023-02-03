@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -22,6 +23,7 @@ const RegisterSchema = schema.pick(['email', 'password', 'confirm_password'])
 
 export default function Register() {
   const { setIsAuthenticated, setUserProfile } = useContext(AppContext)
+  const { t } = useTranslation('general')
   const navigate = useNavigate()
 
   const {
@@ -53,7 +55,8 @@ export default function Register() {
           if (formError) {
             Object.keys(formError).forEach((key) => {
               setError(key as keyof Omit<FormData, 'confirm_password'>, {
-                message: formError[key as keyof Omit<FormData, 'confirm_password'>],
+                /* message: formError[key as keyof Omit<FormData, 'confirm_password'>], */
+                message: 'exist-auth',
                 type: 'Server'
               })
             })
@@ -67,10 +70,13 @@ export default function Register() {
     <div className='grid h-screen grid-cols-1 md:grid-cols-12'>
       <div className='hidden md:col-span-6 md:block md:bg-FAFAFD'>
         <div className='md:flex md:h-full md:flex-col md:items-center md:justify-center md:px-4'>
-          <img src='/assets/auth-img.svg' alt='' title='' className='w-[350px] lg:w-[420px]' />
-          <p className='fs-18 mt-10 max-w-[420px] text-center lg:fs-20'>
-            The best of luxury brand values, high quality products, and innovative services
-          </p>
+          <img
+            src='/assets/auth-img.svg'
+            alt={t('general:auth-desc') as string}
+            title={t('general:auth-desc') as string}
+            className='w-[350px] lg:w-[420px]'
+          />
+          <p className='fs-18 mt-10 max-w-[420px] text-center lg:fs-20'>{t('general:auth-desc')}</p>
         </div>
       </div>
       <div className='bg-white md:col-span-6'>
@@ -79,16 +85,17 @@ export default function Register() {
             <Brand />
           </Link>
           <form onSubmit={onSubmit} noValidate className='w-full sm:w-[350px] lg:w-[460px]'>
-            <h1 className='fs-22 text-center font-bold text-primary-1A162E lg:fs-30'>Sign Up</h1>
+            <h1 className='fs-22 text-center font-bold text-primary-1A162E lg:fs-30'>
+              {t('general:sign-up')}
+            </h1>
             <p className='fs-14 mt-[10px] text-center text-secondary-9E9DA8 md:fs-16'>
-              {' '}
-              Let’s create your account and Shop like a pro and save money.
+              {t('general:create-desc')}
             </p>
             <Input
               className='mt-5 sm:mt-10'
               type='email'
               name='email'
-              placeholder='Email'
+              placeholder={t('general:email') as string}
               register={register}
               errorMessage={errors.email?.message}
             />
@@ -96,7 +103,7 @@ export default function Register() {
               className='relative mt-1'
               type='password'
               name='password'
-              placeholder='Password'
+              placeholder={t('general:pw') as string}
               autoComplete='on'
               register={register}
               errorMessage={errors.password?.message}
@@ -105,7 +112,7 @@ export default function Register() {
               className='relative mt-1'
               type='password'
               name='confirm_password'
-              placeholder='Confirm Password'
+              placeholder={t('general:confirm-pw') as string}
               autoComplete='on'
               register={register}
               errorMessage={errors.confirm_password?.message}
@@ -115,16 +122,19 @@ export default function Register() {
                 className='fs-14 flex h-10 w-full items-center justify-center rounded-10 bg-primary-FFB700 font-semibold uppercase text-primary-1A162E md:fs-16 md:h-[50px]'
                 isLoading={registerAccountMutation.isLoading}
                 disabled={registerAccountMutation.isLoading}>
-                Đăng Ký
+                {t('general:sign-up')}
               </Button>
             </div>
           </form>
           <div className='flex items-center justify-center'>
-            <span className='fs-14 text-secondary-9E9DA8 md:fs-18'>Bạn đã có tài khoản?</span>
+            <span className='fs-14 text-secondary-9E9DA8 md:fs-18'>
+              {' '}
+              {t('general:ready-account')}
+            </span>
             <Link
               className='fs-14 ml-2 font-semibold capitalize text-primary-0071DC md:fs-18'
               to={paths.login}>
-              Đăng nhập
+              {t('general:sign-in')}
             </Link>
           </div>
         </div>

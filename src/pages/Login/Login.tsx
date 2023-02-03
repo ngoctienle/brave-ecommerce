@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -24,6 +25,7 @@ const LoginSchema = schema.pick(['email', 'password'])
 
 export default function Login() {
   const { setIsAuthenticated, setUserProfile } = useContext(AppContext)
+  const { t } = useTranslation('general')
   const navigate = useNavigate()
   const params = useQueryParams()
   const queryRedirect = Object.keys(params).length !== 0 ? '/' + Object.values(params) : '/'
@@ -56,7 +58,8 @@ export default function Login() {
           if (formError) {
             Object.keys(formError).forEach((key) => {
               setError(key as keyof FormData, {
-                message: formError[key as keyof FormData],
+                /* message: formError[key as keyof FormData], */
+                message: 'wrong-auth',
                 type: 'Server'
               })
             })
@@ -70,10 +73,13 @@ export default function Login() {
     <div className='grid h-screen grid-cols-1 md:grid-cols-12'>
       <div className='hidden md:col-span-6 md:block md:bg-FAFAFD'>
         <div className='md:flex md:h-full md:flex-col md:items-center md:justify-center md:px-4'>
-          <img src='/assets/auth-img.svg' alt='' title='' className='w-[350px] lg:w-[420px]' />
-          <p className='fs-18 mt-10 max-w-[420px] text-center lg:fs-20'>
-            The best of luxury brand values, high quality products, and innovative services
-          </p>
+          <img
+            src='/assets/auth-img.svg'
+            alt={t('general:auth-desc') as string}
+            title={t('general:auth-desc') as string}
+            className='w-[350px] lg:w-[420px]'
+          />
+          <p className='fs-18 mt-10 max-w-[420px] text-center lg:fs-20'>{t('general:auth-desc')}</p>
         </div>
       </div>
       <div className='bg-white md:col-span-6'>
@@ -82,17 +88,17 @@ export default function Login() {
             <Brand />
           </Link>
           <form onSubmit={onSubmit} className='w-full sm:w-[350px] lg:w-[460px]' noValidate>
-            <h1 className='fs-22 text-center font-bold text-primary-1A162E lg:fs-30'>Sign In</h1>
+            <h1 className='fs-22 text-center font-bold text-primary-1A162E lg:fs-30'>
+              {t('general:sign-in')}
+            </h1>
             <p className='fs-14 mt-[10px] text-center text-secondary-9E9DA8 md:fs-16'>
-              {' '}
-              Welcome back to sign in. As a returning customer, you have access to your previously
-              saved all information.
+              {t('general:sign-desc')}
             </p>
             <Input
               className='mt-5 sm:mt-10'
               type='email'
               name='email'
-              placeholder='Email'
+              placeholder={t('general:email') as string}
               register={register}
               errorMessage={errors.email?.message}
             />
@@ -100,7 +106,7 @@ export default function Login() {
               className='relative mt-1'
               type='password'
               name='password'
-              placeholder='Password'
+              placeholder={t('general:pw') as string}
               autoComplete='on'
               register={register}
               errorMessage={errors.password?.message}
@@ -111,16 +117,18 @@ export default function Login() {
                 className='fs-14 flex h-10 w-full items-center justify-center rounded-10 bg-primary-FFB700 font-semibold uppercase text-primary-1A162E md:fs-16 md:h-[50px]'
                 isLoading={loginAccountMutation.isLoading}
                 disabled={loginAccountMutation.isLoading}>
-                Đăng Nhập
+                {t('general:sign-in')}
               </Button>
             </div>
           </form>
           <div className='flex items-center justify-center'>
-            <span className='fs-14 text-secondary-9E9DA8 md:fs-18'>Bạn chưa có tài khoản?</span>
+            <span className='fs-14 text-secondary-9E9DA8 md:fs-18'>
+              {t('general:have-account')}
+            </span>
             <Link
               className='fs-14 ml-2 font-semibold capitalize text-primary-0071DC md:fs-18'
               to={paths.register}>
-              Đăng ký
+              {t('general:sign-up')}
             </Link>
           </div>
         </div>

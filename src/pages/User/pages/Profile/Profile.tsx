@@ -1,4 +1,5 @@
 import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -31,25 +32,31 @@ function Info() {
     control,
     formState: { errors }
   } = useFormContext<FormData>()
+  const { t } = useTranslation('general')
+
   return (
     <Fragment>
       <div className='mt-5 flex flex-col gap-3 md:mt-6'>
-        <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>Tên</p>
+        <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>
+          {t('general:name')}
+        </p>
         <Input
           register={register}
           name='name'
-          placeholder='Họ và tên'
+          placeholder={t('general:name') as string}
           errorMessage={errors.name?.message}
         />
       </div>
       <div className='flex flex-col gap-2 md:gap-3'>
-        <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>Số điện thoại</p>
+        <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>
+          {t('general:phone')}
+        </p>
         <Controller
           control={control}
           name='phone'
           render={({ field }) => (
             <InputNumber
-              placeholder='Số điện thoại'
+              placeholder={t('general:phone') as string}
               errorMessage={errors.phone?.message}
               {...field}
               onChange={field.onChange}
@@ -62,6 +69,7 @@ function Info() {
 }
 
 export default function Profile() {
+  const { t } = useTranslation('general')
   const [file, setFile] = useState<File>()
   const previewImage = useMemo(() => {
     return file ? URL.createObjectURL(file) : ''
@@ -152,8 +160,10 @@ export default function Profile() {
   return (
     <Fragment>
       <div className='border-b border-t border-t-secondary-EDEDF6 border-b-secondary-EDEDF6 p-3 md:py-4 md:px-6 mmd:border-t-0 mmd:border-l mmd:border-l-secondary-EDEDF6'>
-        <h1 className='fs-16 font-bold capitalize text-primary-1A162E md:fs-18'>Hồ Sơ Của Tôi</h1>
-        <p className='fs-14 text-secondary-9E9DA8'>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+        <h1 className='fs-16 font-bold capitalize text-primary-1A162E md:fs-18'>
+          {t('general:my-profile')}
+        </h1>
+        <p className='fs-14 text-secondary-9E9DA8'>{t('general:profile-desc')}</p>
       </div>
       <div className='p-3 md:py-4 md:px-6 mmd:border-l'>
         <FormProvider {...methods}>
@@ -163,7 +173,7 @@ export default function Profile() {
             <div className='flex-grow'>
               <div className='flex flex-col gap-2 md:gap-3'>
                 <p className='fs-14 truncate font-semibold capitalize text-primary-1A162E md:fs-16'>
-                  Email
+                  {t('general:email')}
                 </p>
                 <div className='fs-14 flex h-10 w-full cursor-not-allowed items-center rounded-10 border border-secondary-D2D1D6 bg-secondary-F8F8FB px-3 text-secondary-D2D1D6 md:fs-16 md:h-12 md:px-4'>
                   {profile?.email}
@@ -172,12 +182,12 @@ export default function Profile() {
               <Info />
               <div className='flex flex-col gap-3'>
                 <p className='fs-14 font-semibold capitalize text-primary-1A162E md:fs-16'>
-                  Địa chỉ
+                  {t('general:address')}
                 </p>
                 <Input
                   register={register}
                   name='address'
-                  placeholder='Địa chỉ'
+                  placeholder={t('general:address') as string}
                   errorMessage={errors.address?.message}
                 />
               </div>
@@ -196,7 +206,7 @@ export default function Profile() {
                 <Button
                   className='fs-14 flex h-10 min-w-[80px] items-center justify-center rounded-10 bg-primary-67B044 px-5 text-white transition-colors hover:border-primary-1A162E sm:ml-auto md:fs-16 md:h-10 md:px-5'
                   type='submit'>
-                  Lưu
+                  {t('general:save')}
                 </Button>
               </div>
             </div>
@@ -216,10 +226,10 @@ export default function Profile() {
               <InputFile onChange={handleChangeFile} />
               <div className='fs-12 mt-3 text-secondary-9E9DA8 md:fs-14'>
                 <p>
-                  Dụng lượng file tối đa <span className='font-semibold'>1 MB</span>
+                  {t('general:max-weight')} <span className='font-semibold'>1 MB</span>
                 </p>
                 <p>
-                  Định dạng: <span className='font-semibold'>.JPEG, .PNG</span>
+                  {t('general:format')}: <span className='font-semibold'>.JPEG, .PNG</span>
                 </p>
               </div>
             </div>

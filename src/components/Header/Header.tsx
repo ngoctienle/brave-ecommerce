@@ -1,9 +1,11 @@
 import { Fragment, useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import omit from 'lodash/omit'
+import cls from 'classnames'
 import {
   LanguageIcon,
   UserIcon,
@@ -32,6 +34,9 @@ const MAX_PRODUCT = 5
 export default function Header() {
   const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } =
     useContext(AppContext)
+  const { t, i18n } = useTranslation(['home', 'general'])
+  const currentLanguage = i18n.language
+
   const queryConfig = useQueryConfig()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
@@ -80,6 +85,7 @@ export default function Header() {
       search: createSearchParams(config).toString()
     })
   })
+
   const handleSearchMobile = handleSubmitMobile((data) => {
     const config = queryConfig.order
       ? omit(
@@ -108,9 +114,13 @@ export default function Header() {
 
   const purchaseListInCart = purchaseInCartData?.data.data
 
+  const changeLanguage = (lng: 'en' | 'vi') => {
+    i18n.changeLanguage(lng)
+  }
+
   return (
     <Fragment>
-      <header className='bg-FAFAFD py-4 lg:py-5'>
+      <header className='bg-FAFAFD py-4 font-brave-ecom lg:py-5'>
         <div className='container'>
           <div className='grid grid-cols-12'>
             <Link to='/' className='col-span-6 flex max-w-max items-center md:col-span-3'>
@@ -124,7 +134,7 @@ export default function Header() {
                 onSubmit={handleSearch}>
                 <input
                   type='text'
-                  placeholder='Free ship đơn từ 0 đồng..'
+                  placeholder={t('header.search-placeholder') as string}
                   className='flex-grow border-none bg-transparent text-primary-1A162E outline-none placeholder:fs-14 placeholder:text-primary-1A162E/70'
                   {...register('name')}
                 />
@@ -140,12 +150,12 @@ export default function Header() {
                   <div className='flex w-[250px] flex-col rounded-8 bg-white p-3 shadow-lg md:w-[400px] lg:rounded-16'>
                     <div className='flex items-center justify-between border-b border-secondary-EDEDF6 pb-2'>
                       <span className='fs-14 font-semibold capitalize text-primary-1A162E lg:fs-16'>
-                        Sản phẩm mới thêm
+                        {t('header.cart-icon-title')}
                       </span>
                       <Link
                         to={paths.cart}
                         className='fs-12 cursor-pointer capitalize text-primary-0071DC hover:underline lg:fs-14'>
-                        xem giỏ hàng
+                        {t('header.view-cart')}
                       </Link>
                     </div>
                     {purchaseListInCart
@@ -193,11 +203,27 @@ export default function Header() {
                 className='flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center rounded-8 border border-secondary-EDEDF6 bg-white transition-colors hover:border-secondary-9E9DA8 md:h-9 md:w-9 lg:h-10 lg:w-10'
                 renderPopover={
                   <div className='flex flex-col rounded-8 bg-white p-2 shadow-lg lg:rounded-16 lg:p-3'>
-                    <button className='fs-14 rounded-8 py-2 px-4 text-primary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6'>
-                      Tiếng Việt
+                    <button
+                      onClick={() => changeLanguage('vi')}
+                      className={cls(
+                        'fs-14 rounded-8 py-2 px-4  transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6',
+                        {
+                          'text-secondary-77DAE6': currentLanguage === 'vi',
+                          'text-primary-1A162E': currentLanguage === 'vi'
+                        }
+                      )}>
+                      {t('header.lng-vi')}
                     </button>
-                    <button className='fs-14 mt-1 rounded-8 py-2 px-4 text-primary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6'>
-                      Tiếng Anh
+                    <button
+                      onClick={() => changeLanguage('en')}
+                      className={cls(
+                        'fs-14 rounded-8 py-2 px-4  transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6',
+                        {
+                          'text-secondary-77DAE6': currentLanguage === 'en',
+                          'text-primary-1A162E': currentLanguage === 'en'
+                        }
+                      )}>
+                      {t('header.lng-en')}
                     </button>
                   </div>
                 }>
@@ -214,17 +240,17 @@ export default function Header() {
                       <Link
                         className='fs-14 rounded-8 py-2 px-4 text-left text-primary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6'
                         to={paths.profile}>
-                        Tài khoản của tôi
+                        {t('general:my-account')}
                       </Link>
                       <Link
                         className='fs-14 rounded-8 py-2 px-4 text-left text-primary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6'
                         to={paths.historyPurchase}>
-                        Đơn mua
+                        {t('general:purchases-history')}
                       </Link>
                       <button
                         onClick={handleLogout}
                         className='fs-14 rounded-8 py-2 px-4 text-left text-primary-1A162E transition-colors hover:bg-secondary-F8F8FB/60 hover:text-secondary-77DAE6 lg:fs-16 lg:py-3 lg:px-6'>
-                        Đăng xuất
+                        {t('general:sign-out')}
                       </button>
                     </div>
                   }>
@@ -249,7 +275,7 @@ export default function Header() {
                 <Link
                   to={paths.login}
                   className='fs-14 flex h-8 items-center whitespace-nowrap rounded-8 border border-secondary-EDEDF6 bg-white px-2 text-center capitalize text-primary-1A162E transition-colors hover:border-secondary-9E9DA8 md:h-9 lg:fs-16 lg:h-10 lg:px-4'>
-                  Đăng nhập
+                  {t('general:sign-in')}
                 </Link>
               )}
               {/* End Auth */}
@@ -265,7 +291,7 @@ export default function Header() {
             onSubmit={handleSearchMobile}>
             <input
               type='text'
-              placeholder='Free ship đơn từ 0 đồng..'
+              placeholder={t('header.search-placeholder') as string}
               className='flex-grow border-none bg-transparent text-primary-1A162E outline-none placeholder:fs-14 placeholder:text-primary-1A162E/70'
               {...registerMobile('name')}
             />

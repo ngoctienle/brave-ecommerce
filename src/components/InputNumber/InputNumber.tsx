@@ -1,7 +1,9 @@
 import { InputHTMLAttributes, forwardRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface InputNumberProps extends InputHTMLAttributes<HTMLInputElement> {
-  errorMessage?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  errorMessage?: any
   classNameInput?: string
   classNameError?: string
 }
@@ -18,6 +20,7 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(function Inpu
   },
   ref
 ) {
+  const { t } = useTranslation('error')
   const [localValue, setLocalValue] = useState<string>(value as string)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +40,7 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(function Inpu
         {...restParams}
         ref={ref}
       />
-      <div className={classNameError}>{errorMessage}</div>
+      <div className={classNameError}>{t(errorMessage)}</div>
     </div>
   )
 })

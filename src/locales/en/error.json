@@ -1,0 +1,26 @@
+{
+  "email": {
+    "required": "Email is required",
+    "invalid": "Email is invalid",
+    "length": "Length from 5-160 characters"
+  },
+  "pw": {
+    "required": "Password is required",
+    "length": "Length from 6-160 characters"
+  },
+  "confirm-pw": {
+    "required": "Confirm Password is required",
+    "length": "Length from 6-160 characters",
+    "same": "Confirm Password is not same with Password"
+  },
+  "price": {
+    "valid": "Price is invalid"
+  },
+  "name": "Maximum length is 160 characters",
+  "phone": "Maximum length is 20 characters",
+  "address": "Maximum length is 160 characters",
+  "avatar": "Maximum length is 1000 characters",
+  "dob": "Your date of birth is invalid",
+  "wrong-auth": "Email or password is wrong",
+  "exist-auth": "Email already exists"
+}

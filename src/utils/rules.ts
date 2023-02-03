@@ -9,41 +9,41 @@ type Rules = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getRules = (getValues?: UseFormGetValues<any>): Rules => ({
   email: {
-    required: { value: true, message: 'Email là bắt buộc!' },
-    pattern: { value: /^\S+@\S+\.\S+$/, message: 'Email không hợp lệ' },
+    required: { value: true, message: 'email.required' },
+    pattern: { value: /^\S+@\S+\.\S+$/, message: 'email.valid' },
     maxLength: {
       value: 160,
-      message: 'Độ dài từ 5-160 ký tự'
+      message: 'email.length'
     },
     minLength: {
       value: 5,
-      message: 'Độ dài từ 5-160 ký tự'
+      message: 'email.length'
     }
   },
   password: {
-    required: { value: true, message: 'Password là bắt buộc!' },
+    required: { value: true, message: 'pw.required' },
     maxLength: {
       value: 160,
-      message: 'Độ dài từ 6-160 ký tự'
+      message: 'pw.length'
     },
     minLength: {
       value: 6,
-      message: 'Độ dài từ 6-160 ký tự'
+      message: 'pw.length'
     }
   },
   confirm_password: {
-    required: { value: true, message: 'Nhập lại password là bắt buộc!' },
+    required: { value: true, message: 'confirm-pw.required' },
     maxLength: {
       value: 160,
-      message: 'Độ dài từ 6-160 ký tự'
+      message: 'confirm-pw.length'
     },
     minLength: {
       value: 6,
-      message: 'Độ dài từ 6-160 ký tự'
+      message: 'confirm-pw.length'
     },
     validate:
       typeof getValues === 'function'
-        ? (value) => value === getValues('password') || 'Password không giống nhau!'
+        ? (value) => value === getValues('password') || 'confirm-pw.same'
         : undefined
   }
 })
@@ -59,44 +59,40 @@ function testYupPriceMinMax(this: yup.TestContext<AnyObject>) {
 const handleYupConfirmPw = (refString: string) => {
   return yup
     .string()
-    .required('Nhập lại password là bắt buộc!')
-    .min(6, 'Độ dài từ 6-160 ký tự')
-    .max(160, 'Độ dài từ 6-160 ký tự')
-    .oneOf([yup.ref(refString)], 'Password không giống nhau!')
+    .required('confirm-pw.required')
+    .min(6, 'confirm-pw.length')
+    .max(160, 'confirm-pw.length')
+    .oneOf([yup.ref(refString)], 'confirm-pw.same')
 }
 
 export const schema = yup.object({
   email: yup
     .string()
-    .required('Email là bắt buộc!')
-    .email('Email không hợp lệ')
-    .min(5, 'Độ dài từ 5-160 ký tự')
-    .max(160, 'Độ dài từ 5-160 ký tự'),
-  password: yup
-    .string()
-    .required('Password là bắt buộc!')
-    .min(6, 'Độ dài từ 6-160 ký tự')
-    .max(160, 'Độ dài từ 6-160 ký tự'),
+    .required('email.required')
+    .email('email.valid')
+    .min(5, 'email.length')
+    .max(160, 'email.length'),
+  password: yup.string().required('pw.required').min(6, 'pw.length').max(160, 'pw.length'),
   confirm_password: handleYupConfirmPw('password'),
   price_min: yup.string().test({
     name: 'price-not-allow',
-    message: 'Giá không phù hợp',
+    message: 'price.valid',
     test: testYupPriceMinMax
   }),
   price_max: yup.string().test({
     name: 'price-not-allow',
-    message: 'Giá không phù hợp',
+    message: 'price.valid',
     test: testYupPriceMinMax
   }),
   name: yup.string().trim().required()
 })
 
 export const userSchema = yup.object({
-  name: yup.string().max(160, 'Độ dài tối đa là 160 ký tự'),
-  phone: yup.string().max(20, 'Độ dài tối đa là 20 ký tự'),
-  address: yup.string().max(160, 'Độ dài tối đa là 160 ký tự'),
-  avatar: yup.string().max(1000, 'Độ dài tối đa là 1000 ký tự'),
-  date_of_birth: yup.date().max(new Date(), 'Ngày sinh không hợp lệ'),
+  name: yup.string().max(160, 'error:name'),
+  phone: yup.string().max(20, 'error:phone'),
+  address: yup.string().max(160, 'error:address'),
+  avatar: yup.string().max(1000, 'error:avatar'),
+  date_of_birth: yup.date().max(new Date(), 'error:dob'),
   password: schema.fields['password'],
   new_password: schema.fields['password'],
   confirm_password: handleYupConfirmPw('new_password')

@@ -1,9 +1,11 @@
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { InputHTMLAttributes, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import type { RegisterOptions, UseFormRegister } from 'react-hook-form'
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  errorMessage?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  errorMessage?: any
   classNameInput?: string
   classNameError?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,6 +23,7 @@ export default function Input({
   classNameError = 'mt-1 min-h-[1.25rem] fs-12 text-primary-F94545',
   ...restParams
 }: Props) {
+  const { t } = useTranslation('error')
   const [visible, setVisible] = useState(false)
   const registerResult = register && name ? register(name, rules) : null
 
@@ -40,17 +43,17 @@ export default function Input({
       <input className={classNameInput} {...registerResult} {...restParams} type={handleType()} />
       {restParams.type === 'password' && visible && (
         <EyeIcon
-          className='absolute top-[11px] right-3 h-5 w-5 cursor-pointer md:right-4'
+          className='absolute top-[14px] right-3 h-5 w-5 cursor-pointer md:right-4'
           onClick={toggleVisible}
         />
       )}
       {restParams.type === 'password' && !visible && (
         <EyeSlashIcon
-          className='absolute top-[11px] right-3 h-5 w-5 cursor-pointer md:right-4'
+          className='absolute top-[14px] right-3 h-5 w-5 cursor-pointer md:right-4'
           onClick={toggleVisible}
         />
       )}
-      <div className={classNameError}>{errorMessage}</div>
+      <div className={classNameError}>{t(errorMessage)}</div>
     </div>
   )
 }

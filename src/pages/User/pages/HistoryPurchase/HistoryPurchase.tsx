@@ -1,9 +1,10 @@
 import { Fragment } from 'react'
+import { useTranslation } from 'react-i18next'
 import { createSearchParams, Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames'
 
-import { formatCurrency, generateNameId } from 'src/utils/utils'
+import { convertToEN, formatCurrency, generateNameId } from 'src/utils/utils'
 import { PurchaseListStatus } from 'src/types/purchase.type'
 import { purchaseStatus } from 'src/constants/purchase'
 import purchaseApi from 'src/apis/purchase.api'
@@ -12,15 +13,17 @@ import paths from 'src/constants/paths'
 import useQueryParams from 'src/hooks/useQueryParams'
 
 const purchaseTabs = [
-  { status: purchaseStatus.all, name: 'Tất cả' },
-  { status: purchaseStatus.waitForConfirmation, name: 'Chờ xác nhận' },
-  { status: purchaseStatus.waitForGetting, name: 'Chờ lấy hàng' },
-  { status: purchaseStatus.inProgress, name: 'Đang giao' },
-  { status: purchaseStatus.delivered, name: 'Đã giao' },
-  { status: purchaseStatus.cancelled, name: 'Đã hủy' }
+  { status: purchaseStatus.all, name: 'general:all' },
+  { status: purchaseStatus.waitForConfirmation, name: 'general:wait-cf' },
+  { status: purchaseStatus.waitForGetting, name: 'general:wait-dl' },
+  { status: purchaseStatus.inProgress, name: 'general:dling' },
+  { status: purchaseStatus.delivered, name: 'general:dled' },
+  { status: purchaseStatus.cancelled, name: 'general:cancelled' }
 ]
 
 export default function HistoryPurchase() {
+  const { t, i18n } = useTranslation('general')
+  const currentLanguage = i18n.language
   const queryParams: { status?: string } = useQueryParams()
   const status: number = Number(queryParams.status) || purchaseStatus.all
 
@@ -49,7 +52,7 @@ export default function HistoryPurchase() {
             status !== tab.status
         }
       )}>
-      {tab.name}
+      {t(tab.name)}
     </Link>
   ))
 
@@ -77,12 +80,23 @@ export default function HistoryPurchase() {
                         <img
                           className='h-16 w-16 object-cover md:h-20 md:w-20'
                           src={purchase.product.image}
-                          alt={purchase.product.name}
+                          alt={
+                            currentLanguage === 'vi'
+                              ? purchase.product.name
+                              : convertToEN(purchase.product.name)
+                          }
+                          title={
+                            currentLanguage === 'vi'
+                              ? purchase.product.name
+                              : convertToEN(purchase.product.name)
+                          }
                         />
                       </div>
                       <div className='ml-3 flex-grow overflow-hidden'>
-                        <h2 className='fs-14 truncate font-semibold text-primary-1A162E mlg:fs-16'>
-                          {purchase.product.name}
+                        <h2 className='fs-14 truncate font-semibold capitalize text-primary-1A162E mlg:fs-16'>
+                          {currentLanguage === 'vi'
+                            ? purchase.product.name
+                            : convertToEN(purchase.product.name)}
                         </h2>
                         <span className='fs-14 text-primary-1A162E'>(x{purchase.buy_count})</span>
                       </div>
@@ -96,7 +110,9 @@ export default function HistoryPurchase() {
                           </span>
                         </p>
                         <div className='flex items-center justify-end'>
-                          <span className='fs-14 text-primary-1A162E lg:fs-16'>Tổng giá tiền:</span>
+                          <span className='fs-14 text-primary-1A162E lg:fs-16'>
+                            {t('general:total')}:
+                          </span>
                           <span className='fs-18 ml-2 font-semibold text-primary-67B044 lg:fs-20'>
                             ₫{formatCurrency(purchase.product.price * purchase.buy_count)}
                           </span>
