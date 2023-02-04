@@ -1,4 +1,5 @@
 import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
@@ -159,6 +160,10 @@ export default function Profile() {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>Brave Ecommerce | {t('general:my-profile')}</title>
+        <meta name='description' content='Helmet application' />
+      </Helmet>
       <div className='border-b border-t border-t-secondary-EDEDF6 border-b-secondary-EDEDF6 p-3 md:py-4 md:px-6 mmd:border-t-0 mmd:border-l mmd:border-l-secondary-EDEDF6'>
         <h1 className='fs-16 font-bold capitalize text-primary-1A162E md:fs-18'>
           {t('general:my-profile')}
