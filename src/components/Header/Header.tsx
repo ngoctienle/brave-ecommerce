@@ -34,7 +34,7 @@ const MAX_PRODUCT = 5
 export default function Header() {
   const { setIsAuthenticated, isAuthenticated, setUserProfile, userProfile } =
     useContext(AppContext)
-  const { t, i18n } = useTranslation(['home', 'general'])
+  const { t, i18n } = useTranslation(['home', 'general', 'product'])
   const currentLanguage = i18n.language
 
   const queryConfig = useQueryConfig()
@@ -158,44 +158,52 @@ export default function Header() {
                         {t('header.view-cart')}
                       </Link>
                     </div>
-                    {purchaseListInCart
-                      ? purchaseListInCart.slice(0, MAX_PRODUCT).map((purchase) => (
-                          <Link
-                            to={`${paths.home}${generateNameId({
-                              name: purchase.product.name,
-                              id: purchase.product._id
-                            })}`}
-                            className='mt-2 flex items-center gap-2 rounded-8 p-2 hover:bg-secondary-F8F8FB/60 lg:p-3'
-                            key={purchase._id}>
-                            <img
-                              src={purchase.product.image}
-                              title={
-                                currentLanguage === 'vi'
-                                  ? purchase.product.name
-                                  : convertToEN(purchase.product.name)
-                              }
-                              alt={
-                                currentLanguage === 'vi'
-                                  ? purchase.product.name
-                                  : convertToEN(purchase.product.name)
-                              }
-                              className='h-8 w-8 object-cover lg:h-10 lg:w-10'
-                            />
-                            <div className='flex-grow overflow-hidden'>
-                              <p className='fs-14 truncate capitalize text-primary-1A162E lg:fs-16'>
-                                {currentLanguage === 'vi'
-                                  ? purchase.product.name
-                                  : convertToEN(purchase.product.name)}
-                              </p>
-                            </div>
-                            <div className='flex-shrink-0'>
-                              <span className='fs-14 text-secondary-77DAE6 lg:fs-16'>
-                                {formatCurrency(purchase.product.price)}
-                              </span>
-                            </div>
-                          </Link>
-                        ))
-                      : ''}
+                    {purchaseListInCart && purchaseListInCart?.length > 0 ? (
+                      purchaseListInCart.slice(0, MAX_PRODUCT).map((purchase) => (
+                        <Link
+                          to={`${paths.home}${generateNameId({
+                            name: purchase.product.name,
+                            id: purchase.product._id
+                          })}`}
+                          className='mt-2 flex items-center gap-2 rounded-8 p-2 hover:bg-secondary-F8F8FB/60 lg:p-3'
+                          key={purchase._id}>
+                          <img
+                            src={purchase.product.image}
+                            title={
+                              currentLanguage === 'vi'
+                                ? purchase.product.name
+                                : convertToEN(purchase.product.name)
+                            }
+                            alt={
+                              currentLanguage === 'vi'
+                                ? purchase.product.name
+                                : convertToEN(purchase.product.name)
+                            }
+                            className='h-8 w-8 object-cover lg:h-10 lg:w-10'
+                          />
+                          <div className='flex-grow overflow-hidden'>
+                            <p className='fs-14 truncate capitalize text-primary-1A162E lg:fs-16'>
+                              {currentLanguage === 'vi'
+                                ? purchase.product.name
+                                : convertToEN(purchase.product.name)}
+                            </p>
+                          </div>
+                          <div className='flex-shrink-0'>
+                            <span className='fs-14 text-secondary-77DAE6 lg:fs-16'>
+                              {formatCurrency(purchase.product.price)}
+                            </span>
+                          </div>
+                        </Link>
+                      ))
+                    ) : !isAuthenticated ? (
+                      <span className='fs-16 mt-3 text-center text-primary-F94545'>
+                        {t('product:auth-err')}
+                      </span>
+                    ) : (
+                      <span className='fs-16 mt-3 text-center text-primary-F94545'>
+                        {t('product:no-product')}
+                      </span>
+                    )}
                   </div>
                 }>
                 <div className='relative h-8 w-8 cursor-pointer rounded-8 border border-secondary-EDEDF6 bg-white transition-colors hover:border-secondary-9E9DA8 md:h-9 md:w-9 lg:h-10 lg:w-10'>

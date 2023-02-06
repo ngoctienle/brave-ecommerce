@@ -30,5 +30,8 @@
   "delete": "Delete",
   "total-payment": "Total Payment",
   "saving": "Saving",
-  "buy": "Buy Now"
+  "buy": "Buy Now",
+  "auth-err": "Please Login to view your Cart!",
+  "no-product": "No Products in Cart!",
+  "no-search": "Oops!! Your product is not exists. Please search with another keywords!"
 }

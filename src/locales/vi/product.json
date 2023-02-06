@@ -30,5 +30,8 @@
   "delete": "Xóa",
   "total-payment": "Tổng Thanh Toán",
   "saving": "Tiết Kiệm",
-  "buy": "Mua Ngay"
+  "buy": "Mua Ngay",
+  "auth-err": "Vui lòng Đăng Nhập để xem giỏ hàng!",
+  "no-product": "Chưa có Sản Phẩm trong giỏ hàng!",
+  "no-search": "Xin lỗi!! Sản phẩm bạn vừa tìm kiếm không tồn tại. Hãy tìm lại với những từ khóa khác!"
 }

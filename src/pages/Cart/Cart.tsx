@@ -210,7 +210,7 @@ export default function Cart() {
                   </div>
                 </div>
               </div>
-              {extendedPurchase.length > 0 && (
+              {extendedPurchase.length > 0 ? (
                 <div className='my-2 border border-secondary-EDEDF6 bg-FAFAFD p-2 lg:my-4 lg:p-4'>
                   {extendedPurchase.map((purchase, index) => (
                     <div
@@ -315,6 +315,10 @@ export default function Cart() {
                     </div>
                   ))}
                 </div>
+              ) : (
+                <p className='fs-16 my-2 text-center text-primary-F94545'>
+                  {t('product:no-product')}
+                </p>
               )}
             </div>
           </div>
