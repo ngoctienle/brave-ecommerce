@@ -1,5 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import LanguageDetector from 'i18next-browser-languagedetector'
+
 import HOME_CONFIG_EN from 'src/locales/en/header.json'
 import PRODUCT_CONFIG_EN from 'src/locales/en/product.json'
 import ERROR_CONFIG_EN from 'src/locales/en/error.json'
@@ -25,16 +27,26 @@ const resources = {
   }
 }
 
-const defaultNS = 'home'
+const options = {
+  order: ['localStorage', 'navigator', 'htmlTag', 'path'],
+  lookupLocalStorage: 'i18nextLng',
+  caches: ['localStorage'],
+  htmlTag: window.document ? window.document.head : undefined
+}
+
+/* const defaultNS = 'home' */
 
 // eslint-disable-next-line import/no-named-as-default-member
-i18n.use(initReactI18next).init({
-  resources,
-  lng: 'en',
-  ns: ['home', 'general', 'product', 'error'],
-  fallbackLng: 'en',
-  defaultNS,
-  interpolation: {
-    escapeValue: false
-  }
-})
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    detection: options,
+    ns: ['home', 'general', 'product', 'error'],
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false
+    },
+    debug: false
+  })

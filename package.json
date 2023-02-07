@@ -23,6 +23,7 @@
     "dompurify": "^2.4.1",
     "framer-motion": "^7.6.19",
     "i18next": "^22.4.9",
+    "i18next-browser-languagedetector": "^7.0.1",
     "immer": "^9.0.18",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
